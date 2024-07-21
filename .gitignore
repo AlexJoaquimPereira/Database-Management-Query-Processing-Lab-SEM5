@@ -1,0 +1,7 @@
+# Visual Studio Code
+*.vscode
+
+# Text files
+*.docx
+*.dotm
+*.pdf
