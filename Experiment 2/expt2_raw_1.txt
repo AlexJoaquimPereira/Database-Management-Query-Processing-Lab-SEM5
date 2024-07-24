@@ -1,0 +1,501 @@
+Script started on 2024-07-22 12:16:43+0530
+]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ sudo /opt/lampp/bin/mysql -u rootexpt2 < expt1.sqlln mysql[Ksudo /opt/lampp/bin/mysql expt2 < expt1.sql
+[sudo] password for computer: 
+]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ sudo /opt/lampp/bin/mysql expt2 < expt1.sql[10P-u rootexpt2 < expt1.sql[10P-u root
+(B[0;1mWelcome to the MariaDB monitor.  Commands end with ; or \g.
+(B[m(B[0;1mYour MariaDB connection id is 20
+Server version: 10.4.32-MariaDB Source distribution
+
+(B[m(B[0;1mCopyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+(B[m(B[0;1mType 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+(B[m[?1034hMariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| MAYURDB            |
+| TRY                |
+| abc                |
+| experiment1        |
+| expt1              |
+| expt2              |
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+(B[0;1m11 rows in set (0.032 sec)
+(B[m(B[0;1m
+(B[mMariaDB [(none)]> use expt[K[K[Kxpt2;
+(B[0;1mDatabase changed
+(B[mMariaDB [expt2]> show database[K[K[K[K[K[K[K[Ktables;
+(B[0;1mEmpty set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> use expt1;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+(B[0;1mDatabase changed
+(B[mMariaDB [expt1]> show tables;
++-----------------+
+| Tables_in_expt1 |
++-----------------+
+| Dept            |
+| Employee        |
++-----------------+
+(B[0;1m2 rows in set (0.000 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt1]> desc Dept;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| Deptno   | int(11)     | NO   | PRI | NULL    |       |
+| dname    | varchar(25) | NO   |     | NULL    |       |
+| location | varchar(20) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+(B[0;1m3 rows in set (0.024 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt1]> desc Employee;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| Empno     | int(11)     | NO   | PRI | NULL    |       |
+| Empname   | varchar(25) | NO   |     | NULL    |       |
+| Gender    | varchar(1)  | YES  |     | NULL    |       |
+| job       | varchar(25) | YES  |     | NULL    |       |
+| managerno | int(11)     | YES  |     | NULL    |       |
+| hiredate  | date        | YES  |     | NULL    |       |
+| salary    | float(12,2) | YES  |     | NULL    |       |
+| commision | float(10,2) | YES  |     | NULL    |       |
+| deptno    | tinyint(4)  | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+(B[0;1m9 rows in set (0.002 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt1]> select * from Employww[K[Kee;
++-------+----------+--------+--------------+-----------+------------+----------+-----------+--------+
+| Empno | Empname  | Gender | job          | managerno | hiredate   | salary   | commision | deptno |
++-------+----------+--------+--------------+-----------+------------+----------+-----------+--------+
+|     2 | Angelo   | M      | Clerk        |       300 | 2023-01-09 | 40000.00 |  30000.00 |      5 |
+|     4 | Annie    | F      | Analyst      |       120 | 2022-03-08 | 21000.00 |      NULL |     20 |
+|     5 | Brandon  | M      | President    |       150 | 2023-10-05 | 24000.00 |      NULL |     30 |
+|     6 | Bunni    | F      | HR           |       180 | 2020-05-05 | 35000.00 |      NULL |      5 |
+|     7 | Stella   | F      | receptionist |       400 | 2022-06-18 | 38000.00 |  50000.00 |      5 |
+|     8 | Maria    | F      | Clerk        |       450 | 2022-07-22 | 40000.00 |   3000.00 |     30 |
+|     9 | Max      | M      | Engineer     |       500 | 2022-11-05 | 45000.00 |      NULL |     10 |
+|    10 | Lya      | F      | Analyst      |       600 | 2023-06-04 | 42000.00 |      NULL |     20 |
+|    11 | Valery   | M      | Manager      |       700 | 2023-04-22 | 50000.00 |      NULL |      5 |
+|    12 | Nikki    | F      | Clerk        |       800 | 2024-02-11 | 37000.00 |  10000.00 |      5 |
+|    13 | Theodore | M      | Technician   |       900 | 2021-03-01 | 33000.00 |   5000.00 |     10 |
+|    14 | Alice    | F      | Consultant   |      1000 | 2022-01-19 | 53000.00 |      NULL |      1 |
+|    15 | Elliot   | M      | Developer    |      1100 | 2024-02-24 | 48000.00 |      NULL |     20 |
++-------+----------+--------+--------------+-----------+------------+----------+-----------+--------+
+(B[0;1m13 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt1]> select * from Dept;
++--------+------------+-----------+
+| Deptno | dname      | location  |
++--------+------------+-----------+
+|      1 | Accounting | Vancouver |
+|      5 | Sales      | Bengaluru |
+|     10 | Research   | Dublin    |
+|     20 | HR         | London    |
+|     30 | Marketing  | Hyderabad |
++--------+------------+-----------+
+(B[0;1m5 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt1]> exit;
+(B[0;1mBye
+(B[m]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ sudo /opt/lampp/bin/mysql -u rootexpt2 < expt1.sql[10P-u rootexpt2 < expt1.sql[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kdump expt1 > expt2.ex[K[Ksql
+]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ sudo /opt/lampp/bin/mysqldump expt1 > expt2.sql[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K expt2 < [K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kln  mysql[1Pmysql[C[C[C[C[C
+ln: failed to access 'mysql': No such file or directory
+]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ ln mysqlsudo /opt/lampp/bin/mysqldump expt1 > expt2.sql[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K [K[K[K[K[K[Kmyy[Ksql expt2.sql [C[1@e[1@x[1@p[1@r[1P[1@t[1@ [1@2[1P[1P[1@2[1@ [1@<[1@ [C[C[C[C[C[C[C[C[C[C[K
+]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ sudo /opt/lampp/bin/mysql expt2 < expt2.sqlln mysql[Ksudo /opt/lampp/bin/mysqldump expt1 > expt2.sql[14P -u rootexpt2 < expt1.sql[10P-u root
+(B[0;1mWelcome to the MariaDB monitor.  Commands end with ; or \g.
+(B[m(B[0;1mYour MariaDB connection id is 23
+Server version: 10.4.32-MariaDB Source distribution
+
+(B[m(B[0;1mCopyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+(B[m(B[0;1mType 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+(B[m[?1034hMariaDB [(none)]> show sata[K[K[K[Kdatabases;
++--------------------+
+| Database           |
++--------------------+
+| MAYURDB            |
+| TRY                |
+| abc                |
+| experiment1        |
+| expt1              |
+| expt2              |
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+(B[0;1m11 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [(none)]> use expt2;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+(B[0;1mDatabase changed
+(B[mMariaDB [expt2]> show tables;
++-----------------+
+| Tables_in_expt2 |
++-----------------+
+| Dept            |
+| Employee        |
++-----------------+
+(B[0;1m2 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> show[K[K[K[Kselect * from Employee;
++-------+----------+--------+--------------+-----------+------------+----------+-----------+--------+
+| Empno | Empname  | Gender | job          | managerno | hiredate   | salary   | commision | deptno |
++-------+----------+--------+--------------+-----------+------------+----------+-----------+--------+
+|     2 | Angelo   | M      | Clerk        |       300 | 2023-01-09 | 40000.00 |  30000.00 |      5 |
+|     4 | Annie    | F      | Analyst      |       120 | 2022-03-08 | 21000.00 |      NULL |     20 |
+|     5 | Brandon  | M      | President    |       150 | 2023-10-05 | 24000.00 |      NULL |     30 |
+|     6 | Bunni    | F      | HR           |       180 | 2020-05-05 | 35000.00 |      NULL |      5 |
+|     7 | Stella   | F      | receptionist |       400 | 2022-06-18 | 38000.00 |  50000.00 |      5 |
+|     8 | Maria    | F      | Clerk        |       450 | 2022-07-22 | 40000.00 |   3000.00 |     30 |
+|     9 | Max      | M      | Engineer     |       500 | 2022-11-05 | 45000.00 |      NULL |     10 |
+|    10 | Lya      | F      | Analyst      |       600 | 2023-06-04 | 42000.00 |      NULL |     20 |
+|    11 | Valery   | M      | Manager      |       700 | 2023-04-22 | 50000.00 |      NULL |      5 |
+|    12 | Nikki    | F      | Clerk        |       800 | 2024-02-11 | 37000.00 |  10000.00 |      5 |
+|    13 | Theodore | M      | Technician   |       900 | 2021-03-01 | 33000.00 |   5000.00 |     10 |
+|    14 | Alice    | F      | Consultant   |      1000 | 2022-01-19 | 53000.00 |      NULL |      1 |
+|    15 | Elliot   | M      | Developer    |      1100 | 2024-02-24 | 48000.00 |      NULL |     20 |
++-------+----------+--------+--------------+-----------+------------+----------+-----------+--------+
+(B[0;1m13 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> ALTER TABLE Dept D[KADD FOREIGN KEY (deptno) A[KREFERENCES [K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kcreate [K[K[K[K[K[K[KCREATE TABL:E [K[K[K[K[K[K[K[K TABLE Project (
+    -> Pno int PRIMARY KEY,
+    -> Pname varchar(25),[K NOT NULL,
+    -> location varchar(25),
+    -> dnum tinying=t[K[K[K[Kr[K=[Knt FOREIGNKE[K[K KEY,
+    -> UNIQUE(Pname));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FOREIGN KEY,
+UNIQUE(Pname))' at line 5
+(B[0;7m(B[mMariaDB [expt2]> CREATE TABLE Project ( Pno int PRIMARY KEY, Pname varchar(25) NOT NULL, location varchar(25), dnum tinyint FOREIGN KEY, UNIQUE(Pname)));[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C, UNIQUE(Pname));[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C, UNIQUE(Pname)); [K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P[1P[1P[1P[1P[1P[1P[1P[1P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C,); );d);[1P);F);O);R);E);I);G);N); ); [A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CK);;[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CE);Y);();[C);d));n));u));m));[C );R);E);F);E);R);E);N);C);E);S); );D);e);p);t);();D);e);p);t);n);o);[C);[C[C
+ERROR 1005 (HY000): Can't create table `expt2`.`Project` (errno: 150 "Foreign key constraint is incorrectly formed")
+(B[0;7m(B[mMariaDB [expt2]> CREATE TABLE Project ( Pno int PRIMARY KEY, Pname varchar(25) NOT NULL, location varchar(25), dnum tinyint, UNIQUE(Pname), FOREIGN KEYY(dnum) REFERENCES Dept(Deptno));[C[C[C[C[C[C[C[C[C[C[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cint, UNIQUE(Pname), FOREIGN KEY([1P[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cint, UNIQUE(Pname), FOREIGN KEY(d[1P[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cnt, UNIQUE(Pname), FOREIGN KEY(dn[1P[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cint, UNIQUE(Pname), FOREIGN KEY(dnu[1P[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+(B[0;1mQuery OK, 0 rows affected (0.262 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> show[K[K[Khow table[K[K[K[K[KProject;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'Project' at line 1
+(B[0;7m(B[mMariaDB [expt2]> show tables;
++-----------------+
+| Tables_in_expt2 |
++-----------------+
+| Dept            |
+| Employee        |
+| Project         |
++-----------------+
+(B[0;1m3 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> desc Project;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| Pno      | int(11)     | NO   | PRI | NULL    |       |
+| Pname    | varchar(25) | NO   | UNI | NULL    |       |
+| location | varchar(25) | YES  |     | NULL    |       |
+| dnum     | int(11)     | YES  | MUL | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+(B[0;1m4 rows in set (0.002 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> creat [Ke tbal[K[K[Kable works_on(
+    -> eno FOre[K[KREIGN KEY REFERENCES Employee[K    -> eno FOREIGN KEY REFERENCES Employee(Empno),
+    -> pno FOREIGN KEY REFERENCES Project [K(Pno),
+    -> hourspno FOREIGN KEY REFERENCES Project(Pno),[C[C[C[C[C[C[Chours[K
+    -> 
+[1]+  Stopped                 sudo /opt/lampp/bin/mysql -u root
+]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ sudo /opt/lampp/bin/mysql -u rootexpt2 < expt2.sql[10P-u root
+[sudo] password for computer: 
+(B[0;1mWelcome to the MariaDB monitor.  Commands end with ; or \g.
+(B[m(B[0;1mYour MariaDB connection id is 24
+Server version: 10.4.32-MariaDB Source distribution
+
+(B[m(B[0;1mCopyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+(B[m(B[0;1mType 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+(B[m[?1034hMariaDB [(none)]> use E[Kexpt2
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+(B[0;1mDatabase changed
+(B[mMariaDB [expt2]> show tables;
++-----------------+
+| Tables_in_expt2 |
++-----------------+
+| Dept            |
+| Employee        |
+| Project         |
++-----------------+
+(B[0;1m3 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> show tables;[3Puse expt2[4Pexit;select * from Dept;Employee;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[9Pdesc[C[C[C[C[C[C[C[C[C[C[4PDept;show tables;[2Puse expt1;show tables;[2Puse expt1;show tables;[2Pdesc Dept;Employee;[9@select * from[C[C[C[C[C[C[C[C[C[C[4PDept;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cexit;[Kuse expt2show tables;[Kc[KCREATE TABLE Work[K[K[K[Kworks_o [Kn(
+    -> eno in[K[KIT[KNT FOREITN K[K[K[K[KGN KEY REFERENCES Employee(Empno),
+    -> eno INT FOREIGN KEY REFERENCES Employee(Empno),[C[1P[1@p[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P(Empno),[1P(Empno),[1P(Empno),[1P(Empno),[1P(Empno),[1P(Empno),[1P(Empno),[1P(Empno),P(Empno),r(Empno),o(Empno),j(Empno),e(Empno),c(Empno),t(Empno),[C[C[C[C[C[C[1P),[1P),[1P),[1P),[1P),P),n),o),[C[C
+    -> hours [K_per_week float,
+    -> PRIMARY KEY(*[K+[Keno, pno));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FOREIGN KEY REFERENCES Employee(Empno),
+pno INT FOREIGN KEY REFERENCES Projec...' at line 2
+(B[0;7m(B[mMariaDB [expt2]> CREATE TABLE works_on( eno INT FOREIGN KEY REFERENCES Employee(Empno), pno INT FOREIGN KEY REFERENCES Project(Pno), hours_per_week flooat, PRIMARY KEY(eno, pno));[C[C[C[C[C[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CD, pno INT FOREIGN KEY REFERENCES Project(Pno), hours_per_week fl[1@o[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C, pno INT FOREIGN KEY REFERENCES Project(Pno), hours_per_week flo[1P[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CD, pno INT FOREIGN KEY REFERENCES Project(Pno), hours_per_week fl[1@o[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CD, pno INT FOREIGN KEY REFERENCES Project(Pno), hours_per_week f[1@l[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CD, pno INT FOREIGN KEY REFERENCES Project(Pno), hours_per_week [1@f[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CA, pno INT FOREIGN KEY REFERENCES Project(Pno), hours_per_week[1@ [A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CA, pno INT FOREIGN KEY REFERENCES Project(Pno), hours_per_wee[1@k[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C, pno INT FOREIGN KEY REFERENCES Project(Pno), hours_per_week[1P[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C, pno INT FOREIGN KEY REFERENCES Project(Pno), hours_per_week [1P[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C, pno INT FOREIGN KEY REFERENCES Project(Pno), hours_per_week f[1P[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C, pno INT FOREIGN KEY REFERENCES Project(Pno), hours_per_week fl[1P[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C, pno INT FOREIGN KEY REFERENCES Project(Pno), hours_per_week flo[1P[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C, pno INT FOREIGN KEY REFERENCES Project(Pno), hours_per_week floa[1P[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C, pno INT FOREIGN KEY REFERENCES Project(Pno), hours_per_week float[1P[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C, pno INT FOREIGN KEY REFERENCES Project(Pno), hours_per_week float,[1P[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C, pno INT FOREIGN KEY REFERENCES Project(Pno), hours_per_week float, [1P[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C, pno INT FOREIGN KEY REFERENCES Project(Pno), hours_per_week float, P[1P[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C, pno INT FOREIGN KEY REFERENCES Project(Pno), hours_per_week float, PR[1P[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C, pno INT FOREIGN KEY REFERENCES Project(Pno), hours_per_week float, PRI[1P[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C, pno INT FOREIGN KEY REFERENCES Project(Pno), hours_per_week float, PRIM[1P[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C, pno INT FOREIGN KEY REFERENCES Project(Pno), hours_per_week float, PRIMA[1P[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C, pno INT FOREIGN KEY REFERENCES Project(Pno), hours_per_week float, PRIMAR[1P[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C, pno INT FOREIGN KEY REFERENCES Project(Pno), hours_per_week float, PRIMARY[1P[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C, pno INT FOREIGN KEY REFERENCES Project(Pno), hours_per_week float, PRIMARY [1P[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C, pno INT FOREIGN KEY REFERENCES Project(Pno), hours_per_week float, PRIMARY K[1P[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C, pno INT FOREIGN KEY REFERENCES Project(Pno), hours_per_week float, PRIMARY KE[1P[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C, pno INT FOREIGN KEY REFERENCES Project(Pno), hours_per_week float, PRIMARY KEY[1P[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C, pno INT FOREIGN KEY REFERENCES Project(Pno), hours_per_week float, PRIMARY KEY([1P[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C, pno INT FOREIGN KEY REFERENCES Project(Pno), hours_per_week float, PRIMARY KEY(e[1P[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C, pno INT FOREIGN KEY REFERENCES Project(Pno), hours_per_week float, PRIMARY KEY(en[1P[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C, pno INT FOREIGN KEY REFERENCES Project(Pno), hours_per_week float, PRIMARY KEY(eno[1P[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C, pno INT FOREIGN KEY REFERENCES Project(Pno), hours_per_week float, PRIMARY KEY(eno,[1P pno));[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C, pno INT FOREIGN KEY REFERENCES Project(Pno), hours_per_week float, PRIMARY KEY(eno, [1Ppno));[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C, pno INT FOREIGN KEY REFERENCES Project(Pno), hours_per_week float, PRIMARY KEY(eno, p[1Pno));[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C, pno INT FOREIGN KEY REFERENCES Project(Pno), hours_per_week float, PRIMARY KEY(eno, pn[1Po));[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C, pno INT FOREIGN KEY REFERENCES Project(Pno), hours_per_week float, PRIMARY KEY(eno, pno[1P));[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C, pno INT FOREIGN KEY REFERENCES Project(Pno), hours_per_week float, PRIMARY KEY(eno, pno)[C[1P;[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C, pno INT FOREIGN KEY REFERENCES Project(Pno), hours_per_week float, PRIMARY KEY(eno, pno))[1P;[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C, pno INT FOREIGN KEY REFERENCES Project(Pno), hours_per_week float, PRIMARY KEY(eno, pno));[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C, pno INT FOREIGN KEY REFERENCES Project(Pno), hours_per_week float, PRIMARY KEY(eno, pno)); [K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1@T[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1@T[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1@F[1@O[1@R[1@E[1@I[1@G[1@N[1@ [1@K[1@E[1@Y[1@ [1@([1@)[1@,[1@ [1@e[1@n[1@o[1@ [1P[C[1@ [1@R[1@E[1@F[1@E[1@R[1@E[1@N[1@C[1@E[1@S[1@ [1@E[1@m[1@p[1@l[1@o[1@y[1@e[1@e[1@([1@e[1P[1@E[1@m[1@p[1@n[1@o[1@)[C, PRIMARY KEY(eno, pno)); [A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C , PRIMARY KEY(eno, pno));;[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CF, PRIMARY KEY(eno, pno));[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CO, PRIMARY KEY(eno, pno));[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CR, PRIMARY KEY(eno, pno[C);[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CE, PRIMARY KEY(eno, pno));[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CI, PRIMARY KEY(eno, pno));[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CG, PRIMARY KEY(eno, pno));[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CN, PRIMARY KEY(eno, pno));[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C , PRIMARY KEY(eno, pno));[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CK, PRIMARY KEY(en[1@o[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CE, PRIMARY KEY(e[1@n[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CY, PRIMARY KEY([1@e[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C , PRIMARY KEY[1@([A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C(, PRIMARY KE[1@Y[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cp, PRIMARY K[1@E[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cn, PRIMARY [1@K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Co, PRIMARY[1@ [A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C), PRIMAR[1@Y[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C , PRIMA[1@R[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CR, PRIM[1@A[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CE, PRI[1@M[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CF, PR[1@I[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CE, P[1@R[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CR, [1@P[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CE,[1@ [1@N[1@C[1@E[1@S[1@ [1@P[1@r[1@o[1@j[1@e[1@c[1@t[1@ [1@([1P[1P[1@([1@P[1@n[1@o[1@)[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+(B[0;1mQuery OK, 0 rows affected (0.345 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> show[K[K[K[Kdesc whorks[K[K[K[K[Korls[K[Kks_on;
++----------------+---------+------+-----+---------+-------+
+| Field          | Type    | Null | Key | Default | Extra |
++----------------+---------+------+-----+---------+-------+
+| eno            | int(11) | NO   | PRI | NULL    |       |
+| pno            | int(11) | NO   | PRI | NULL    |       |
+| hours_per_week | float   | YES  |     | NULL    |       |
++----------------+---------+------+-----+---------+-------+
+(B[0;1m3 rows in set (0.002 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> [KMariaDB [expt2]> [KMariaDB [expt2]> ALER [K[K[KTER TABLE Employee ADD FOREIT[KGN KEY (deptno) REFERENCES TABLE====[K[K[K[K[K[K[K[K[KDept(Deptno);
+ERROR 1005 (HY000): Can't create table `expt2`.`Employee` (errno: 150 "Foreign key constraint is incorrectly formed")
+(B[0;7m(B[mMariaDB [expt2]> [KMariaDB [expt2]> desc tabe[Kles;
+ERROR 1146 (42S02): Table 'expt2.tables' doesn't exist
+(B[0;7m(B[mMariaDB [expt2]> desc [K Dept;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| Deptno   | int(11)     | NO   | PRI | NULL    |       |
+| dname    | varchar(25) | NO   |     | NULL    |       |
+| location | varchar(20) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+(B[0;1m3 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> desc Employee;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| Empno     | int(11)     | NO   | PRI | NULL    |       |
+| Empname   | varchar(25) | NO   |     | NULL    |       |
+| Gender    | varchar(1)  | YES  |     | NULL    |       |
+| job       | varchar(25) | YES  |     | NULL    |       |
+| managerno | int(11)     | YES  |     | NULL    |       |
+| hiredate  | date        | YES  |     | NULL    |       |
+| salary    | float(12,2) | YES  |     | NULL    |       |
+| commision | float(10,2) | YES  |     | NULL    |       |
+| deptno    | tinyint(4)  | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+(B[0;1m9 rows in set (0.002 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> ALTER [K[K[K[K[K[Kdesc Employee;[4PDept;tables;ALTER TABLE Employee ADD FOREIGN KEY (deptno) REFERENCES Dept(Deptno);[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[KMODIFY COLUMN Dept[K[K[K[Kdeptni[Ko int;
+Stage: 2 of 2 'Enabling keys'      0% of stage done                                                   (B[0;1mQuery OK, 13 rows affected (0.988 sec)
+(B[m(B[0;1mRecords: 13  Duplicates: 0  Warnings: 0
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> SELCT [K[K[KECT *( [K[K FROM Dept;
++--------+------------+-----------+
+| Deptno | dname      | location  |
++--------+------------+-----------+
+|      1 | Accounting | Vancouver |
+|      5 | Sales      | Bengaluru |
+|     10 | Research   | Dublin    |
+|     20 | HR         | London    |
+|     30 | Marketing  | Hyderabad |
++--------+------------+-----------+
+(B[0;1m5 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> desc Deptl[K;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| Deptno   | int(11)     | NO   | PRI | NULL    |       |
+| dname    | varchar(25) | NO   |     | NULL    |       |
+| location | varchar(20) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+(B[0;1m3 rows in set (0.002 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> desc Employee;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| Empno     | int(11)     | NO   | PRI | NULL    |       |
+| Empname   | varchar(25) | NO   |     | NULL    |       |
+| Gender    | varchar(1)  | YES  |     | NULL    |       |
+| job       | varchar(25) | YES  |     | NULL    |       |
+| managerno | int(11)     | YES  |     | NULL    |       |
+| hiredate  | date        | YES  |     | NULL    |       |
+| salary    | float(12,2) | YES  |     | NULL    |       |
+| commision | float(10,2) | YES  |     | NULL    |       |
+| deptno    | int(11)     | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+(B[0;1m9 rows in set (0.002 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> desc Employee;[4PDept;[9@SELECT * FROM[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CALTER TABLE Employee MODIFY COLUMN deptno int;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cdesc Employee;[K[4PDept;tables;ALTER TABLE Employee ADD FOREIGN KEY (deptno) REFERENCES Dept(Deptno);[1P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+Stage: 2 of 2 'Enabling keys'      0% of stage done                                                   (B[0;1mQuery OK, 13 rows affected (1.143 sec)
+(B[m(B[0;1mRecords: 13  Duplicates: 0  Warnings: 0
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> ALTER TABLE Employee ADD FOREIGN KEY(deptno) REFERENCES Dept(Deptno);[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cdesc Employee;[K[4PDept;Employee;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| Empno     | int(11)     | NO   | PRI | NULL    |       |
+| Empname   | varchar(25) | NO   |     | NULL    |       |
+| Gender    | varchar(1)  | YES  |     | NULL    |       |
+| job       | varchar(25) | YES  |     | NULL    |       |
+| managerno | int(11)     | YES  |     | NULL    |       |
+| hiredate  | date        | YES  |     | NULL    |       |
+| salary    | float(12,2) | YES  |     | NULL    |       |
+| commision | float(10,2) | YES  |     | NULL    |       |
+| deptno    | int(11)     | YES  | MUL | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+(B[0;1m9 rows in set (0.002 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> ALTER TABLE Employee ADD bdate date;
+(B[0;1mQuery OK, 0 rows affected (0.083 sec)
+(B[m(B[0;1mRecords: 0  Duplicates: 0  Warnings: 0
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> ALTER TABLE Employee ADD bdate date;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[22Pdesc Employee;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| Empno     | int(11)     | NO   | PRI | NULL    |       |
+| Empname   | varchar(25) | NO   |     | NULL    |       |
+| Gender    | varchar(1)  | YES  |     | NULL    |       |
+| job       | varchar(25) | YES  |     | NULL    |       |
+| managerno | int(11)     | YES  |     | NULL    |       |
+| hiredate  | date        | YES  |     | NULL    |       |
+| salary    | float(12,2) | YES  |     | NULL    |       |
+| commision | float(10,2) | YES  |     | NULL    |       |
+| deptno    | int(11)     | YES  | MUL | NULL    |       |
+| bdate     | date        | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+(B[0;1m10 rows in set (0.002 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> ALE[KTER TABLE E[Kworks_on ALTER hours_erp[K[K[Kper_week SET DEFDAI[K[K[KAULT 20;[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kdesc works_on;
++----------------+---------+------+-----+---------+-------+
+| Field          | Type    | Null | Key | Default | Extra |
++----------------+---------+------+-----+---------+-------+
+| eno            | int(11) | NO   | PRI | NULL    |       |
+| pno            | int(11) | NO   | PRI | NULL    |       |
+| hours_per_week | float   | YES  |     | NULL    |       |
++----------------+---------+------+-----+---------+-------+
+(B[0;1m3 rows in set (0.002 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> desc works_on;Employee;works_on;[KALTER TABLE works_on SET [K[K[K[KALTER hours)[K_er[K[Kper_week SET DEFAULT 20;
+(B[0;1mQuery OK, 0 rows affected (0.050 sec)
+(B[m(B[0;1mRecords: 0  Duplicates: 0  Warnings: 0
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> ALTER TABLE works_on ALTER hours_per_week SET DEFAULT 20;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cdesc works_on;[K
++----------------+---------+------+-----+---------+-------+
+| Field          | Type    | Null | Key | Default | Extra |
++----------------+---------+------+-----+---------+-------+
+| eno            | int(11) | NO   | PRI | NULL    |       |
+| pno            | int(11) | NO   | PRI | NULL    |       |
+| hours_per_week | float   | YES  |     | 20      |       |
++----------------+---------+------+-----+---------+-------+
+(B[0;1m3 rows in set (0.002 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> LATER[K[K[K[K[Kdesc DE[Keptno[K[K[Kt;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| Deptno   | int(11)     | NO   | PRI | NULL    |       |
+| dname    | varchar(25) | NO   |     | NULL    |       |
+| location | varchar(20) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+(B[0;1m3 rows in set (0.002 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> ALTER TABE[K:E[K[KLE Dept UNIQUE [K()D)e)p)t)r)[1P)n)o)[C[C[C[C[1P)[1P)[1P)[1P)[1P)[1P)d)n)a)m)e)[C
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'UNIQUE(dname)' at line 1
+(B[0;7m(B[mMariaDB [expt2]> ;ALTER TABLE Dept UNIQUE(dname)[C[C[C[C[C UNIQUE(dname)A UNIQUE(dname)D UNIQUE(dname)D UNIQUE(dname)[C[C[C[C[C[C[C[C[C[C[C[C[C[C;
+(B[0;1mQuery OK, 0 rows affected (0.300 sec)
+(B[m(B[0;1mRecords: 0  Duplicates: 0  Warnings: 0
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> ALTER TABLE Dept ADD UNIQUE(dname);[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C;[KALTER TABLE Dept UNIQUE(dname)[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[20Pdesc Dept;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| Deptno   | int(11)     | NO   | PRI | NULL    |       |
+| dname    | varchar(25) | NO   | UNI | NULL    |       |
+| location | varchar(20) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+(B[0;1m3 rows in set (0.002 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> DE[K[KALTER TABLE[K[K[K[K[K[K[K[K[K[K[K# [K
+MariaDB [expt2]> # e[KQ5
+MariaDB [expt2]> #Q 6[K[K[K Q^[K6
+MariaDB [expt2]> desc p[KPo[Kroject;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| Pno      | int(11)     | NO   | PRI | NULL    |       |
+| Pname    | varchar(25) | NO   | UNI | NULL    |       |
+| location | varchar(25) | YES  |     | NULL    |       |
+| dnum     | int(11)     | YES  | MUL | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+(B[0;1m4 rows in set (0.002 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> ALTER TABLE Project RENAE[KME Pno to Proj_num[1PProj_num[1PProj_num[1PProj_numTProj_numOProj_num Proj_num[C[C[C[C[C[C[C[C[C[C[C[K[K[Knum;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'TO Proj_num' at line 1
+(B[0;7m(B[mMariaDB [expt2]> ALTER TABLE Project RENAME Pno TO Proj_num;[1PProj_num;[1PProj_num;[1PProj_num;[C[C[C[C[C[C[C[C[C
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'Proj_num' at line 1
+(B[0;7m(B[mMariaDB [expt2]> ALTER TABLE Project RENAME Pno Proj_num;DD[K[K[1@C[1@O[1@L[1@U[1@M[1@N[1@ [1@C[1P[C[C[C[C Proj_num;T Proj_num;O Proj_num;[C[C[C[C[C[C[C[C[C[C
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'COLUMN Pno TO Proj_num' at line 1
+(B[0;7m(B[mMariaDB [expt2]> ALTER TABLE Project RENAME COLUMN Pno TO Proj_num;[1@L[1P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[KALTER TABLE Project RENAME COLUMN Pno TO Proj_num;[C[C[C[C[C[C[1P[1P[1P[1P[1P[1P[1@C[1@H[1@A[1@N[1@G[1@E[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P Proj_num;[1P Proj_num;[1PProj_num;[C[C[C[C[C[C[C[C[C ;i;n;t;[C
+(B[0;1mQuery OK, 0 rows affected (0.086 sec)
+(B[m(B[0;1mRecords: 0  Duplicates: 0  Warnings: 0
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> ALTER TABLE Project CHANGE COLUMN Pno Proj_num int;[1PRENAME COLUMN Pno TO Proj_num;[10PPno[C[C[C[C[C[C[C[C[C[CTO Proj_num;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cdesc Project;[K# Q6[Kdesc Project;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| Proj_num | int(11)     | NO   | PRI | NULL    |       |
+| Pname    | varchar(25) | NO   | UNI | NULL    |       |
+| location | varchar(25) | YES  |     | NULL    |       |
+| dnum     | int(11)     | YES  | MUL | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+(B[0;1m4 rows in set (0.002 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> # Q7
+MariaDB [expt2]> ALTER TWB[K[KABLE works_on RENAME emp_workson_project;
+(B[0;1mQuery OK, 0 rows affected (0.172 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> cds[K[K[Kshow tables;
++---------------------+
+| Tables_in_expt2     |
++---------------------+
+| Dept                |
+| Employee            |
+| Project             |
+| emp_workson_project |
++---------------------+
+(B[0;1m4 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> # Q8
+MariaDB [expt2]> [KMariaDB [expt2]> # change datatype of deptno to tinyint in deptartment table[C[C[C[C[1P[C[C[C[C[C[C[C[C[C[C[C[C[C
+MariaDB [expt2]> desc Dept;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| Deptno   | int(11)     | NO   | PRI | NULL    |       |
+| dname    | varchar(25) | NO   | UNI | NULL    |       |
+| location | varchar(20) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+(B[0;1m3 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> desc Dept;# change datatype of deptno to tinyint in department table[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CQ8[Kshow tables;ALTER TABLE works_on RENAME emp_workson_project;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C# Q7[K[K[K[K[KALTER TABLE Dept MODIFY COM[KLUMN de[K[KDept [Kno tinyint;
+ERROR 1833 (HY000): Cannot change column 'Deptno': used in a foreign key constraint 'Employee_ibfk_1' of table 'expt2.Employee'
+(B[0;7m(B[mMariaDB [expt2]> ALTER TABLE Dept MODIFY COLUMN Deptno tinyint;[C[C[C[C[1P[1P[1P[1P[1@E[1@M[1@p[1@l[1@o[1@y[1@w[1P[1P[1P[1P[1P[1P[1@m[1@p[1@l[1@o[1@y[1@e[1@e[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P[1@d[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+ERROR 1832 (HY000): Cannot change column 'deptno': used in a foreign key constraint 'Employee_ibfk_1'
+(B[0;7m(B[mMariaDB [expt2]> [KMariaDB [expt2]> ALTER TABLE Employee MODIFY COLUMN deptno tinyint;[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kexit;
+(B[0;1mBye
+(B[m]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ exit
+There are stopped jobs.
+]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ exit
+
+Script done on 2024-07-22 13:16:58+0530
