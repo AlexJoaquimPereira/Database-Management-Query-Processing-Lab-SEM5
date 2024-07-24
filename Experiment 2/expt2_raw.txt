@@ -1,0 +1,371 @@
+Script started on 2024-07-22 11:38:08+0530
+]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ sudo====[K[K[K[K[K[K[K[Kcd ~
+]0;computer@computer-HP-280-G3-MT: ~[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~[00m$ sudo apt[K[K[Kopt/[K[K[K[K/opt/lampp/lampp start
+[sudo] password for computer: 
+Starting XAMPP for Linux 8.1.25-0...
+XAMPP: Starting Apache...ok.
+XAMPP: Starting MySQL...ok.
+XAMPP: Starting ProFTPD...ok.
+]0;computer@computer-HP-280-G3-MT: ~[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~[00m$ sudo /opt/lampp/lampp start[K[K[K[K[K[K[K[K[K[K[Kbin/mysql -u [K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kcd ~mkdir "Experiment 1"sudo /opt/lampp/bin/mysql -u root[6Plampp startclear[Ksudo /opt/lampp/bin/mysql star-u root[11Papt install mysql[7P-u root -p[5Pmysql/opt/lampp/bin/mysqldump MAYURDB > mayur.sql[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cmysql[K-u root -papt install mysql/opt/lampp/bin/mysql -u root[3Pstarclear[Ksudo /opt/lampp/lampp startbin/mysql -u root[13Pmkdir "Experiment 1"cd ~[K[Kcd [K[K[Kcd ~mkdir "Experiment 1"sudo /opt/lampp/bin/mysql -u root[6Plampp start[K[K[Kop
+Stopping XAMPP for Linux 8.1.25-0...
+XAMPP: Stopping Apache...ok.
+XAMPP: Stopping MySQL...ok.
+XAMPP: Stopping ProFTPD...ok.
+]0;computer@computer-HP-280-G3-MT: ~[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~[00m$ cd "Dsk[K[Kesktop/22B-CO-006/Experiment 2"
+]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ cd "Desktop/22B-CO-006/Experiment 2"[10Psudo /opt/lampp/lampp stop[K[K[K[Kstart
+Starting XAMPP for Linux 8.1.25-0...
+XAMPP: Starting Apache...ok.
+XAMPP: Starting MySQL...ok.
+XAMPP: Starting ProFTPD...ok.
+]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ sudo /opt/lampp/lampp startcd "Desktop/22B-CO-006/Experiment 2"[10Psudo /opt/lampp/lampp stopcd "Desktop/22B-CO-006/Experiment 2"[10Psudo /opt/lampp/lampp stop[Kcd ~mkdir "Experiment 1"cd ~[K[Ksudo /opt/lampp/lampp stopcd "Desktop/22B-CO-006/Experiment 2"[9Psudo /opt/lampp/lampp start[K /opt/lampp/lampp start[K[K[K[K[K[K[K[K[K[K[Kbin/mysql -u start
+(B[0;1mWelcome to the MariaDB monitor.  Commands end with ; or \g.
+(B[m(B[0;1mYour MariaDB connection id is 9
+Server version: 10.4.32-MariaDB Source distribution
+
+(B[m(B[0;1mCopyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+(B[m(B[0;1mType 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+(B[m[?1034hMariaDB [(none)]> show [K[K[K[K[Kshow databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| test               |
++--------------------+
+(B[0;1m2 rows in set (0.017 sec)
+(B[m(B[0;1m
+(B[mMariaDB [(none)]> exit;
+(B[0;1mBye
+(B[m]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ cd ..
+]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006[00m$ cp "Experiment 1/expt1.sql" "Experiment 2/ex[K[K[K"[C[C[C[C[C[C/"[C
+]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006[00m$ cd "Experiment 2"
+]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ ls -l
+total 8
+-rwxrwxr-x 1 computer computer 3213 Jul 22 11:43 [0m[01;32mexpt1.sql[0m
+-rw-rw-r-- 1 computer computer 4096 Jul 22 11:43 expt2_raw.txt
+]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ ls -lcd "Experiment 2"p "Experiment 1/expt1.sql" "Experiment 2/"d ..[Ksudo /opt/lampp/bin/mysql -u start[7Plampp[C[C[C[C[C[Ccd "Desktop/22B-CO-006/Experiment 2"[9Psudo /opt/lampp/lampp start
+Starting XAMPP for Linux 8.1.25-0...
+XAMPP: Starting Apache...already running.
+XAMPP: Starting MySQL...already running.
+XAMPP: Starting ProFTPD...already running.
+]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ sudo /opt/lampp/lampp startls -l[Kcd "Experiment 2"p "Experiment 1/expt1.sql" "Experiment 2/"d ..[Ksudo /opt/lampp/bin/mysql -u start
+(B[0;1mWelcome to the MariaDB monitor.  Commands end with ; or \g.
+(B[m(B[0;1mYour MariaDB connection id is 10
+Server version: 10.4.32-MariaDB Source distribution
+
+(B[m(B[0;1mCopyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+(B[m(B[0;1mType 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+(B[m[?1034hMariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| test               |
++--------------------+
+(B[0;1m2 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [(none)]> sudo opt[K[K[K/opt [K/lampp/lampp[K[K[K[K[Kmy[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kexit;
+(B[0;1mBye
+(B[m]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ sudo /opt/lampp/bin/mysql -u start[7Plampp[C[C[C[C[C[C
+Starting XAMPP for Linux 8.1.25-0...
+XAMPP: Starting Apache...already running.
+XAMPP: Starting MySQL...already running.
+XAMPP: Starting ProFTPD...already running.
+]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ sudo /opt/lampp/lampp start[7@bin/mysql -u[C[C[C[C[C[C[K[K[K[K[K[K[K[Kexpt2.[K < expt1.sql
+ERROR 1049 (42000): Unknown database 'expt2'
+]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ sudo /opt/lampp/bin/mysql expt2 < expt1.sql[Ksudo /opt/lampp/bin/mysql expt2 < expt1.sql[16Plampp start[7@bin/mysql -u[C[C[C[C[C[C
+(B[0;1mWelcome to the MariaDB monitor.  Commands end with ; or \g.
+(B[m(B[0;1mYour MariaDB connection id is 12
+Server version: 10.4.32-MariaDB Source distribution
+
+(B[m(B[0;1mCopyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+(B[m(B[0;1mType 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+(B[m[?1034hMariaDB [(none)]> create database expt2;
+ERROR 1044 (42000): Access denied for user ''@'localhost' to database 'expt2'
+(B[0;7m(B[mMariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| test               |
++--------------------+
+(B[0;1m2 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [(none)]> show databases;create database expt2;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cexit;[Kshow databases;[10Pexit;show databases; select * from student s1 join student s2 on s1.GPA=s2.GPA and s1.sid!=s2.sid where s1.GPA=s2.GPA order by s1.GPA, s1.sizeHS ;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cshow databases;[K[10Pexit;show databases;[10Pexit;create database expt2;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[7Pshow databases;[Kshow databases;create database expt2;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cexit;[Kshow databases;[10Pexit;create database expt2;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[7Pshow databases;[Ksudo /opt/lampp/l[Kbin/mysql[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kcreate databaseexpt2 expt2[C[C[C[C[C[C[C[C[K[K[K[K[Kexpt2;
+ERROR 1044 (42000): Access denied for user ''@'localhost' to database 'expt2'
+(B[0;7m(B[mMariaDB [(none)]> 
+MariaDB [(none)]> exit;
+(B[0;1mBye
+(B[m]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ cd ~
+]0;computer@computer-HP-280-G3-MT: ~[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~[00m$ cd ~sudo /opt/lampp/bin/mysql -u startexpt2 < expt1.sql[16Plampp start
+Starting XAMPP for Linux 8.1.25-0...
+XAMPP: Starting Apache...already running.
+XAMPP: Starting MySQL...already running.
+XAMPP: Starting ProFTPD...already running.
+]0;computer@computer-HP-280-G3-MT: ~[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~[00m$ sudo /opt/lampp/lampp startcd ~[Ksudo /opt/lampp/bin/mysql -u start
+(B[0;1mWelcome to the MariaDB monitor.  Commands end with ; or \g.
+(B[m(B[0;1mYour MariaDB connection id is 13
+Server version: 10.4.32-MariaDB Source distribution
+
+(B[m(B[0;1mCopyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+(B[m(B[0;1mType 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+(B[m[?1034hMariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| test               |
++--------------------+
+(B[0;1m2 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [(none)]> create databas [Ke expt2;
+ERROR 1044 (42000): Access denied for user ''@'localhost' to database 'expt2'
+(B[0;7m(B[mMariaDB [(none)]> exit;
+(B[0;1mBye
+(B[m]0;computer@computer-HP-280-G3-MT: ~[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~[00m$ ce[Kd /
+]0;computer@computer-HP-280-G3-MT: /[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m/[00m$ cd /sudo /opt/lampp/bin/mysql -u start[7Plampp[C[C[C[C[C[C
+Starting XAMPP for Linux 8.1.25-0...
+XAMPP: Starting Apache...already running.
+XAMPP: Starting MySQL...already running.
+XAMPP: Starting ProFTPD...already running.
+]0;computer@computer-HP-280-G3-MT: /[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m/[00m$ sudo /opt/lampp/lampp startcd /[Ksudo /opt/lampp/bin/mysql -u start
+(B[0;1mWelcome to the MariaDB monitor.  Commands end with ; or \g.
+(B[m(B[0;1mYour MariaDB connection id is 14
+Server version: 10.4.32-MariaDB Source distribution
+
+(B[m(B[0;1mCopyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+(B[m(B[0;1mType 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+(B[m[?1034hMariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| test               |
++--------------------+
+(B[0;1m2 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [(none)]> show databases;[10Pexit;create database expt2;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[7Pshow databases;create database expt2;
+ERROR 1044 (42000): Access denied for user ''@'localhost' to database 'expt2'
+(B[0;7m(B[mMariaDB [(none)]> exit;
+(B[0;1mBye
+(B[m]0;computer@computer-HP-280-G3-MT: /[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m/[00m$ cdsudo /opt/lampp/bin/mysql -u start[7Plampp[C[C[C[C[C[Ccd /[Ksudo /opt/lampp/bin/mysql -u start[7Plampp[C[C[C[C[C[Ccd ~[Ksudo /opt/lampp/bin/mysql -u startexpt2 < expt1.sql[16Plampp start[7@bin/mysql -u[C[C[C[C[C[C[7Plampp[C[C[C[C[C[Cls -l[Kcd "Experiment 2"p "Experiment 1/expt1.sql" "Experiment 2/"[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cd ..[Ksudo /opt/lampp/bin/mysql -u startcd ..[Ksudo /opt/lampp/bin/mysql -u start[7Plampp[C[C[C[C[C[Ccd "Desktop/22B-CO-006/Experiment 2"[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[10Psudo /opt/lampp/lampp stop[Kcd ~mkdir "Experiment 1"sudo /opt/lampp/bin/mysql -u root[6Plampp startclear[Ksudo /opt/lampp/bin/mysql star-u root[11Papt install mysql[7P-u root -papt install mysql/opt/lampp/bin/mysql -u root[3Pstarclear[Ksudo /opt/lampp/lampp startbin/mysql -u root[13Pmkdir "Experiment 1"cd ~[K[Kcd ~
+]0;computer@computer-HP-280-G3-MT: ~[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~[00m$ mysql -[K[K[K[K[K[K[Kdu[K[Ksudo apt update;
+[33m0% [Working][0m            Hit:1 http://security.ubuntu.com/ubuntu bionic-security InRelease
+[33m0% [Connecting to in.archive.ubuntu.com][0m[33m0% [1 InRelease gpgv 102 kB] [Connecting to in.archive.ubuntu.com (91.189.91.83)][0m[33m                                                                                 0% [Waiting for headers][0m                        Hit:2 http://in.archive.ubuntu.com/ubuntu bionic InRelease
+[33m                        0% [Working][0m[33m0% [2 InRelease gpgv 242 kB] [Waiting for headers][0m[33m                                                  0% [Waiting for headers][0m                        Hit:3 http://in.archive.ubuntu.com/ubuntu bionic-updates InRelease
+[33m                        0% [Working][0m[33m0% [3 InRelease gpgv 102 kB] [Waiting for headers][0m[33m                                                  0% [Waiting for headers][0m                        Hit:4 http://in.archive.ubuntu.com/ubuntu bionic-backports InRelease
+[33m                        0% [Working][0m[33m0% [4 InRelease gpgv 102 kB][0m[33m                            20% [Working][0m             Reading package lists... 0%Reading package lists... 0%Reading package lists... 0%Reading package lists... 2%Reading package lists... 2%Reading package lists... 4%Reading package lists... 4%Reading package lists... 5%Reading package lists... 5%Reading package lists... 5%Reading package lists... 5%Reading package lists... 5%Reading package lists... 5%Reading package lists... 5%Reading package lists... 5%Reading package lists... 23%Reading package lists... 23%Reading package lists... 31%Reading package lists... 40%Reading package lists... 40%Reading package lists... 49%Reading package lists... 49%Reading package lists... 50%Reading package lists... 50%Reading package lists... 50%Reading package lists... 50%Reading package lists... 50%Reading package lists... 50%Reading package lists... 56%Reading package lists... 56%Reading package lists... 59%Reading package lists... 59%Reading package lists... 63%Reading package lists... 63%Reading package lists... 66%Reading package lists... 66%Reading package lists... 66%Reading package lists... 66%Reading package lists... 67%Reading package lists... 68%Reading package lists... 68%Reading package lists... 72%Reading package lists... 72%Reading package lists... 75%Reading package lists... 75%Reading package lists... 76%Reading package lists... 76%Reading package lists... 77%Reading package lists... 77%Reading package lists... 77%Reading package lists... 77%Reading package lists... 77%Reading package lists... 77%Reading package lists... 77%Reading package lists... 77%Reading package lists... 77%Reading package lists... 77%Reading package lists... 77%Reading package lists... 77%Reading package lists... 77%Reading package lists... 77%Reading package lists... 77%Reading package lists... 77%Reading package lists... 77%Reading package lists... 77%Reading package lists... 82%Reading package lists... 82%Reading package lists... 85%Reading package lists... 85%Reading package lists... 89%Reading package lists... 89%Reading package lists... 92%Reading package lists... 92%Reading package lists... 92%Reading package lists... 92%Reading package lists... 93%Reading package lists... 93%Reading package lists... 96%Reading package lists... 96%Reading package lists... 98%Reading package lists... 98%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... 99%Reading package lists... Done
+Building dependency tree... 0%Building dependency tree... 0%Building dependency tree... 0%Building dependency tree... 50%Building dependency tree... 50%Building dependency tree       
+Reading state information... 0%Reading state information... 0%Reading state information... Done
+55 packages can be upgraded. Run 'apt list --upgradable' to see them.
+]0;computer@computer-HP-280-G3-MT: ~[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~[00m$ apt list --upgre[Kadabale[K[K[Kle
+Listing... 0%Listing... 0%Listing... 0%Listing... Done
+[32mapt[0m/bionic-updates 1.6.17 amd64 [upgradable from: 1.6.14]
+[32mapt-utils[0m/bionic-updates 1.6.17 amd64 [upgradable from: 1.6.14]
+[32mbase-files[0m/bionic-updates 10.1ubuntu2.12 amd64 [upgradable from: 10.1ubuntu2.11]
+[32mcommand-not-found[0m/bionic-updates,bionic-updates 18.04.6 all [upgradable from: 18.04.5]
+[32mcommand-not-found-data[0m/bionic-updates 18.04.6 amd64 [upgradable from: 18.04.5]
+[32mdeja-dup[0m/bionic-updates 37.1-2fakesync1ubuntu0.2 amd64 [upgradable from: 37.1-2fakesync1ubuntu0.1]
+[32mfwupd[0m/bionic-updates 1.2.14-0~18.04.3 amd64 [upgradable from: 1.2.14-0~18.04.2]
+[32mfwupd-signed[0m/bionic-updates 1.51.1~18.04.1+1.4-0ubuntu0.1 amd64 [upgradable from: 1.10~ubuntu18.04.6+1.2.14-0~18.04.2]
+[32mgir1.2-notify-0.7[0m/bionic-updates 0.7.7-3ubuntu0.18.04.1 amd64 [upgradable from: 0.7.7-3]
+[32mgrub-common[0m/bionic-updates 2.02-2ubuntu8.26 amd64 [upgradable from: 2.02-2ubuntu8.25]
+[32mgrub-pc[0m/bionic-updates 2.02-2ubuntu8.26 amd64 [upgradable from: 2.02-2ubuntu8.25]
+[32mgrub-pc-bin[0m/bionic-updates 2.02-2ubuntu8.26 amd64 [upgradable from: 2.02-2ubuntu8.25]
+[32mgrub2-common[0m/bionic-updates 2.02-2ubuntu8.26 amd64 [upgradable from: 2.02-2ubuntu8.25]
+[32miptables[0m/bionic-updates 1.6.1-2ubuntu2.1 amd64 [upgradable from: 1.6.1-2ubuntu2]
+[32mklibc-utils[0m/bionic-updates 2.0.4-9ubuntu2.2 amd64 [upgradable from: 2.0.4-9ubuntu2.1]
+[32mlibapt-inst2.0[0m/bionic-updates 1.6.17 amd64 [upgradable from: 1.6.14]
+[32mlibapt-pkg5.0[0m/bionic-updates 1.6.17 amd64 [upgradable from: 1.6.14]
+[32mlibc-bin[0m/bionic-updates 2.27-3ubuntu1.6 amd64 [upgradable from: 2.27-3ubuntu1.5]
+[32mlibfwupd2[0m/bionic-updates 1.2.14-0~18.04.3 amd64 [upgradable from: 1.2.14-0~18.04.2]
+[32mlibip4tc0[0m/bionic-updates 1.6.1-2ubuntu2.1 amd64 [upgradable from: 1.6.1-2ubuntu2]
+[32mlibip6tc0[0m/bionic-updates 1.6.1-2ubuntu2.1 amd64 [upgradable from: 1.6.1-2ubuntu2]
+[32mlibiptc0[0m/bionic-updates 1.6.1-2ubuntu2.1 amd64 [upgradable from: 1.6.1-2ubuntu2]
+[32mlibkeyutils1[0m/bionic-updates 1.5.9-9.2ubuntu2.1 amd64 [upgradable from: 1.5.9-9.2ubuntu2]
+[32mlibklibc[0m/bionic-updates 2.0.4-9ubuntu2.2 amd64 [upgradable from: 2.0.4-9ubuntu2.1]
+[32mlibnetplan0[0m/bionic-updates 0.99-0ubuntu3~18.04.5 amd64 [upgradable from: 0.99-0ubuntu3~18.04.4]
+[32mlibnotify-bin[0m/bionic-updates 0.7.7-3ubuntu0.18.04.1 amd64 [upgradable from: 0.7.7-3]
+[32mlibnotify4[0m/bionic-updates 0.7.7-3ubuntu0.18.04.1 amd64 [upgradable from: 0.7.7-3]
+[32mlibsensors4[0m/bionic-updates 1:3.4.0-4ubuntu0.1 amd64 [upgradable from: 1:3.4.0-4]
+[32mlibsmbclient[0m/bionic-updates 2:4.7.6+dfsg~ubuntu-0ubuntu2.29 amd64 [upgradable from: 2:4.7.6+dfsg~ubuntu-0ubuntu2.28]
+[32mlibunwind8[0m/bionic-updates 1.2.1-8ubuntu0.1 amd64 [upgradable from: 1.2.1-8]
+[32mlibwbclient0[0m/bionic-updates 2:4.7.6+dfsg~ubuntu-0ubuntu2.29 amd64 [upgradable from: 2:4.7.6+dfsg~ubuntu-0ubuntu2.28]
+[32mlibxtables12[0m/bionic-updates 1.6.1-2ubuntu2.1 amd64 [upgradable from: 1.6.1-2ubuntu2]
+[32mlinux-base[0m/bionic-updates,bionic-updates 4.5ubuntu1.7 all [upgradable from: 4.5ubuntu1.6]
+[32mlinux-firmware[0m/bionic-updates,bionic-updates 1.173.21 all [upgradable from: 1.173.20]
+[32mlocales[0m/bionic-updates,bionic-updates 2.27-3ubuntu1.6 all [upgradable from: 2.27-3ubuntu1.5]
+[32mmultiarch-support[0m/bionic-updates 2.27-3ubuntu1.6 amd64 [upgradable from: 2.27-3ubuntu1.5]
+[32mnetplan.io[0m/bionic-updates 0.99-0ubuntu3~18.04.5 amd64 [upgradable from: 0.99-0ubuntu3~18.04.4]
+[32mnplan[0m/bionic-updates,bionic-updates 0.99-0ubuntu3~18.04.5 all [upgradable from: 0.99-0ubuntu3~18.04.4]
+[32mopenssh-client[0m/bionic-updates 1:7.6p1-4ubuntu0.7 amd64 [upgradable from: 1:7.6p1-4ubuntu0.5]
+[32mpython-apt-common[0m/bionic-updates,bionic-updates 1.6.6 all [upgradable from: 1.6.5ubuntu0.7]
+[32mpython3-apt[0m/bionic-updates 1.6.6 amd64 [upgradable from: 1.6.5ubuntu0.7]
+[32mpython3-commandnotfound[0m/bionic-updates,bionic-updates 18.04.6 all [upgradable from: 18.04.5]
+[32mpython3-software-properties[0m/bionic-updates,bionic-updates 0.96.24.32.22 all [upgradable from: 0.96.24.32.14]
+[32mpython3-update-manager[0m/bionic-updates,bionic-updates 1:18.04.12 all [upgradable from: 1:18.04.11.13]
+[32msamba-libs[0m/bionic-updates 2:4.7.6+dfsg~ubuntu-0ubuntu2.29 amd64 [upgradable from: 2:4.7.6+dfsg~ubuntu-0ubuntu2.28]
+[32msbsigntool[0m/bionic-updates 0.9.2-2ubuntu1~18.04.2 amd64 [upgradable from: 0.9.2-2ubuntu1~18.04.1]
+[32msoftware-properties-common[0m/bionic-updates,bionic-updates 0.96.24.32.22 all [upgradable from: 0.96.24.32.14]
+[32msoftware-properties-gtk[0m/bionic-updates,bionic-updates 0.96.24.32.22 all [upgradable from: 0.96.24.32.14]
+[32mtcpdump[0m/bionic-updates 4.9.3-0ubuntu0.18.04.3 amd64 [upgradable from: 4.9.3-0ubuntu0.18.04.2]
+[32mubuntu-advantage-tools[0m/bionic-updates,bionic-updates 32.3.1~18.04 amd64 [upgradable from: 27.2.2~18.04.1]
+[32mufw[0m/bionic-updates,bionic-updates 0.36-0ubuntu0.18.04.2 all [upgradable from: 0.36-0ubuntu0.18.04.1]
+[32mupdate-manager[0m/bionic-updates,bionic-updates 1:18.04.12 all [upgradable from: 1:18.04.11.13]
+[32mupdate-manager-core[0m/bionic-updates,bionic-updates 1:18.04.12 all [upgradable from: 1:18.04.11.13]
+[32mupdate-notifier[0m/bionic-updates 3.192.1.21 amd64 [upgradable from: 3.192.1.12]
+[32mupdate-notifier-common[0m/bionic-updates,bionic-updates 3.192.1.21 all [upgradable from: 3.192.1.12]
+]0;computer@computer-HP-280-G3-MT: ~[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~[00m$ AAAAAAAAAAapt list --upgradable[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kcd /opt/lampp/lampp start
+bash: cd: too many arguments
+]0;computer@computer-HP-280-G3-MT: ~[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~[00m$ cd /opt/lampp/lampp start[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K"Desktop/22B-CO-006/Experimn[Kent 2"
+]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ ls -l
+total 28
+-rwxrwxr-x 1 computer computer  3213 Jul 22 11:43 [0m[01;32mexpt1.sql[0m
+-rw-rw-r-- 1 computer computer 24576 Jul 22 11:58 expt2_raw.txt
+]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ ls -lcd "Desktop/22B-CO-006/Experiment 2"[11P/opt/lampp/lampp start[C[C[1P[1P[1@s[1@u[1@d[1@o[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+Starting XAMPP for Linux 8.1.25-0...
+XAMPP: Starting Apache...already running.
+XAMPP: Starting MySQL...already running.
+XAMPP: Starting ProFTPD...already running.
+]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ sudo /opt/lampp/lampp startls -l[Kcd "Desktop/22B-CO-006/Experiment 2"ls -l[Ksudo /opt/lampp/lampp start[K[K[K[K[K[K[K[K[K[K[Kbin/mysql -u start
+(B[0;1mWelcome to the MariaDB monitor.  Commands end with ; or \g.
+(B[m(B[0;1mYour MariaDB connection id is 15
+Server version: 10.4.32-MariaDB Source distribution
+
+(B[m(B[0;1mCopyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+(B[m(B[0;1mType 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+(B[m[?1034hMariaDB [(none)]> mysql;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'mysql' at line 1
+(B[0;7m(B[mMariaDB [(none)]> exit
+(B[0;1mBye
+(B[m]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ sudo /opt/lampp/bin/mysql -u start[7Plampp[C[C[C[C[C[C
+Starting XAMPP for Linux 8.1.25-0...
+XAMPP: Starting Apache...already running.
+XAMPP: Starting MySQL...already running.
+XAMPP: Starting ProFTPD...already running.
+]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ mysql -u root -p
+
+Command 'mysql' not found, but can be installed with:
+
+sudo apt install mysql-client-core-5.7   
+sudo apt install mariadb-client-core-10.1
+
+]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ mys[K[K[Kmysql -u root -psudo /opt/lampp/lampp start[7@bin/mysql -u[C[C[C[C[C[C[7Plampp[C[C[C[C[C[C
+Starting XAMPP for Linux 8.1.25-0...
+XAMPP: Starting Apache...already running.
+XAMPP: Starting MySQL...already running.
+XAMPP: Starting ProFTPD...already running.
+]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ sudo /opt/lampp/lampp start[11Pmysql -u root -p[C[1@-[1@h[1@ [1@h[1@o[1P[1P[1@h[1@o[1@s[1@t[1@ [C[C[C[C[C[C[C[C[C[C
+
+Command 'mysql' not found, but can be installed with:
+
+sudo apt install mysql-client-core-5.7   
+sudo apt install mariadb-client-core-10.1
+
+]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ mysql -h host -u root -psudo /opt/lampp/lampp start
+Starting XAMPP for Linux 8.1.25-0...
+XAMPP: Starting Apache...already running.
+XAMPP: Starting MySQL...already running.
+XAMPP: Starting ProFTPD...already running.
+]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ sudo /opt/lampp/lampp start[3Pmysql -h host -u root -psudo /opt/lampp/lampp start[11Pmysql -u root -psudo /opt/lampp/lampp start[7@bin/mysql -u[C[C[C[C[C[C
+(B[0;1mWelcome to the MariaDB monitor.  Commands end with ; or \g.
+(B[m(B[0;1mYour MariaDB connection id is 16
+Server version: 10.4.32-MariaDB Source distribution
+
+(B[m(B[0;1mCopyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+(B[m(B[0;1mType 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+(B[m[?1034hMariaDB [(none)]> sj[Khoq [K[Kw databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| test               |
++--------------------+
+(B[0;1m2 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [(none)]> create database expt2;
+ERROR 1044 (42000): Access denied for user ''@'localhost' to database 'expt2'
+(B[0;7m(B[mMariaDB [(none)]> [KMariaDB [(none)]> [KMariaDB [(none)]> [KMariaDB [(none)]> [KMariaDB [(none)]> exit;
+(B[0;1mBye
+(B[m]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ man lm
+No manual entry for lm
+]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ l[Kman ln
+[?1049h[22;0;0t[?1h=LN(1)                                                              User Commands                                                             LN(1)[m
+[m
+[1mNAME[0m[m
+       ln - make links between files[m
+[m
+[1mSYNOPSIS[0m[m
+       [1mln[0m [[4mOPTION[24m]... [[4m-T[24m] [4mTARGET[24m [4mLINK_NAME[24m   [4m(1st[24m [4mform)[24m[m
+       [1mln[0m [[4mOPTION[24m]... [4mTARGET[24m                  [4m(2nd[24m [4mform)[24m[m
+       [1mln[0m [[4mOPTION[24m]... [4mTARGET[24m... [4mDIRECTORY[24m     [4m(3rd[24m [4mform)[24m[m
+       [1mln[0m [[4mOPTION[24m]... [4m-t[24m [4mDIRECTORY[24m [4mTARGET[24m...  [4m(4th[24m [4mform)[24m[m
+[m
+[1mDESCRIPTION[0m[m
+       In  the  1st form, create a link to TARGET with the name LINK_NAME.  In the 2nd form, create a link to TARGET in the current directory.  In[m
+       the 3rd and 4th forms, create links to each TARGET in DIRECTORY.  Create hard  links  by  default,  symbolic  links  with  [1m--symbolic[0m.   By[m
+       default,  each  destination (name of new link) should not already exist.  When creating hard links, each TARGET must exist.  Symbolic links[m
+       can hold arbitrary text; if later resolved, a relative link is interpreted in relation to its parent directory.[m
+[m
+       Mandatory arguments to long options are mandatory for short options too.[m
+[m
+       [1m--backup[0m[=[4mCONTROL[24m][m
+              make a backup of each existing destination file[m
+[m
+       [1m-b[0m     like [1m--backup[0m but does not accept an argument[m
+[m
+       [1m-d[0m, [1m-F[0m, [1m--directory[0m[m
+              allow the superuser to attempt to hard link directories (note: will probably fail due to system restrictions,  even  for  the  supe‐[m
+              ruser)[m
+[m
+       [1m-f[0m, [1m--force[0m[m
+              remove existing destination files[m
+[m
+       [1m-i[0m, [1m--interactive[0m[m
+              prompt whether to remove destinations[m
+[m
+[7m Manual page ln(1) line 1 (press h for help or q to quit)[27m[K[K[?1l>[?1049l[23;0;0t]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ ln mysql-create expt2, expt1.sql
+ln: target 'expt1.sql' is not a directory
+]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ ln mysql-create expt2, expt1.sql[K[K[K[K[K[K[K[K[K[K[K[K2
+ln: failed to access 'mysql-create': No such file or directory
+]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ ln terminal
+ln: failed to access 'terminal': No such file or directory
+]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ ln terminalmysql-create expt2, expt1.sqlman ln[Kmsudo /opt/lampp/bin/mysql -u start[7Plampp[C[C[C[C[C[C
+Starting XAMPP for Linux 8.1.25-0...
+XAMPP: Starting Apache...already running.
+XAMPP: Starting MySQL...already running.
+XAMPP: Starting ProFTPD...already running.
+]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ ln mysql
+ln: failed to access 'mysql': No such file or directory
+]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ ln mysqlsudo /opt/lampp/lampp start[K[K[K[K[K[K[K[K[K[K[Kbin [K/mysql mydb <dns[K[K[K 2[K[K[K[K[K[K[K[Kexpt2 < expt1.sqkl[K[Kl
+ERROR 1049 (42000): Unknown database 'expt2'
+]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ sudo /opt/lampp/bin/mysql expt2 < expt1.sqlln mysql[Ksudo /opt/lampp/lampp start[16Pln terminalmysql-create expt2[10Pterminalsudo /opt/lampp/lampp startln mysql[Ksudo /opt/lampp/bin/mysql expt2 < expt1.sql[Ksudo /opt/lampp/bin/mysql expt2 < expt1.sqlln mysql[Ksudo /opt/lampp/lampp start[16Pln terminalsudo /opt/lampp/lampp startln mysql[Ksudo /opt/lampp/lampp start[K[K[K[K[K[K[K[K[8Pln terminalmysql-create expt2, expt1.sqlman ln[Kmnln mysql-create expt2, expt1.sql[K[10Pterminalsudo /opt/lampp/lam[11Pln mysqlsudo /opt/lampp/bin/mysql expt2 < expt1.sql[Ksudo /opt/lampp/bin/mysql expt2 < expt1.sql[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kl -u root expt <[K[K2[K[K[K[K[K[K
+(B[0;1mWelcome to the MariaDB monitor.  Commands end with ; or \g.
+(B[m(B[0;1mYour MariaDB connection id is 18
+Server version: 10.4.32-MariaDB Source distribution
+
+(B[m(B[0;1mCopyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+(B[m(B[0;1mType 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+(B[m[?1034hMariaDB [(none)]> create database expt2;
+(B[0;1mQuery OK, 1 row affected (0.013 sec)
+(B[m(B[0;1m
+(B[mMariaDB [(none)]> exit;
+(B[0;1mBye
+(B[m]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ sudo /opt/lampp/bin/mysql -u rootexpt2 < expt1.sql[10P-u rootexpt2 < expt1.sqlln mysql[Ksudo /opt/lampp/bin/mysql expt2 < expt1.sql[10P-u root[Ksudo /opt/lampp/bin/mysql -u root[K[K[K[K[K[K[K[K e[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kexit
+
+Script done on 2024-07-22 12:15:37+0530
