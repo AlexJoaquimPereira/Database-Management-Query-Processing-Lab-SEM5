@@ -1,0 +1,383 @@
+Script started on 2024-07-29 11:28:12+0530
+]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ sudo /opt/lampp/bin/mysql -u root[6Plampp start
+[sudo] password for computer: 
+Starting XAMPP for Linux 8.1.25-0...
+XAMPP: Starting Apache...already running.
+XAMPP: Starting MySQL...already running.
+XAMPP: Starting ProFTPD...already running.
+]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ sudo /opt/lampp/lampp startbin/mysql -u root
+(B[0;1mWelcome to the MariaDB monitor.  Commands end with ; or \g.
+(B[m(B[0;1mYour MariaDB connection id is 10
+Server version: 10.4.32-MariaDB Source distribution
+
+(B[m(B[0;1mCopyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+(B[m(B[0;1mType 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+(B[m[?1034hMariaDB [(none)]> use expt2;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+(B[0;1mDatabase changed
+(B[mMariaDB [expt2]> show tables;
++---------------------+
+| Tables_in_expt2     |
++---------------------+
+| Dept                |
+| Employee            |
+| Project             |
+| emp_workson_project |
++---------------------+
+(B[0;1m4 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> desc Dept;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| Deptno   | int(11)     | NO   | PRI | NULL    |       |
+| dname    | varchar(25) | NO   | UNI | NULL    |       |
+| location | varchar(20) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+(B[0;1m3 rows in set (0.002 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> ALTER TABLE Employee MODIFY COLUMN deptno tinyint;[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kdesc Employee;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| Empno     | int(11)     | NO   | PRI | NULL    |       |
+| Empname   | varchar(25) | NO   |     | NULL    |       |
+| Gender    | varchar(1)  | YES  |     | NULL    |       |
+| job       | varchar(25) | YES  |     | NULL    |       |
+| managerno | int(11)     | YES  |     | NULL    |       |
+| hiredate  | date        | YES  |     | NULL    |       |
+| salary    | float(12,2) | YES  |     | NULL    |       |
+| commision | float(10,2) | YES  |     | NULL    |       |
+| deptno    | int(11)     | YES  | MUL | NULL    |       |
+| bdate     | date        | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+(B[0;1m10 rows in set (0.002 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> ALTER TABLE Employee MODIFY COLUMN deptno tinyint;
+ERROR 1832 (HY000): Cannot change column 'deptno': used in a foreign key constraint 'Employee_ibfk_1'
+(B[0;7m(B[mMariaDB [expt2]> ALTER TABLE Employee MODIFY COLUMN deptno tinyint;[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[KALTER TABLE Dept MODIFY COLUMN Deptno tinyint;
+ERROR 1833 (HY000): Cannot change column 'Deptno': used in a foreign key constraint 'Employee_ibfk_1' of table 'expt2.Employee'
+(B[0;7m(B[mMariaDB [expt2]> # Q [K9
+MariaDB [expt2]> # Drop bdate from employee tablle[K[Ke
+MariaDB [expt2]> # Drop bdate from employee table[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CQ9[K[K[K[K[Kdesc Employee;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| Empno     | int(11)     | NO   | PRI | NULL    |       |
+| Empname   | varchar(25) | NO   |     | NULL    |       |
+| Gender    | varchar(1)  | YES  |     | NULL    |       |
+| job       | varchar(25) | YES  |     | NULL    |       |
+| managerno | int(11)     | YES  |     | NULL    |       |
+| hiredate  | date        | YES  |     | NULL    |       |
+| salary    | float(12,2) | YES  |     | NULL    |       |
+| commision | float(10,2) | YES  |     | NULL    |       |
+| deptno    | int(11)     | YES  | MUL | NULL    |       |
+| bdate     | date        | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+(B[0;1m10 rows in set (0.002 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> desc Employee;# Drop bdate from employee table[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CQ9[KALTER TABLE Dept MODIFY COLUMN Deptno tinyint;[1P[1P[1P[1P[1@E[1@m[1@p[1@l[1@o[1@y[1@e[1@e[C[C[C[C[C[C[C[1P[1P[1P[1P[1P[1P[1@D[1@R[1@O[1@P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;b;d;a;t;e;[C
+(B[0;1mQuery OK, 0 rows affected (0.161 sec)
+(B[m(B[0;1mRecords: 0  Duplicates: 0  Warnings: 0
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> ALTER TABLE Employee DROP COLUMN bdate;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[25Pdesc Employee;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| Empno     | int(11)     | NO   | PRI | NULL    |       |
+| Empname   | varchar(25) | NO   |     | NULL    |       |
+| Gender    | varchar(1)  | YES  |     | NULL    |       |
+| job       | varchar(25) | YES  |     | NULL    |       |
+| managerno | int(11)     | YES  |     | NULL    |       |
+| hiredate  | date        | YES  |     | NULL    |       |
+| salary    | float(12,2) | YES  |     | NULL    |       |
+| commision | float(10,2) | YES  |     | NULL    |       |
+| deptno    | int(11)     | YES  | MUL | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+(B[0;1m9 rows in set (0.002 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> # Q10
+MariaDB [expt2]> # Take a dump of mysql data [Kbase;
+MariaDB [expt2]> exit;
+(B[0;1mBye
+(B[m]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ sudo /opt/lampp/bin/mysql -u root[6Plampp startbin/mysql -u root[6Plampp start./a.out[Kgcc queue.c[4P./a.outgcc queue.ccd 23b-co-040[3PDesktop[3P./a.outgcc queue.c[4P./a.outgcc queue.ccd 23b-co-040[3PDesktop[3P./a.outgcc queue.ccd 23b-co-040[3PDesktopgcc queue.ccd 23b-co-040[3PDesktopgcc queue.ccd 23b-co-040[3PDesktopgcc infix.ccd 23b-co-040[3PDesktopsudo /opt/lampp/bin/mysqldump MAYURDB > mayur.sql[16P -u root[6Plampp startbin/mysqldump expt2 > expt2a.sql[15P -u root[6Plampp startbin/mysql -u rootdump expt2 > expt2a.sql
+]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ sudo /opt/lampp/bin/mysqldump expt2 > expt2a.sql[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kdummyemp < [K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K dummy[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K# q11[K[K[KQ 11
+]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ # Create dymmy[K[K[K[Kummyemp from  [Kdump file
+]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ # Create dummyemp from dump fileQ 11[Ksudo /opt/lampp/bin/mysqldump expt2 > expt2a.sql[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K dymmt[Ky[K[K[K[Kummyemp < expt2a.sql
+ERROR 1049 (42000): Unknown database 'dummyemp'
+]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ sudo /opt/lampp/bin/mysql dummyemp < expt2a.sql[15P# Create dummyemp from dump fileQ 11[Ksudo /opt/lampp/bin/mysqldump expt2 > expt2a.sql[15P -u root[6Plampp startbin/mysql -u root
+(B[0;1mWelcome to the MariaDB monitor.  Commands end with ; or \g.
+(B[m(B[0;1mYour MariaDB connection id is 13
+Server version: 10.4.32-MariaDB Source distribution
+
+(B[m(B[0;1mCopyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+(B[m(B[0;1mType 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+(B[m[?1034hMariaDB [(none)]> create data [Kbase dy[Kummyemp;
+(B[0;1mQuery OK, 1 row affected (0.018 sec)
+(B[m(B[0;1m
+(B[mMariaDB [(none)]> exit;
+(B[0;1mBye
+(B[m]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ sudo /opt/lampp/bin/mysql -u rootdummyemp < expt2a.sql
+]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ sudo /opt/lampp/bin/mysql dummyemp < expt2a.sql[14P-u root
+(B[0;1mWelcome to the MariaDB monitor.  Commands end with ; or \g.
+(B[m(B[0;1mYour MariaDB connection id is 15
+Server version: 10.4.32-MariaDB Source distribution
+
+(B[m(B[0;1mCopyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+(B[m(B[0;1mType 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+(B[m[?1034hMariaDB [(none)]> show da[K[K[K[K[K[K[Kuse dummt[Kyemp;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+(B[0;1mDatabase changed
+(B[mMariaDB [dummyemp]> show tables;
++---------------------+
+| Tables_in_dummyemp  |
++---------------------+
+| Dept                |
+| Employee            |
+| Project             |
+| emp_workson_project |
++---------------------+
+(B[0;1m4 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [dummyemp]> show data [Kbases;
++--------------------+
+| Database           |
++--------------------+
+| MAYURDB            |
+| TRY                |
+| abc                |
+| dummyemp           |
+| experiment1        |
+| expt1              |
+| expt2              |
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+(B[0;1m12 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [dummyemp]> DROP DATABASE dy[Kummyemp;
+(B[0;1mQuery OK, 4 rows affected, 2 warnings (0.834 sec)
+(B[m(B[0;1m
+(B[mMariaDB [(none)]> DROP DATABASE dummyemp;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[8Pshow databases;
++--------------------+
+| Database           |
++--------------------+
+| MAYURDB            |
+| TRY                |
+| abc                |
+| experiment1        |
+| expt1              |
+| expt2              |
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+(B[0;1m11 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [(none)]> # Q12[K3
+MariaDB [(none)]> # create dy[Kummy pro[K[K[K[Kproject r[Kfrom project & show data
+MariaDB [(none)]> CREATE$ TABLE [K[K[K[K[K[K[K[K TABLE dy[Kummy[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kuse data[K[K[K[Kexpt2;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+(B[0;1mDatabase changed
+(B[mMariaDB [expt2]> show rt[K[Ktables;
++---------------------+
+| Tables_in_expt2     |
++---------------------+
+| Dept                |
+| Employee            |
+| Project             |
+| emp_workson_project |
++---------------------+
+(B[0;1m4 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> CREATE TABLE dummyproject AS SELECT * FROM project;
+ERROR 1146 (42S02): Table 'expt2.project' doesn't exist
+(B[0;7m(B[mMariaDB [expt2]> CREATE TABLE dummyproject AS SELECT * FROM project;[C[1Project;Project;[C[C[C[C[C[C[C
+(B[0;1mQuery OK, 0 rows affected (0.210 sec)
+(B[m(B[0;1mRecords: 0  Duplicates: 0  Warnings: 0
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> CREATE TABLE dummyproject AS SELECT * FROM Project;project;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cshow tables;[K
++---------------------+
+| Tables_in_expt2     |
++---------------------+
+| Dept                |
+| Employee            |
+| Project             |
+| dummyproject        |
+| emp_workson_project |
++---------------------+
+(B[0;1m5 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> desc dummyproject;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| Proj_num | int(11)     | NO   |     | NULL    |       |
+| Pname    | varchar(25) | NO   |     | NULL    |       |
+| location | varchar(25) | YES  |     | NULL    |       |
+| dnum     | int(11)     | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+(B[0;1m4 rows in set (0.002 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> SELECT * FROM dummyproject;
+(B[0;1mEmpty set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> DELETE[K[K[K[K[K[Kinsert into Project ('1', 'Connectify', 'San Francisco', '5')[C[C[C[C[C[C[C[C[1@ [1@([1@)[C[1@ [1@V[1@A[1@l[1@u[1@e[1@s[1P[1P[1P[1P[1@A[1@+[1P[1P[1@L[1@U[1@S[1@E[1P[1P[1@E[1@S[1@"[1@p[1@r[1@o[1P[1P[1P[1P[1@'[1@P[1@r[1@o[1@j[1@_[1@n[1@u[1@m[1@'[1@,[1@ [1@'[1@P[1@n[1@a[1@m[1@e[1@'[1@,[1@ [1@'[1@l[1@o[1@c[1@a[1@t[1@i[1@o[1@n[1@'[1@,[1@ [1@d[1@n[1@u[1@m[1@'[1@'[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''Proj_num', 'Pname', 'location', 'dnum') VALUES ('1', 'Connectify', 'San Fran...' at line 1
+(B[0;7m(B[mMariaDB [expt2]> insert into Project ('Proj_num', 'Pname', 'location', 'dnum') VALUES ('1', 'Connectify', 'San Francisco', '5');[1P[1P[1P[C[C[C[C[C[C[C[C[1P[1P[1@\[1P[1P[1P[C[1P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+(B[0;1mQuery OK, 1 row affected (0.049 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> DROP TAL[KBLE dummyproject;
+(B[0;1mQuery OK, 0 rows affected (0.155 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> DROP TABLE dummyproject;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cinsert into Project (Proj_num, Pname, location, dnum) VALUES ('1', 'Connectify', 'San Francisco', '5');[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[8@'Proj_num', 'Pname', 'location', 'dnum'[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CSELECT * FROM dummyproject;[K[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[9Pdesc[C[C[C[C[C[C[C[C[C[C[C[C[C[C[6Pshow tables;CREATE TABLE dummyproject AS SELECT * FROM Project;
+(B[0;1mQuery OK, 1 row affected (0.252 sec)
+(B[m(B[0;1mRecords: 1  Duplicates: 0  Warnings: 0
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> CREATE TABLE dummyproject AS SELECT * FROM Project;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[27PDROP TABLE dummyproject;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cinsert into Project (Proj_num, Pname, location, dnum) VALUES ('1', 'Connectify', 'San Francisco', '5');[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[8@'Proj_num', 'Pname', 'location', 'dnum'[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CSELECT * FROM dummyproject;[K[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[9Pdesc[C[C[C[C[C[C[C[C[C[C[C[C[C[C[6Pshow tables;
++---------------------+
+| Tables_in_expt2     |
++---------------------+
+| Dept                |
+| Employee            |
+| Project             |
+| dummyproject        |
+| emp_workson_project |
++---------------------+
+(B[0;1m5 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> show tables;CREATE TABLE dummyproject AS SELECT * FROM Project;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[27PDROP TABLE dummyproject;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cinsert into Project (Proj_num, Pname, location, dnum) VALUES ('1', 'Connectify', 'San Francisco', '5');[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[8@'Proj_num', 'Pname', 'location', 'dnum'[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CSELECT * FROM dummyproject;[K[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[9Pdesc[C[C[C[C[C[C[C[C[C[C[C[C[C[C[9@SELECT * FROM[C[C[C[C[C[C[C[C[C[C[C[C[C[C
++----------+------------+---------------+------+
+| Proj_num | Pname      | location      | dnum |
++----------+------------+---------------+------+
+|        1 | Connectify | San Francisco |    5 |
++----------+------------+---------------+------+
+(B[0;1m1 row in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> SELECT * FROM dummyproject;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[15Pshow tables;CREATE TABLE dummyproject AS SELECT * FROM Project;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[27PDROP TABLE dummyproject;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cinsert into Project (Proj_num, Pname, location, dnum) VALUES ('1', 'Connectify', 'San Francisco', '5');[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[8@'Proj_num', 'Pname', 'location', 'dnum'[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CSELECT * FROM dummyproject;[K[K[K[K[K[K[K[K[K[K[K[K[K[KProject;
++----------+------------+---------------+------+
+| Proj_num | Pname      | location      | dnum |
++----------+------------+---------------+------+
+|        1 | Connectify | San Francisco |    5 |
++----------+------------+---------------+------+
+(B[0;1m1 row in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> SELECT * FROM Project;dummyproject;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[15Pshow tables;CREATE TABLE dummyproject AS SELECT * FROM Project;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[27PDROP TABLE dummyproject;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cinsert into Project (Proj_num, Pname, location, dnum) VALUES ('1', 'Connectify', 'San Francisco', '5');[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[8@'Proj_num', 'Pname', 'location', 'dnum'[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CSELECT * FROM dummyproject;[K[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[9Pdesc[C[C[C[C[C[C[C[C[C[C[C[C[C[C[9@SELECT * FROM[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[KDELETE [K[K[K[K[K[K[K# Q14 delete all data from dyu[K[Kummyproject
+MariaDB [expt2]> DELETE FROM dummyproject;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C# Q14 delete all data from dummyproject[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[17PSELECT * FROM Project;dummyproject;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[15Pshow tables;SELECT * FROM dummyproject;
++----------+------------+---------------+------+
+| Proj_num | Pname      | location      | dnum |
++----------+------------+---------------+------+
+|        1 | Connectify | San Francisco |    5 |
++----------+------------+---------------+------+
+(B[0;1m1 row in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> SELECT * FROM dummyproject;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C# Q14 delete all data from dummyproject[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[17PSELECT * FROM Project;# Q14 delete all data from dummyproject[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[12PSELECT * FROM dummyproject;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[KDELETE FROO[K<[KM dummyprojet[Kct;
+(B[0;1mQuery OK, 1 row affected (0.050 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> DELETE FROM dummyproject;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[2@SELECT *[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+(B[0;1mEmpty set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> # q[KQ15
+MariaDB [expt2]> # insert all the data from project to dummyproject using single insert statement
+MariaDB [expt2]> S[KINSERT INTO pr[K[K[Kdumm[K[K[K[K dy[Kummyproject SELECT * FROM Peojec[K[K[K[K[Kroject;
+(B[0;1mQuery OK, 1 row affected (0.053 sec)
+(B[m(B[0;1mRecords: 1  Duplicates: 0  Warnings: 0
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> INSERT INTO dummyproject SELECT * FROM Project;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C# insert all the data from project to dummyproject using single insert statement[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CQ15[KSELECT * FROM dummyproject;
++----------+------------+---------------+------+
+| Proj_num | Pname      | location      | dnum |
++----------+------------+---------------+------+
+|        1 | Connectify | San Francisco |    5 |
++----------+------------+---------------+------+
+(B[0;1m1 row in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> # Q 16 [K[K[K[K16
+MariaDB [expt2]> # create a new table a[Ksample with attributes no and name with innodb engine
+MariaDB [expt2]> CREATE TABLE sample (no INT [K, b[Kname VARCHAR(25), PRIMARY KEY(INT)) ENGINE=InnoDB;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'INT)) ENGINE=InnoDB' at line 1
+(B[0;7m(B[mMariaDB [expt2]> CREATE TABLE sample (no INT, name VARCHAR(25), PRIMARY KEY(INT)) ENGINE=InnoDB;[1P[1P[1P[1@n[1@o[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+(B[0;1mQuery OK, 0 rows affected (0.290 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> CREATE TABLE sample (no INT, name VARCHAR(25), PRIMARY KEY(no)) ENGINE=InnoDB;[1@INT[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[5P# create a new table sample with attributes no and name with innodb engine[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CQ16[KSELECT * FROM dummyproject;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CINSERT INTO dummyproject SELECT * FROM Project;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C# insert all the data from project to dummyproject using single insert statement[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CQ15[KSELECT * FROM dummyproject;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[2PDELETE[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[2@SELECT *[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C# Q14 delete all data from dummyproject[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[17PSELECT * FROM Project;dummyproject;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[15Pshow tables;CREATE TABLE dummyproject AS SELECT * FROM Project;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cshow tables;[K
++---------------------+
+| Tables_in_expt2     |
++---------------------+
+| Dept                |
+| Employee            |
+| Project             |
+| dummyproject        |
+| emp_workson_project |
+| sample              |
++---------------------+
+(B[0;1m6 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> show tables;CREATE TABLE sample (no INT, name VARCHAR(25), PRIMARY KEY(no)) ENGINE=InnoDB;[1@INT[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[5P# create a new table sample with attributes no and name with innodb engine[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CCREATE TABLE sample (no INT, name VARCHAR(25), PRIMARY KEY(INT)) ENGINE=InnoDB;[1Pno[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cshow tables;[K[Kdesc sample;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| no    | int(11)     | NO   | PRI | NULL    |       |
+| name  | varchar(25) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+(B[0;1m2 rows in set (0.002 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> # Q17
+MariaDB [expt2]> # change the ii[Knnodb engine to mylsam for the newly created table
+MariaDB [expt2]> SELECT TABLE sample, inn[K[K[Kmyisam D[KFROM [K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[KSELECT TABLE [K_NAME, ENGINE FRM[KOM<[K im[Knformations[K_schema.TABLESWHERE WHERE[C[C[C[C[C TABLE_SCHEMA = 'ex[t[K[Kpt2' AND ENGINE = 'innodb';
++---------------------+--------+
+| TABLE_NAME          | ENGINE |
++---------------------+--------+
+| Dept                | InnoDB |
+| Employee            | InnoDB |
+| Project             | InnoDB |
+| dummyproject        | InnoDB |
+| emp_workson_project | InnoDB |
+| sample              | InnoDB |
++---------------------+--------+
+(B[0;1m6 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> ALTER TABLE sample ENGINE = myisam;
+Stage: 2 of 2 'Enabling keys'      0% of stage done                                                   (B[0;1mQuery OK, 0 rows affected (0.373 sec)
+(B[m(B[0;1mRecords: 0  Duplicates: 0  Warnings: 0
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> ALTER TABLE sample ENGINE = myisam;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CSELECT TABLE_NAME, ENGINE FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'expt2' AND ENGINE = 'innodb';[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1@A[1@N[1@D[1P[1P[1P[1P[1@ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
++---------------------+--------+
+| TABLE_NAME          | ENGINE |
++---------------------+--------+
+| Dept                | InnoDB |
+| Employee            | InnoDB |
+| Project             | InnoDB |
+| dummyproject        | InnoDB |
+| emp_workson_project | InnoDB |
++---------------------+--------+
+(B[0;1m5 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> SELECT TABLE_NAME, ENGINE FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'expt2' AND ENGINE = 'innodb';[1P';[1P';[1P';[1P';[1P';[1P';m';y';i';s';a';m';[C[C
++------------+--------+
+| TABLE_NAME | ENGINE |
++------------+--------+
+| sample     | MyISAM |
++------------+--------+
+(B[0;1m1 row in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt2]> exit;
+(B[0;1mBye
+(B[m]0;computer@computer-HP-280-G3-MT: ~/Desktop/22B-CO-006/Experiment 2[01;32mcomputer@computer-HP-280-G3-MT[00m:[01;34m~/Desktop/22B-CO-006/Experiment 2[00m$ exit
+
+Script done on 2024-07-29 12:12:31+0530
