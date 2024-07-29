@@ -58,7 +58,6 @@ CREATE TABLE `Employee` (
   `salary` float(12,2) DEFAULT NULL,
   `commision` float(10,2) DEFAULT NULL,
   `deptno` int(11) DEFAULT NULL,
-  `bdate` date DEFAULT NULL,
   PRIMARY KEY (`Empno`),
   KEY `deptno` (`deptno`),
   CONSTRAINT `Employee_ibfk_1` FOREIGN KEY (`deptno`) REFERENCES `Dept` (`Deptno`)
@@ -71,7 +70,7 @@ CREATE TABLE `Employee` (
 
 LOCK TABLES `Employee` WRITE;
 /*!40000 ALTER TABLE `Employee` DISABLE KEYS */;
-INSERT INTO `Employee` VALUES (2,'Angelo','M','Clerk',300,'2023-01-09',40000.00,30000.00,5,NULL),(4,'Annie','F','Analyst',120,'2022-03-08',21000.00,NULL,20,NULL),(5,'Brandon','M','President',150,'2023-10-05',24000.00,NULL,30,NULL),(6,'Bunni','F','HR',180,'2020-05-05',35000.00,NULL,5,NULL),(7,'Stella','F','receptionist',400,'2022-06-18',38000.00,50000.00,5,NULL),(8,'Maria','F','Clerk',450,'2022-07-22',40000.00,3000.00,30,NULL),(9,'Max','M','Engineer',500,'2022-11-05',45000.00,NULL,10,NULL),(10,'Lya','F','Analyst',600,'2023-06-04',42000.00,NULL,20,NULL),(11,'Valery','M','Manager',700,'2023-04-22',50000.00,NULL,5,NULL),(12,'Nikki','F','Clerk',800,'2024-02-11',37000.00,10000.00,5,NULL),(13,'Theodore','M','Technician',900,'2021-03-01',33000.00,5000.00,10,NULL),(14,'Alice','F','Consultant',1000,'2022-01-19',53000.00,NULL,1,NULL),(15,'Elliot','M','Developer',1100,'2024-02-24',48000.00,NULL,20,NULL);
+INSERT INTO `Employee` VALUES (2,'Angelo','M','Clerk',300,'2023-01-09',40000.00,30000.00,5),(4,'Annie','F','Analyst',120,'2022-03-08',21000.00,NULL,20),(5,'Brandon','M','President',150,'2023-10-05',24000.00,NULL,30),(6,'Bunni','F','HR',180,'2020-05-05',35000.00,NULL,5),(7,'Stella','F','receptionist',400,'2022-06-18',38000.00,50000.00,5),(8,'Maria','F','Clerk',450,'2022-07-22',40000.00,3000.00,30),(9,'Max','M','Engineer',500,'2022-11-05',45000.00,NULL,10),(10,'Lya','F','Analyst',600,'2023-06-04',42000.00,NULL,20),(11,'Valery','M','Manager',700,'2023-04-22',50000.00,NULL,5),(12,'Nikki','F','Clerk',800,'2024-02-11',37000.00,10000.00,5),(13,'Theodore','M','Technician',900,'2021-03-01',33000.00,5000.00,10),(14,'Alice','F','Consultant',1000,'2022-01-19',53000.00,NULL,1),(15,'Elliot','M','Developer',1100,'2024-02-24',48000.00,NULL,20);
 /*!40000 ALTER TABLE `Employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -139,4 +138,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-22 13:18:11
+-- Dump completed on 2024-07-29 11:33:41
