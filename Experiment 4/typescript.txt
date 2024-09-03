@@ -1,0 +1,324 @@
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 10
+Server version: 10.4.32-MariaDB Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use expt4;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MariaDB [expt4]> # Q1) Retrieve the number of employees working in the company
+MariaDB [expt4]> SELECT COUNT(Empno) FROM Employee;
++--------------+
+| COUNT(Empno) |
++--------------+
+|           13 |
++--------------+
+1 row in set (0.003 sec)
+
+MariaDB [expt4]> # Q2) Number of jobs avaiable in the company
+MariaDB [expt4]> desc Employee;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| Empno     | int(11)     | NO   | PRI | NULL    |       |
+| Empname   | varchar(25) | NO   |     | NULL    |       |
+| Gender    | varchar(1)  | YES  |     | NULL    |       |
+| job       | varchar(25) | YES  |     | NULL    |       |
+| managerno | int(11)     | YES  |     | NULL    |       |
+| hiredate  | date        | YES  |     | NULL    |       |
+| salary    | float(12,2) | YES  |     | NULL    |       |
+| commision | float(10,2) | YES  |     | NULL    |       |
+| deptno    | int(11)     | YES  | MUL | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+9 rows in set (0.001 sec)
+
+MariaDB [expt4]> SELECT COUNT(job) FROM Employee GROUP BY job;
++------------+
+| COUNT(job) |
++------------+
+|          2 |
+|          3 |
+|          1 |
+|          1 |
+|          1 |
+|          1 |
+|          1 |
+|          1 |
+|          1 |
+|          1 |
++------------+
+10 rows in set (0.001 sec)
+
+MariaDB [expt4]> SELECT * FROM Employee;
++-------+----------+--------+--------------+-----------+------------+----------+-----------+--------+
+| Empno | Empname  | Gender | job          | managerno | hiredate   | salary   | commision | deptno |
++-------+----------+--------+--------------+-----------+------------+----------+-----------+--------+
+|     2 | Angelo   | M      | Clerk        |        11 | 2023-01-09 | 40000.00 |  30000.00 |      5 |
+|     4 | Annie    | F      | Analyst      |        15 | 2022-03-08 | 21000.00 |      NULL |     20 |
+|     5 | Brandon  | M      | President    |         5 | 2023-10-05 | 24000.00 |      NULL |     30 |
+|     6 | Bunni    | F      | HR           |        11 | 2020-05-05 | 35000.00 |      NULL |      5 |
+|     7 | Stella   | F      | receptionist |        11 | 2022-06-18 | 38000.00 |  50000.00 |      5 |
+|     8 | Maria    | F      | Clerk        |         5 | 2022-07-22 | 40000.00 |   3000.00 |     30 |
+|     9 | Max      | M      | Engineer     |         9 | 2022-11-05 | 45000.00 |      NULL |     10 |
+|    10 | Lya      | F      | Analyst      |        15 | 2023-06-04 | 42000.00 |      NULL |     20 |
+|    11 | Valery   | M      | Manager      |        11 | 2023-04-22 | 50000.00 |      NULL |      5 |
+|    12 | Nikki    | F      | Clerk        |        11 | 2024-02-11 | 37000.00 |  10000.00 |     40 |
+|    13 | Theodore | M      | Technician   |         9 | 2021-03-01 | 33000.00 |   5000.00 |     10 |
+|    14 | Alice    | F      | Consultant   |         9 | 2022-01-19 | 53000.00 |      NULL |      1 |
+|    15 | Elliot   | M      | Developer    |        15 | 2024-02-24 | 48000.00 |      NULL |     20 |
++-------+----------+--------+--------------+-----------+------------+----------+-----------+--------+
+13 rows in set (0.001 sec)
+
+MariaDB [expt4]> SELECT COUNT(job) FROM Employee;
++------------+
+| COUNT(job) |
++------------+
+|         13 |
++------------+
+1 row in set (0.001 sec)
+
+MariaDB [expt4]> SELECT COUNT(no_of_jobs) FROM (SELECT COUNT(job) as no_of_jo
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+MariaDB [expt4]> SELECT COUNT(no_of_jobs) FROM (SELECT COUNT(job) as no_of_jobs FROM Employee GROUP BY jCOUNT(job) FROM Employee SELECT UNIQUE job;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SELECT UNIQUE job' at line 1
+MariaDB [expt4]> SELECT COUNT(job) FROM Employee GROUP BY DISTINCT job;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'DISTINCT job' at line 1
+MariaDB [expt4]> SELECT COUNT(tot_jobs) IN (SELECT DISTINCT jos FROM Employee);
+ERROR 1054 (42S22): Unknown column 'tot_jobs' in 'IN/ALL/ANY subquery'
+MariaDB [expt4]> SELECT COUNT(tot_jobs) IN (SELECT DISTINCT job FROM Employees);
+ERROR 1054 (42S22): Unknown column 'tot_jobs' in 'IN/ALL/ANY subquery'
+MariaDB [expt4]> SELECT COUNT(tot_jobs) IN (SELECT DISTINCT job FROM Employee ASjob  FROM
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+MariaDB [expt4]> SELECT COUNT(job) FROM Employee IN (SELECT DISTINCT job FROM Em
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'IN (SELECT DISTINCT job FROM Employee)' at line 1
+MariaDB [expt4]> SELECT COUNT(job) FROM Employee IN (SELECT DISTINCT job FROM Em
++--------------+
+| job          |
++--------------+
+| Clerk        |
+| Analyst      |
+| President    |
+| HR           |
+| receptionist |
+| Engineer     |
+| Manager      |
+| Technician   |
+| Consultant   |
+| Developer    |
++--------------+
+10 rows in set (0.001 sec)
+
+MariaDB [expt4]> SELECT DISTINCT job AS jobs FROM Employee;
++--------------+
+| jobs         |
++--------------+
+| Clerk        |
+| Analyst      |
+| President    |
+| HR           |
+| receptionist |
+| Engineer     |
+| Manager      |
+| Technician   |
+| Consultant   |
+| Developer    |
++--------------+
+10 rows in set (0.001 sec)
+
+MariaDB [expt4]> SELECT COUNT(jobs) FROM (SELECT DISTINCT job AS jobs FROM Emplo
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+MariaDB [expt4]> SELECT COUNT(jobs) FROM (SELECT DISTINCT job AS jobs FROM Emploee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SELECT DISTINCT job AS jobs FROM Employee' at line 1
+MariaDB [expt4]> SELECT COUNT(jobs) FROM SELECT DISTINCT job AS jobs FROM Employ(SELECT DISTINCT job AS COUNT(job) FROM Employee IN (SELECT DISTINCT job FROM Employee);tot_jobs) IN (SELECT DISTINCT job FROM Employee AS);                            job) FROM Employee;
++------------+
+| COUNT(job) |
++------------+
+|         13 |
++------------+
+1 row in set (0.001 sec)
+
+MariaDB [expt4]> -- We'll see 2nd one a bit later
+MariaDB [expt4]> -- Q3) Total salaries payable to employees
+MariaDB [expt4]> SELECT SUM(salary) FROM Employee;
++-------------+
+| SUM(salary) |
++-------------+
+|   506000.00 |
++-------------+
+1 row in set (0.001 sec)
+
+MariaDB [expt4]> -- Q4) Max and min salaries paid
+MariaDB [expt4]> SELECT MAX(salary), MIN(salary) FROM Employee;
++-------------+-------------+
+| MAX(salary) | MIN(salary) |
++-------------+-------------+
+|    53000.00 |    21000.00 |
++-------------+-------------+
+1 row in set (0.001 sec)
+
+MariaDB [expt4]> -- Q5) Average salary paid to salesperson
+MariaDB [expt4]> SELECT AVG(salary) FROM Employee WHERE job = 'salesperson';
++-------------+
+| AVG(salary) |
++-------------+
+|        NULL |
++-------------+
+1 row in set (0.002 sec)
+
+MariaDB [expt4]> -- Q6) Total number of clerks in the company
+MariaDB [expt4]> SELECT COUNT(empno) FROM Employee WHERE job = 'Clerk';
++--------------+
+| COUNT(empno) |
++--------------+
+|            3 |
++--------------+
+1 row in set (0.001 sec)
+
+MariaDB [expt4]> SELECT COUNT(empno) AS no_of_clerks FROM Employee WHERE job = '
++--------------+
+| no_of_clerks |
++--------------+
+|            3 |
++--------------+
+1 row in set (0.001 sec)
+
+MariaDB [expt4]> -- Q7) No. of emp working for admin and min salary there
+MariaDB [expt4]> SELECT COUNT(E.empno) AS no_of_admin_emp, MIN(E.salary) AS min_admin_salary FROM Employee E JOIN Dept D on E.deptno = D.Deptno WHERE D.dname = 'Admin';
++-----------------+------------------+
+| no_of_admin_emp | min_admin_salary |
++-----------------+------------------+
+|               1 |         37000.00 |
++-----------------+------------------+
+1 row in set (0.001 sec)
+
+MariaDB [expt4]> SELECT COUNT(E.empno) AS no_of_admin_emp, MIN(E.salary) AS min_admin_salary FROM Employee E JOIN Dept D on E.deptno = D.Deptno WHERE D.dname = 'admin';
++-----------------+------------------+
+| no_of_admin_emp | min_admin_salary |
++-----------------+------------------+
+|               1 |         37000.00 |
++-----------------+------------------+
+1 row in set (0.001 sec)
+
+MariaDB [expt4]> -- Q8) Earliest, latest date someone was hired
+MariaDB [expt4]> SELECT MIN(hiredate) AS Earliest_hire, MAX(hiredate) AS Latest_hire FROM Employee;
++---------------+-------------+
+| Earliest_hire | Latest_hire |
++---------------+-------------+
+| 2020-05-05    | 2024-02-24  |
++---------------+-------------+
+1 row in set (0.001 sec)
+
+MariaDB [expt4]> -- Q9) No. of emp whose commission > salary
+MariaDB [expt4]> SELECT COUNT(empno) FROM Employee WHERE commission > salary;
+ERROR 1054 (42S22): Unknown column 'commission' in 'where clause'
+MariaDB [expt4]> SELECT COUNT(empno) FROM Employee WHERE commision > salary;
++--------------+
+| COUNT(empno) |
++--------------+
+|            1 |
++--------------+
+1 row in set (0.001 sec)
+
+MariaDB [expt4]> SELECT COUNT(empno) commission_greater_than_salary FROM Employe
++--------------------------------+
+| commission_greater_than_salary |
++--------------------------------+
+|                              1 |
++--------------------------------+
+1 row in set (0.001 sec)
+
+MariaDB [expt4]> -- Q10) No of emp working on research proj for more than 10 hrs/week
+MariaDB [expt4]> desc emp_workson_project;
++----------------+---------+------+-----+---------+-------+
+| Field          | Type    | Null | Key | Default | Extra |
++----------------+---------+------+-----+---------+-------+
+| eno            | int(11) | NO   | PRI | NULL    |       |
+| pno            | int(11) | NO   | PRI | NULL    |       |
+| hours_per_week | float   | YES  |     | 20      |       |
++----------------+---------+------+-----+---------+-------+
+3 rows in set (0.001 sec)
+
+MariaDB [expt4]> -- Q10) No of emp working on research proj for more than 10 hrs/week            SELECT COUNT(E.empno) AS FROM Employee E JOIN emp_workson_project EWP ON E.empno = EWP.eno WHERE hours_per_week > 10 JOIN Project P ON EWP.pn =research';m WHERE P.Pname = ' 
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM Employee E JOIN emp_workson_project EWP ON E.empno = EWP.eno WHERE hours...' at line 1
+MariaDB [expt4]> SELECT COUNT(E.empno) AS FROM Employee E JOIN emp_workson_project EWP ON E.empno = EWPJOIN Project P ON EWP.pno = P.Proj_num WHERE P         er_week > 10;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM Employee E JOIN emp_workson_project EWP ON E.empno = EWP.eno WHERE JOIN ...' at line 1
+MariaDB [expt4]> SELECT COUNT(E.empno) AS FROM Employee E JOIN emp_workson_project EWP ON E.empno = EWP.eno WHERE JOIN Project P ON EWP.pno = P.Proj_num WHERE houmpno = EWP.eno WHERE hours_per_week > 10 JOIN Project P ON EWP.pno = P.Proj_nEmpno = EWP.eno WHERE hours_per_week > 10 JOIN Project P ON EWP.pno = P.Proj_num WHERE P.Pname = 'research';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM Employee E JOIN emp_workson_project EWP ON E.Empno = EWP.eno WHERE hours...' at line 1
+MariaDB [expt4]> SELECT COUNT(E.empno) AS FROM Employee E JOIN emp_workson_project EWP ON E.Empno = EWP.eno WHERE hours_per_week > 10 JOIN Project P ON EWP.pnoempmpno) AS FROM Employee E JOIN emp_workson_project EWP ON E.empno = EWP.eno WHERE JOIN Project P ON EWP.pno = PEmpno) AS FROM Employee E JOIN emp_workson_project EWP ON E.empno = EWP.eno WHERE JOIN Project P ON EWP.pno = P.Proj_n FROM Employee E JOIN emp_workson_project EWP ON E.empno = EWP.eno WHERE JOIN Project P  FROM Employee E JOIN emp_workson_project EWP ON E.empno = EWP.eno WHERE JOIN ProFROM Employee E JOIN emp_workson_project EWP ON E.empno = EWP.eno WHERE JOImpno = EWP.eno WHERE JOIN Project P ON EWP.pno = P.Proj_num WHERE P.Pname = 'researchEmpno = EWP.eno WHERE JOIN Project P ON EWP.pno = P.Proj_ JOIN Project P ON EWP JOIN Project P ON EWP.pno = P.Proj_num WHERE P.Pname = 'research', hours_per_we JOIN Project P ON EWP.pno = P.Proj_num WHERE P.Pname = 'research', hours_per_we JOIN Project P ON EWP.pno = P.Proj_num WHERE P.Pname = 'research', hours_per_we JOIN Project P ON EWP.pno = P.Proj_num WHERE P.Pname = 'research', hours_per_weeJOIN Project P ON EWP.pno = P.Proj_num WHERE P.Pname = 'research', hours_per_week > 10;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' hours_per_week > 10' at line 1
+MariaDB [expt4]> SELECT COUNT(E.Empno) FROM Employee E JOIN emp_workson_project EWP ON E.Empno = EWP.eno JOIN Project P ON EWP.pno = P.Proj_n AND hours_per_wek > 10;
++----------------+
+| COUNT(E.Empno) |
++----------------+
+|              0 |
++----------------+
+1 row in set (0.001 sec)
+
+MariaDB [expt4]> SELECT * FROM emp_workson_project;
++-----+-----+----------------+
+| eno | pno | hours_per_week |
++-----+-----+----------------+
+|   4 |   1 |             48 |
+|   5 |   3 |             40 |
+|   9 |   1 |             48 |
+|  11 |   1 |             48 |
+|  13 |   3 |             18 |
+|  15 |   3 |             35 |
++-----+-----+----------------+
+6 rows in set (0.001 sec)
+
+MariaDB [expt4]> -- Q11) No of emp controlled by admin
+MariaDB [expt4]> SELECT COUNT(E.Empno) FROM Employee E JOIN Dept D ON E.deptno = D.Deptno WHERE D.dname = 'Admin';
++----------------+
+| COUNT(E.Empno) |
++----------------+
+|              1 |
++----------------+
+1 row in set (0.001 sec)
+
+MariaDB [expt4]> -- my interpretation of the qustion was wrong
+MariaDB [expt4]> -- Q11) No. of proj controlled by admin dept
+MariaDB [expt4]> SELECT COUNT(E.Empno) FROM Employee E JOIN Dept D ON E.deptno = D.Deptno WHERE DSELECT COUNT(P.Proj_num) AS admin_projects FROM Project P JOIN Dept D ON P.dnum = D.Deptno WHERE D.dname = 'Admin';
++----------------+
+| admin_projects |
++----------------+
+|              2 |
++----------------+
+1 row in set (0.001 sec)
+
+MariaDB [expt4]> -- Q2 here
+MariaDB [expt4]> SELECT COUNT DISTINCT(job) FROM Employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'DISTINCT(job) FROM Employee' at line 1
+MariaDB [expt4]> SELECT COUNT(*) FROM Employee;
++----------+
+| COUNT(*) |
++----------+
+|       13 |
++----------+
+1 row in set (0.001 sec)
+
+MariaDB [expt4]> SELECT COUNT(*) FROM SELECT DISTINCT job FROM Employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SELECT DISTINCT job FROM Employee' at line 1
+MariaDB [expt4]> SELECT COUNT (DISTINCT job) FROM Employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'DISTINCT job) FROM Employee' at line 1
+MariaDB [expt4]> SELECT COUNT(DISTINCT job) FROM Employee;
++---------------------+
+| COUNT(DISTINCT job) |
++---------------------+
+|                  10 |
++---------------------+
+1 row in set (0.001 sec)
+
+MariaDB [expt4]> -- own queries
+MariaDB [expt4]> --
+MariaDB [expt4]> -- I'll do it later at home ig
+MariaDB [expt4]> exit;
+Bye
+alex@mint:~/Desktop/Lab-Programs/Database-Management-Query-Processing-Lab-SEM5/Experiment 4$ 
+exit
+
