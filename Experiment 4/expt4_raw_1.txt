@@ -1,0 +1,338 @@
+Script started on 2024-08-26 11:43:58+05:30 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="190" LINES="49"]
+[?2004h]0;alex@mint: ~/Desktop/Lab-Programs/Database-Management-Query-Processing-Lab-SEM5/Experiment 4[01;32malex@mint[00m:[01;34m~/Desktop/Lab-Programs/Database-Management-Query-Processing-Lab-SEM5/Experiment 4[00m$ sudo /opt/lampp/lampp start
+[?2004l[sudo] password for alex: **************              
+Starting XAMPP for Linux 8.2.12-0...
+XAMPP: Starting Apache...already running.
+XAMPP: Starting MySQL...already running.
+XAMPP: Starting ProFTPD...already running.
+[?2004h]0;alex@mint: ~/Desktop/Lab-Programs/Database-Management-Query-Processing-Lab-SEM5/Experiment 4[01;32malex@mint[00m:[01;34m~/Desktop/Lab-Programs/Database-Management-Query-Processing-Lab-SEM5/Experiment 4[00m$ sudo /opt/lampp/bin/mysql -u root
+[?2004l(B[0;1mWelcome to the MariaDB monitor.  Commands end with ; or \g.
+(B[m(B[0;1mYour MariaDB connection id is 10
+Server version: 10.4.32-MariaDB Source distribution
+
+(B[m(B[0;1mCopyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+(B[m(B[0;1mType 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+(B[m[?1034hMariaDB [(none)]> use expt4;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+(B[0;1mDatabase changed
+(B[mMariaDB [expt4]> # SEK[K[K[KREt[K[Ketrieve the number of employees working in the compar[Kny[C[C[C[C[C[C[C[C[C[C[1@Q[1@1[1@)[1@ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+MariaDB [expt4]> SELECT COUNT [K(emp[K[K[KEmpno) FROM Employee;
++--------------+
+| COUNT(Empno) |
++--------------+
+|           13 |
++--------------+
+(B[0;1m1 row in set (0.003 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt4]> # Q2) Number if j[K[K[K[Kof jobs avaiable in the company
+MariaDB [expt4]> desc Emoo[K[Kployee;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| Empno     | int(11)     | NO   | PRI | NULL    |       |
+| Empname   | varchar(25) | NO   |     | NULL    |       |
+| Gender    | varchar(1)  | YES  |     | NULL    |       |
+| job       | varchar(25) | YES  |     | NULL    |       |
+| managerno | int(11)     | YES  |     | NULL    |       |
+| hiredate  | date        | YES  |     | NULL    |       |
+| salary    | float(12,2) | YES  |     | NULL    |       |
+| commision | float(10,2) | YES  |     | NULL    |       |
+| deptno    | int(11)     | YES  | MUL | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+(B[0;1m9 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt4]> ELEC+[K[K[K[K[KSELECT COUNT(job) as[K[KAS no_of-jobs[K[K[K[K[K_jobs [K[K[K[K[K[K[K[K[K[K[K[K[K[KFROM Employee GROUP BY job;
++------------+
+| COUNT(job) |
++------------+
+|          2 |
+|          3 |
+|          1 |
+|          1 |
+|          1 |
+|          1 |
+|          1 |
+|          1 |
+|          1 |
+|          1 |
++------------+
+(B[0;1m10 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt4]> SELECT * FROM EMP[K[Kmployee;
++-------+----------+--------+--------------+-----------+------------+----------+-----------+--------+
+| Empno | Empname  | Gender | job          | managerno | hiredate   | salary   | commision | deptno |
++-------+----------+--------+--------------+-----------+------------+----------+-----------+--------+
+|     2 | Angelo   | M      | Clerk        |        11 | 2023-01-09 | 40000.00 |  30000.00 |      5 |
+|     4 | Annie    | F      | Analyst      |        15 | 2022-03-08 | 21000.00 |      NULL |     20 |
+|     5 | Brandon  | M      | President    |         5 | 2023-10-05 | 24000.00 |      NULL |     30 |
+|     6 | Bunni    | F      | HR           |        11 | 2020-05-05 | 35000.00 |      NULL |      5 |
+|     7 | Stella   | F      | receptionist |        11 | 2022-06-18 | 38000.00 |  50000.00 |      5 |
+|     8 | Maria    | F      | Clerk        |         5 | 2022-07-22 | 40000.00 |   3000.00 |     30 |
+|     9 | Max      | M      | Engineer     |         9 | 2022-11-05 | 45000.00 |      NULL |     10 |
+|    10 | Lya      | F      | Analyst      |        15 | 2023-06-04 | 42000.00 |      NULL |     20 |
+|    11 | Valery   | M      | Manager      |        11 | 2023-04-22 | 50000.00 |      NULL |      5 |
+|    12 | Nikki    | F      | Clerk        |        11 | 2024-02-11 | 37000.00 |  10000.00 |     40 |
+|    13 | Theodore | M      | Technician   |         9 | 2021-03-01 | 33000.00 |   5000.00 |     10 |
+|    14 | Alice    | F      | Consultant   |         9 | 2022-01-19 | 53000.00 |      NULL |      1 |
+|    15 | Elliot   | M      | Developer    |        15 | 2024-02-24 | 48000.00 |      NULL |     20 |
++-------+----------+--------+--------------+-----------+------------+----------+-----------+--------+
+(B[0;1m13 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt4]> SELECT * FROM Employee;COUNT(job) FROM Employee GROUP BY job;[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;[C
++------------+
+| COUNT(job) |
++------------+
+|         13 |
++------------+
+(B[0;1m1 row in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt4]> SELECT COUNT(job) FROM Employee;[9P*[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CCOUNT(job) FROM Employee GROUP BY job;[1@([C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C);[1@S[C[1@E[1@L[C[1@E[1@C[1@T[1@ [1@C[1@O[1@U[1@N[1@T[1@([1@j[1@o[1@b[1@)[1@ [1@a[1@s[1@ [1@n[1@o[1@_[1@o[1@f[1@_[1@j[1@o[1@b[1@s[1@ [1@F[1@R[1@O[1@M[1@ [1@n[1@o[1@-[1P[1@_[1@o[1@f[1@_[C[1@j[1@o[1@b[1@s[C[C[C[1P[1P[1P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+(B[0;7m(B[mMariaDB [expt4]> SELECT COUNT(no_of_jobs) FROM (SELECT COUNT(job) as no_of_jobs FROM Employee GROUP BY job);[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cjob) FROM Employee;[K[9P*[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CCOUNT(job) FROM Employee GROUP BY job;[1P job;[1P job;[1Pjob;[1P job;[1P job;[1P job;[1P job;[1P job;[1Pjob;[C job;S job;E job;L job;E job;C job;T job;[C job;U job;N job;I job;Q job;U job;E job;[C[C[C[C[C
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SELECT UNIQUE job' at line 1
+(B[0;7m(B[mMariaDB [expt4]> SELECT COUNT(job) FROM Employee SELECT UNIQUE job;[C[C[C[C[C[C[C[C[C[C[C[1@D[1@I[1@S[1@T[1@I[1@N[1@V[1P[C[1@C[1@T[1@ [1P[1P[1P[1P[1P[1P[1P[1P[1P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P job;[1P job;[1P job;[1P job;[1P job;[1P job;[1Pjob;[1P job;[1P job;[1P job;[1P job;[1P job;[1P job;G job;R job;O job;U job;P job;[C job;B job;Y job;[C job;D job;I job;S job;T job;I job;N job;[C job;C job;[1P job;[1Pjob;C job;T job;[C[C[C[C[C
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'DISTINCT job' at line 1
+(B[0;7m(B[mMariaDB [expt4]> SELECT COUNT(tot_jobs) FROM EMPL[K[K[K[K[K[K[K[K[KIN (SEEC[K[KLECT DISTINCT jobs FROM Employee);[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+ERROR 1054 (42S22): Unknown column 'tot_jobs' in 'IN/ALL/ANY subquery'
+(B[0;7m(B[mMariaDB [expt4]> SELECT COUNT(tot_jobs) IN (SELECT DISTINCT job FROM Employee);[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C );A);S); );t);o);t);_);j);o);b);s);[C[C
+ERROR 1054 (42S22): Unknown column 'tot_jobs' in 'IN/ALL/ANY subquery'
+(B[0;7m(B[mMariaDB [expt4]> SELECT COUNT(tot_jobs) IN (SELECT DISTINCT job FROM Employee AS tot_jobs);[1P);[1P);[1P);[1P);[1P);[1P);[1P);[1P);[1P);[1P);[1P);[1P);[C[C[C[C[1P[1P[1P[1P[1P[1P[1P[1P[1@j[1@o[1@v[1P[1@b[1@ [1@F[1@R[1@O[1P[1P[1P[1P[C[C[C[C[1P[1P[1@F[1@R[1@O[1@M[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+(B[0;7m(B[mMariaDB [expt4]> SELECT COUNT(job) FROM (SELECT DISTINCT job FROM Employee);[1@E[1@M[1P[1@m[1@p[1@l[1@o[1@y[1@e[1@e[1@ [1@I[1@N[1@ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'IN (SELECT DISTINCT job FROM Employee)' at line 1
+(B[0;7m(B[mMariaDB [expt4]> SELECT COUNT(job) FROM Employee IN (SELECT DISTINCT job FROM Employee);[C[C[C[C[C[C[C[C[C[1P;[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
++--------------+
+| job          |
++--------------+
+| Clerk        |
+| Analyst      |
+| President    |
+| HR           |
+| receptionist |
+| Engineer     |
+| Manager      |
+| Technician   |
+| Consultant   |
+| Developer    |
++--------------+
+(B[0;1m10 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt4]> SELECT DISTINCT job FROM Employee; ;A;S;[1P;[1P;[1P;[1@A[1@S[1@ [1@j[1@o[1@b[1@s[1@ [C[C[C[C[C[C[C[C[C[C[C[C[C[C
++--------------+
+| jobs         |
++--------------+
+| Clerk        |
+| Analyst      |
+| President    |
+| HR           |
+| receptionist |
+| Engineer     |
+| Manager      |
+| Technician   |
+| Consultant   |
+| Developer    |
++--------------+
+(B[0;1m10 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt4]> COUNT[K[K[K[K[KSELECT COUNT(jobs) FROM (DISTINCT job AS jobs FROM Employee;[C[C[C[C[C[C[C[C);[1@([1@S[1@E[1@L[1@E[1@C[1@T[1@ [1@C[1@O[1@U[1@N[1@T[C[1@([1@j[1@o[1@b[1@S[1P[1@s[1@)[1@ [1@F[1@R[1@O[1@M[1@ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+(B[0;7m(B[mMariaDB [expt4]> SELECT COUNT(jobs) FROM (SELECT DISTINCT job AS jobs FROM Employee);[1P;[1P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SELECT DISTINCT job AS jobs FROM Employee' at line 1
+(B[0;7m(B[mMariaDB [expt4]> SELECT COUNT(jobs) FROM SELECT DISTINCT job AS jobs FROM Employee;(SELECT DISTINCT job AS jobs FROM Employee);[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[26PDISTINCT job AS jobs FROM Employee;[8P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CCOUNT(job) FROM Employee IN (SELECT DISTINCT job FROM Employee);[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[12P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ctot_jobs) IN (SELECT DISTINCT job FROM Employee AS tot_jobs););[K[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[8Pjob) FROM Employee GROUP BY DISTINCT job;[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K;
++------------+
+| COUNT(job) |
++------------+
+|         13 |
++------------+
+(B[0;1m1 row in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt4]> -- We'll see 2nd one a bit later [K
+MariaDB [expt4]> -- Q3 [K) Sum[K[K[KTotal salaries payable to employees
+MariaDB [expt4]> SELECT C[KSUM(salry[K[Kary) FROM EM[Kmployee;
++-------------+
+| SUM(salary) |
++-------------+
+|   506000.00 |
++-------------+
+(B[0;1m1 row in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt4]> -- q[KQ4) List[K[K[K[KMin [K[K[Kax and M[Kmin salaries pay[Kid
+MariaDB [expt4]> SELECT MAX(salary), MIN(salary) FROM Employee;
++-------------+-------------+
+| MAX(salary) | MIN(salary) |
++-------------+-------------+
+|    53000.00 |    21000.00 |
++-------------+-------------+
+(B[0;1m1 row in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt4]> -- 5[KQ5) Average saal[K[Klary paid to salesperson
+MariaDB [expt4]> SELECT AVG(salry[K[Kary) FROM Employee WHERE job -[K= 'salesperson';
++-------------+
+| AVG(salary) |
++-------------+
+|        NULL |
++-------------+
+(B[0;1m1 row in set (0.002 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt4]> -- Q^[K6) TOTAL[K[K[K[Kotal number of clerks in the company
+MariaDB [expt4]> SELECT COUNT(emn[Ko[K[Kmpno) FROM Employee whe[K[K[KWHERE job - [K[K= 'clerk'[1Plerk'Clerk'[C[C[C[C[C[K[Kk';
++--------------+
+| COUNT(empno) |
++--------------+
+|            3 |
++--------------+
+(B[0;1m1 row in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt4]> SELECT COUNT(empno) FROM Employee WHERE job = 'Clerk';[C[C[C[C[C[C[C[C[C[C[C[1@A[1@A[1@S[1P[1P[1@s[1@ [1P[1P[1@S[1@ [1@n[1@o[1@-[1P[1@_[1@o[1@f[1@_[1@c[1@l[1@e[1@r[1@k[1@s[1@ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
++--------------+
+| no_of_clerks |
++--------------+
+|            3 |
++--------------+
+(B[0;1m1 row in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt4]> -- Q7) No. of emplo[K[K working for admin and min salary there
+MariaDB [expt4]> SELECT COUNT(E[KE.empno) [K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K-- Q7) No. of emp working for admin and min salary there[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[KSELECT COUNT(E.emono[K[K[Km[Kpno e[K[K) [K, Min[K[K[K[K[K AS no_of_admin_emp [K, MIN(E.salary_[K) a[KAS min_admin_salary FROM EM[Kmployee E jo[K[KJOIN Dept D on E.deptno = D/[K.Deptno WHERE D.dname = 's[Kad[K[KAdmin';
++-----------------+------------------+
+| no_of_admin_emp | min_admin_salary |
++-----------------+------------------+
+|               1 |         37000.00 |
++-----------------+------------------+
+(B[0;1m1 row in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt4]> SELECT COUNT(E.empno) AS no_of_admin_emp, MIN(E.salary) AS min_admin_salary FROM Employee E JOIN Dept D on E.deptno = D.Deptno WHERE D.dname = 'Admin';[1Pdmin';admin';[C[C[C[C[C[C
++-----------------+------------------+
+| no_of_admin_emp | min_admin_salary |
++-----------------+------------------+
+|               1 |         37000.00 |
++-----------------+------------------+
+(B[0;1m1 row in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt4]> -- Q8) mi[K[KEarliest, lartest [K[K[K[K[K[Ktest date someone was hie[Kred
+MariaDB [expt4]> SELECT MIN[K[KAX(hiredate), MIN(hiredate)[1P[1P[1@i[1P[1@I[1@N[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1@ [1@A[1@S[1@ [1@E[1@a[1@r[1@l[1@i[1@e[1@s[1@t[1@_[1@h[1@i[1@r[1@e[C[C[C[C[C[1P(hiredate)[1P(hiredate)A(hiredate)X(hiredate)[C[C[C[C[C[C[C[C[C[C AS Latest_hire FROM EM[Kmployee;
++---------------+-------------+
+| Earliest_hire | Latest_hire |
++---------------+-------------+
+| 2020-05-05    | 2024-02-24  |
++---------------+-------------+
+(B[0;1m1 row in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt4]> -- Q9) NO[Ko, [K[K. of emp whose commission > salary
+MariaDB [expt4]> SELECT COUNT(empno) FROM Employee WHERE commission > da[K[Ksalary;
+ERROR 1054 (42S22): Unknown column 'commission' in 'where clause'
+(B[0;7m(B[mMariaDB [expt4]> SELECT COUNT(empno) FROM Employee WHERE commission > salary;[1P[C[C[C[C[C[C[C[C[C[C[C[C[C
++--------------+
+| COUNT(empno) |
++--------------+
+|            1 |
++--------------+
+(B[0;1m1 row in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt4]> SELECT COUNT(empno) FROM Employee WHERE commision > salary;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1@C[1P[1@c[1@o[1@m[1@m[1@i[1@s[1@s[1@i[1@o[1P[1@o[1@n[1@ [1P[1@_[1@g[1@r[1@e[1@a[1@t[1@e[1@r[1@_[1@t[1@h[1@a[1@n[1@-[1P[1@_[1@s[1@a[1@l[1@a[1@r[1@y[1@ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
++--------------------------------+
+| commission_greater_than_salary |
++--------------------------------+
+|                              1 |
++--------------------------------+
+(B[0;1m1 row in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt4]> -- q[KQ10) NO[Ko of empw [K[K working on research proj a[Kfor more than 10 h/[Krs/week
+MariaDB [expt4]> SELET [K[KCT COUNT(EWP[K[K.empno[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kdesc Projec[K[K[K[K[K[Kemp_workson_o[Kproject;
++----------------+---------+------+-----+---------+-------+
+| Field          | Type    | Null | Key | Default | Extra |
++----------------+---------+------+-----+---------+-------+
+| eno            | int(11) | NO   | PRI | NULL    |       |
+| pno            | int(11) | NO   | PRI | NULL    |       |
+| hours_per_week | float   | YES  |     | 20      |       |
++----------------+---------+------+-----+---------+-------+
+(B[0;1m3 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt4]> desc emp_workson_project;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C-- Q10) No of emp working on research proj for more than 10 hrs/week[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[43Pdesc emp_workson_project;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[KSELECT COUNT(E.empno) AS Empno, [K[K[K[K[K[K[Kempno[K[Kno [K[K[K[K[K[KFRK[KOM Employee E JOIN E[Kemp_workson_project EWP ON E.empno = EWP.eno WHERE hi[Kours_per_week > 10 JOIN rojec[K[K[K[K[KProject p[KP ON EWP [K.pno [K = P.Proj_num WHERE P.Pname = ' research';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM Employee E JOIN emp_workson_project EWP ON E.empno = EWP.eno WHERE hours...' at line 1
+(B[0;7m(B[mMariaDB [expt4]> SELECT COUNT(E.empno) AS FROM Employee E JOIN emp_workson_project EWP ON E.empno = EWP.eno WHERE hours_per_week > 10 JOIN Project P ON EWP.pno = P.Proj_num WHERE P.Pname = 'rresearch';[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CJOIN Project P ON EWP.pno = P.Proj_num WHERE P.Pname = 're[1Psearch';[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CJOIN Project P ON EWP.pno = P.Proj_num WHERE P.Pname = 'res[1Pearch';[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CJOIN Project P ON EWP.pno = P.Proj_num WHERE P.Pname = 'rese[1Parch';[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CJOIN Project P ON EWP.pno = P.Proj_num WHERE P.Pname = 'resea[1Prch';[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CJOIN Project P ON EWP.pno = P.Proj_num WHERE P.Pname = 'resear[1Pch';[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CJOIN Project P ON EWP.pno = P.Proj_num WHERE P.Pname = 'researc[1Ph';[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CJOIN Project P ON EWP.pno = P.Proj_num WHERE P.Pname = 'research[1P';[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CJOIN Project P ON EWP.pno = P.Proj_num WHERE P.Pname = 'research'[1P;[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CJOIN Project P ON EWP.pno = P.Proj_num WHERE P.Pname = 'research';[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CJOIN Project P ON EWP.pno = P.Proj_num WHERE P.Pname = 'research'; [K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1@ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C,; ;h;o;u;r;s;_;w;e; [A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P;
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P;p;e; [A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cr;;-;w;e;e;k; ;[1P[1@_[C[C[C[C[C>; ;1;0;[C
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM Employee E JOIN emp_workson_project EWP ON E.empno = EWP.eno WHERE JOIN ...' at line 1
+(B[0;7m(B[mMariaDB [expt4]> SELECT COUNT(E.empno) AS FROM Employee E JOIN emp_workson_project EWP ON E.empno = EWP.eno WHERE JOIN Project P ON EWP.pno = P.Proj_num WHERE P.Pname = 'research', hours_per__week > 10;[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Chours_per_week > 10 JOIN Project P ON EWP.pno = P.Proj_num WHERE P.Pname = 'r[1Pesearch';[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cmpno = EWP.eno WHERE hours_per_week > 10 JOIN Project P ON EWP.pno = P.Proj_num WHERE P.Pname = 're[1Psearch';[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CEmpno = EWP.eno WHERE hours_per_week > 10 JOIN Project P ON EWP.pno = P.Proj_num WHERE P.Pname = 'research';[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+[C[C[C[C[C[C[C[C[C[C
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM Employee E JOIN emp_workson_project EWP ON E.Empno = EWP.eno WHERE hours...' at line 1
+(B[0;7m(B[mMariaDB [expt4]> SELECT COUNT(E.empno) AS FROM Employee E JOIN emp_workson_project EWP ON E.Empno = EWP.eno WHERE hours_per_week > 10 JOIN Project P ON EWP.pno = P.Proj_num WHERE P.Pname = 'rresearch';[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cempno = EWP.eno WHERE JOIN Project P ON EWP.pno = P.Proj_num WHERE P.Pname = 'research', hours_per_week > 10;[C[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cmpno) AS FROM Employee E JOIN emp_workson_project EWP ON E.empno = EWP.eno WHERE JOIN Project P ON EWP.pno = P.Proj_num WHERE P.Pname = 'research', hours_per_w[1P[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CEmpno) AS FROM Employee E JOIN emp_workson_project EWP ON E.empno = EWP.eno WHERE JOIN Project P ON EWP.pno = P.Proj_num WHERE P.Pname = 'research', hours_per_[1@w[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C FROM Employee E JOIN emp_workson_project EWP ON E.empno = EWP.eno WHERE JOIN Project P ON EWP.pno = P.Proj_num WHERE P.Pname = 'research', hours_per_w[1P[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C FROM Employee E JOIN emp_workson_project EWP ON E.empno = EWP.eno WHERE JOIN Project P ON EWP.pno = P.Proj_num WHERE P.Pname = 'research', hours_per_we[C[1P[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CFROM Employee E JOIN emp_workson_project EWP ON E.empno = EWP.eno WHERE JOIN Project P ON EWP.pno = P.Proj_num WHERE P.Pname = 'research', hours_per_wee[1P[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cmpno = EWP.eno WHERE JOIN Project P ON EWP.pno = P.Proj_num WHERE P.Pname = 'research', hours_per_week[1P[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CEmpno = EWP.eno WHERE JOIN Project P ON EWP.pno = P.Proj_num WHERE P.Pname = 'research', hours_per_wee[1@k[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C JOIN Project P ON EWP.pno = P.Proj_num WHERE P.Pname = 'research', hours_per_week[1P[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C JOIN Project P ON EWP.pno = P.Proj_num WHERE P.Pname = 'research', hours_per_week [1P[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C JOIN Project P ON EWP.pno = P.Proj_num WHERE P.Pname = 'research', hours_per_week >[1P 10;[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C JOIN Project P ON EWP.pno = P.Proj_num WHERE P.Pname = 'research', hours_per_week > [1P10;[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C JOIN Project P ON EWP.pno = P.Proj_num WHERE P.Pname = 'research', hours_per_week > 1[1P0;[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CJOIN Project P ON EWP.pno = P.Proj_num WHERE P.Pname = 'research', hours_per_week > 10[1P;[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+[C[C
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' hours_per_week > 10' at line 1
+(B[0;7m(B[mMariaDB [expt4]> SELECT COUNT(E.Empno) FROM Employee E JOIN emp_workson_project EWP ON E.Empno = EWP.eno JOIN Project P ON EWP.pno = P.Proj_num WHERE P.Pname = 'research', hours_per_week > 100;[1P;[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C; [K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P;
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P; ;A;N;D; ;h;o;u;r;s;_;p;e;r;_;w;e;e;k; [A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C ;;>; ;1;0;[C
++----------------+
+| COUNT(E.Empno) |
++----------------+
+|              0 |
++----------------+
+(B[0;1m1 row in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt4]> SELECT + FR[K[K[K[K* FROM emp_wr[Korkson_project;
++-----+-----+----------------+
+| eno | pno | hours_per_week |
++-----+-----+----------------+
+|   4 |   1 |             48 |
+|   5 |   3 |             40 |
+|   9 |   1 |             48 |
+|  11 |   1 |             48 |
+|  13 |   3 |             18 |
+|  15 |   3 |             35 |
++-----+-----+----------------+
+(B[0;1m6 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt4]> -- Q11) No of emp controlled by admin
+MariaDB [expt4]> SELECT COUNT(E.Empno) FROM Employee E JOIN Dept D ON E.deptno = D.Deptmno[K[K[Kno WHERE d[KD.dname = 'A[Ka[KAdmin';
++----------------+
+| COUNT(E.Empno) |
++----------------+
+|              1 |
++----------------+
+(B[0;1m1 row in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt4]> -- the [K[K[K[Kmu [K[Ky interpretation of the qustion was wtong[K[K[Kr[K[Krong
+MariaDB [expt4]> -- Q11_[K) no[K[KNO[Ko. of proj controlel[K[Kled by admin dept
+MariaDB [expt4]> -- Q11) No. of proj controlled by admin dept[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cmy interpretation of the qustion was wrong[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CSELECT COUNT(E.Empno) FROM Employee E JOIN Dept D ON E.deptno = D.Deptno WHERE D.dname = 'Admin';[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[52P-- my interpretation of the qustion was wrong[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1PQ11) No. of proj controlled by admin dept[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[KSELECT COUNT(P.Proj_num) As [K[KS Admin_porjec[K[K[K[K[Krojects[1Pdmin_projectsadmin_projects[C[C[C[C[C[C[C[C[C[C[C[C[C FROM E[KPRO[K[Kroject P JOIN DE[Kept D o[KON P.dnim[K[Kum = D.Deptno WHERE D.dname = 'Admin';
++----------------+
+| admin_projects |
++----------------+
+|              2 |
++----------------+
+(B[0;1m1 row in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt4]> -- Q2)[K here
+MariaDB [expt4]> SELECT COUNT(DISTINV[K[K[K[K[K[K[K[KDIST[K[K[K[K DISTINCT(jobs[K)[K) FROM Emplpy[K[Koyee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'DISTINCT(job) FROM Employee' at line 1
+(B[0;7m(B[mMariaDB [expt4]> SELECT COUNT DISTINCT(job) FROM Employee;[1P[1P[1P[1P[1P[1P[1P[1P[1P[C[C[C[C[1P[1P[1P[1@*[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
++----------+
+| COUNT(*) |
++----------+
+|       13 |
++----------+
+(B[0;1m1 row in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt4]> SELECT COUNT(*) FROM Employee;[11@ DISTINCT(job[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K([K[K(*) FROM SELECT DISTICN[K[KNV[KCT JOB[K[Kob[K[K[Kjob FROM Employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SELECT DISTINCT job FROM Employee' at line 1
+(B[0;7m(B[mMariaDB [expt4]> SELECT COUNT(*) FROM SELECT DISTINCT job FROM Employee;Employee;[K[11@ DISTINCT(job[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P[1@([C[C[C[C[C[C[C[C[C[C[C[1@ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'DISTINCT job) FROM Employee' at line 1
+(B[0;7m(B[mMariaDB [expt4]> SELECT COUNT (DISTINCT job) FROM Employee;[1P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
++---------------------+
+| COUNT(DISTINCT job) |
++---------------------+
+|                  10 |
++---------------------+
+(B[0;1m1 row in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt4]> -- own queries
+MariaDB [expt4]> ---[K
+MariaDB [expt4]> -- Q1) [KMariaDB [expt4]> -- Q1) [KMariaDB [expt4]> -- Q1) [K[K[K[K[K I'll do it later at home ig
+MariaDB [expt4]> exit;
+(B[0;1mBye
+(B[m[?2004h]0;alex@mint: ~/Desktop/Lab-Programs/Database-Management-Query-Processing-Lab-SEM5/Experiment 4[01;32malex@mint[00m:[01;34m~/Desktop/Lab-Programs/Database-Management-Query-Processing-Lab-SEM5/Experiment 4[00m$ [?2004l
+exit
+
+Script done on 2024-08-26 13:14:48+05:30 [COMMAND_EXIT_CODE="0"]
