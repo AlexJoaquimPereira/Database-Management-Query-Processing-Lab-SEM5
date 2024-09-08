@@ -1,0 +1,347 @@
+MariaDB [expt5]> -- 1. Find out the number of employees in every department. Display the department name and the count. Also, display the maximum, minimum, and average salary offered by each department.
+MariaDB [expt5]> SELECT d.dname AS Department, COUNT(e.Empno) AS Employee_Count, MAX(e.salary) AS Max_Salary, MIN(e.salary) AS Min_Salary, AVG(e.salary) AS Avg_Salary FROM Dept d JOIN Employee e ON d.Deptno = e.deptno GROUP BY d.dname;
++------------+----------------+------------+------------+--------------+
+| Department | Employee_Count | Max_Salary | Min_Salary | Avg_Salary   |
++------------+----------------+------------+------------+--------------+
+| Accounting |              1 |   53000.00 |   53000.00 | 53000.000000 |
+| Admin      |              1 |   37000.00 |   37000.00 | 37000.000000 |
+| HR         |              3 |   48000.00 |   21000.00 | 37000.000000 |
+| Marketing  |              2 |   40000.00 |   24000.00 | 32000.000000 |
+| Research   |              2 |   45000.00 |   33000.00 | 39000.000000 |
+| Sales      |              4 |   50000.00 |   35000.00 | 40750.000000 |
++------------+----------------+------------+------------+--------------+
+6 rows in set (0.005 sec)
+
+MariaDB [expt5]> -- 2. List the total salary payable to each department. Display the department name and the total salary.
+MariaDB [expt5]> SELECT d.dname AS Department, SUM(e.salary) AS Total_Salary FROM Dept d JOIN Employee e ON d.Deptno = e.deptno GROUP BY d.dname;
++------------+--------------+
+| Department | Total_Salary |
++------------+--------------+
+| Accounting |     53000.00 |
+| Admin      |     37000.00 |
+| HR         |    111000.00 |
+| Marketing  |     64000.00 |
+| Research   |     78000.00 |
+| Sales      |    163000.00 |
++------------+--------------+
+6 rows in set (0.001 sec)
+
+MariaDB [expt5]> -- 3. List the jobs and the number of employees in each job. The result should be in the descending order of the number of jobs.
+MariaDB [expt5]> SELECT e.job AS Job, COUNT(*) AS Num_Employees FROM Employee e GROUP BY e.job ORDER BY COUNT(*) DESC;
++--------------+---------------+
+| Job          | Num_Employees |
++--------------+---------------+
+| Clerk        |             3 |
+| Analyst      |             2 |
+| President    |             1 |
+| receptionist |             1 |
+| Manager      |             1 |
+| Consultant   |             1 |
+| HR           |             1 |
+| Engineer     |             1 |
+| Technician   |             1 |
+| Developer    |             1 |
++--------------+---------------+
+10 rows in set (0.001 sec)
+
+MariaDB [expt5]> -- 4. List the job-wise total salary, average salary, and minimum salary of employees.
+MariaDB [expt5]> SELECT e.job AS Job, SUM(e.salary) AS Total_Salary, AVG(e.salary) AS Avg_Salary, MIN(e.salary) AS Min_Salary FROM Employee e GROUP BY e.job;
++--------------+--------------+--------------+------------+
+| Job          | Total_Salary | Avg_Salary   | Min_Salary |
++--------------+--------------+--------------+------------+
+| Analyst      |     63000.00 | 31500.000000 |   21000.00 |
+| Clerk        |    117000.00 | 39000.000000 |   37000.00 |
+| Consultant   |     53000.00 | 53000.000000 |   53000.00 |
+| Developer    |     48000.00 | 48000.000000 |   48000.00 |
+| Engineer     |     45000.00 | 45000.000000 |   45000.00 |
+| HR           |     35000.00 | 35000.000000 |   35000.00 |
+| Manager      |     50000.00 | 50000.000000 |   50000.00 |
+| President    |     24000.00 | 24000.000000 |   24000.00 |
+| receptionist |     38000.00 | 38000.000000 |   38000.00 |
+| Technician   |     33000.00 | 33000.000000 |   33000.00 |
++--------------+--------------+--------------+------------+
+10 rows in set (0.001 sec)
+
+MariaDB [expt5]> -- 5. List the total salary of employee’s job-wise for the 'research' department.
+MariaDB [expt5]> SELECT e.job AS Job, SUM(e.salary) AS Total_Salary FROM Employee e JOIN Dept d ON e.deptno = d.Deptno WHERE d.dname = 'Research' GROUP BY e.job;
++------------+--------------+
+| Job        | Total_Salary |
++------------+--------------+
+| Engineer   |     45000.00 |
+| Technician |     33000.00 |
++------------+--------------+
+2 rows in set (0.001 sec)
+
+MariaDB [expt5]> -- 6. List the job-wise total salary and average salary of employees of the 'admin' department. Display only those jobs having an average salary greater than 40000.
+MariaDB [expt5]> SELECT e.job AS Job, SUM(e.salary) AS Total_Salary, AVG(e.salary) AS Avg_Salary FROM Employee e JOIN Dept d ON e.deptno = d.Deptno WHERE d.dname = 'Admin' GROUP BY e.job HAVING AVG(e.salary) > 40000;
+Empty set (0.001 sec)
+
+MariaDB [expt5]> SELECT e.job AS Job, SUM(e.salary) AS Total_Salary, AVG(e.salary) AS Avg_Salary FROM Employee e JOIN Dept d ON e.deptno = d.Deptno WHERE d.dname = 'admin' GROUP BY e.job HAVING AVG(e.salary) > 40000;
+Empty set (0.001 sec)
+
+MariaDB [expt5]> -- 7. Retrieve the total number of projects controlled by every department. Display the department name and the count.
+MariaDB [expt5]> SELECT d.dname AS Department, COUNT(p.Proj_num) AS Project_Count FROM Dept d JOIN Project p ON d.Deptno = p.dnum GROUP BY d.dname;
++------------+---------------+
+| Department | Project_Count |
++------------+---------------+
+| Admin      |             2 |
+| Research   |             1 |
++------------+---------------+
+2 rows in set (0.001 sec)
+
+MariaDB [expt5]> -- 8. Retrieve the total number of employees working on every project. Display the project number, name, and the count.
+MariaDB [expt5]> SELECT p.Proj_num AS Project_Number, p.Pname AS Project_Name, COUNT(ewp.eno) AS Employee_Count FROM Project p JOIN emp_workson_project ewp ON p.Proj_num = ewp.pno GROUP BY p.Proj_num, p.Pname;
++----------------+-----------------+----------------+
+| Project_Number | Project_Name    | Employee_Count |
++----------------+-----------------+----------------+
+|              1 | Cloud Computing |              3 |
+|              3 | DBMS            |              3 |
++----------------+-----------------+----------------+
+2 rows in set (0.001 sec)
+
+MariaDB [expt5]> -- 9. Retrieve the total time (in hours) spent on every project.
+MariaDB [expt5]> SELECT p.Proj_num AS Project_Number, p.Pname AS Project_Name, SUM(ewp.hours_per_week) AS Total_Hours FROM Project p JOIN emp_workson_project ewp ON p.Proj_num = ewp.pno GROUP BY p.Proj_num, p.Pname;
++----------------+-----------------+-------------+
+| Project_Number | Project_Name    | Total_Hours |
++----------------+-----------------+-------------+
+|              1 | Cloud Computing |         144 |
+|              3 | DBMS            |          93 |
++----------------+-----------------+-------------+
+2 rows in set (0.001 sec)
+
+MariaDB [expt5]> -- 10. Retrieve the details of projects with more than or equal to two employees working on them. Also, display the average salary offered for that project.
+MariaDB [expt5]> SELECT p.Proj_num AS Project_Number, p.Pname AS Project_Name, COUNT(ewp.eno) AS Employee_Count, AVG(e.salary) AS Avg_Salary FROM Project p JOIN emp_workson_project ewp ON p.Proj_num = ewp.pno JOIN Employee e ON ewp.eno = e.Empno GROUP BY p.Proj_num, p.Pname HAVING COUNT(ewp.eno) >= 2;
++----------------+-----------------+----------------+--------------+
+| Project_Number | Project_Name    | Employee_Count | Avg_Salary   |
++----------------+-----------------+----------------+--------------+
+|              1 | Cloud Computing |              3 | 38666.666667 |
+|              3 | DBMS            |              3 | 35000.000000 |
++----------------+-----------------+----------------+--------------+
+2 rows in set (0.002 sec)
+
+MariaDB [expt5]> -- 11. For each department having more than or equal to two female employees, retrieve the maximum and minimum salary paid to the female employee.
+MariaDB [expt5]> SELECT d.dname AS Department, MAX(e.salary) AS Max_Salary, MIN(e.salary) AS Min_Salary FROM Dept d JOIN Employee e ON d.Deptno = e.deptno WHERE e.Gender = 'F' GROUP BY d.dname HAVING COUNT(e.Empno) >= 2;
++------------+------------+------------+
+| Department | Max_Salary | Min_Salary |
++------------+------------+------------+
+| HR         |   42000.00 |   21000.00 |
+| Sales      |   38000.00 |   35000.00 |
++------------+------------+------------+
+2 rows in set (0.001 sec)
+
+MariaDB [expt5]> -- 12. For each employee, display the total number of projects they are working on, and also display the total time (hours per week) they spend on all projects
+MariaDB [expt5]> SELECT e.Empno AS Employee_Number, e.Empname AS Employee_Name, COUNT(ewp.pno) AS Project_Count, SUM(ewp.hours_per_week) AS Total_Hours FROM Employee e JOIN emp_workson_project ewp ON e.Empno = ewp.eno GROUP BY e.Empno, e.Empname;
++-----------------+---------------+---------------+-------------+
+| Employee_Number | Employee_Name | Project_Count | Total_Hours |
++-----------------+---------------+---------------+-------------+
+|               4 | Annie         |             1 |          48 |
+|               5 | Brandon       |             1 |          40 |
+|               9 | Max           |             1 |          48 |
+|              11 | Valery        |             1 |          48 |
+|              13 | Theodore      |             1 |          18 |
+|              15 | Elliot        |             1 |          35 |
++-----------------+---------------+---------------+-------------+
+6 rows in set (0.001 sec)
+
+MariaDB [expt5]> -- SELF QUERIES --
+MariaDB [expt5]> -- 1. Find the total number of employees per manager
+MariaDB [expt5]> SELECT managerno, COUNT(*) AS num_employees FROM Employee GROUP BY managerno;
++-----------+---------------+
+| managerno | num_employees |
++-----------+---------------+
+|         5 |             2 |
+|         9 |             3 |
+|        11 |             5 |
+|        15 |             3 |
++-----------+---------------+
+4 rows in set (0.001 sec)
+
+MariaDB [expt5]> -- 2. Get the total salary per department:
+MariaDB [expt5]> SELECT deptno, SUM(salary) AS total_salary FROM Employee GROUP BY deptno;
++--------+--------------+
+| deptno | total_salary |
++--------+--------------+
+|      1 |     53000.00 |
+|      5 |    163000.00 |
+|     10 |     78000.00 |
+|     20 |    111000.00 |
+|     30 |     64000.00 |
+|     40 |     37000.00 |
++--------+--------------+
+6 rows in set (0.001 sec)
+
+MariaDB [expt5]> -- 3. Calculate the average number of hours worked per employee:
+MariaDB [expt5]> SELECT eno, AVG(hours_per_week) AS avg_hours FROM emp_workson_project GROUP BY eno;
++-----+-----------+
+| eno | avg_hours |
++-----+-----------+
+|   4 |        48 |
+|   5 |        40 |
+|   9 |        48 |
+|  11 |        48 |
+|  13 |        18 |
+|  15 |        35 |
++-----+-----------+
+6 rows in set (0.001 sec)
+
+MariaDB [expt5]> -- 4. Find the number of employees in each job role
+MariaDB [expt5]> SELECT job, COUNT(*) AS num_employees FROM Employee GROUP BY job;
++--------------+---------------+
+| job          | num_employees |
++--------------+---------------+
+| Analyst      |             2 |
+| Clerk        |             3 |
+| Consultant   |             1 |
+| Developer    |             1 |
+| Engineer     |             1 |
+| HR           |             1 |
+| Manager      |             1 |
+| President    |             1 |
+| receptionist |             1 |
+| Technician   |             1 |
++--------------+---------------+
+10 rows in set (0.001 sec)
+
+MariaDB [expt5]> -- 5. Get the number of projects handled in each location:
+MariaDB [expt5]> SELECT location, COUNT(*) AS num_projects FROM Project GROUP BY location;
++---------------+--------------+
+| location      | num_projects |
++---------------+--------------+
+| Dublin        |            1 |
+| San Francisco |            2 |
++---------------+--------------+
+2 rows in set (0.001 sec)
+
+MariaDB [expt5]> -- 6. Find the total number of projects each employee is working on
+MariaDB [expt5]> SELECT e.Empno, COUNT(ewp.pno) AS num_projects FROM Employee e JOIN emp_workson_project ewp ON e.Empno = ewp.eno GROUP BY e.Empno;
++-------+--------------+
+| Empno | num_projects |
++-------+--------------+
+|     4 |            1 |
+|     5 |            1 |
+|     9 |            1 |
+|    11 |            1 |
+|    13 |            1 |
+|    15 |            1 |
++-------+--------------+
+6 rows in set (0.001 sec)
+
+MariaDB [expt5]> -- 7. Get the total salary paid per project
+MariaDB [expt5]> SELECT p.Pname, SUM(e.salary) AS total_salary FROM Project p JOIN emp_workson_project ewp ON p.Proj_num = ewp.pno JOIN Employee e ON e.Empno = ewp.eno GROUP BY p.Pname;
++-----------------+--------------+
+| Pname           | total_salary |
++-----------------+--------------+
+| Cloud Computing |    116000.00 |
+| DBMS            |    105000.00 |
++-----------------+--------------+
+2 rows in set (0.001 sec)
+
+MariaDB [expt5]> -- 8. List the maximum commission received by employees in each department:
+MariaDB [expt5]> SELECT deptno, MAX(commision) AS max_commission FROM Employee GROUP BY deptno;
++--------+----------------+
+| deptno | max_commission |
++--------+----------------+
+|      1 |           NULL |
+|      5 |       50000.00 |
+|     10 |        5000.00 |
+|     20 |           NULL |
+|     30 |        3000.00 |
+|     40 |       10000.00 |
++--------+----------------+
+6 rows in set (0.001 sec)
+
+MariaDB [expt5]> -- 9. Calculate the total number of hours worked by employees in each department:
+MariaDB [expt5]> SELECT d.Deptno, SUM(ewp.hours_per_week) AS total_hours FROM Dept d JOIN Employee e ON d.Deptno = e.deptno JOIN emp_workson_project ewp ON e.Empno = ewp.eno GROUP BY d.Deptno;
++--------+-------------+
+| Deptno | total_hours |
++--------+-------------+
+|      5 |          48 |
+|     10 |          66 |
+|     20 |          83 |
+|     30 |          40 |
++--------+-------------+
+4 rows in set (0.001 sec)
+
+MariaDB [expt5]> -- 10. Find the average number of hours worked per project by each department
+MariaDB [expt5]> SELECT d.Deptno, AVG(ewp.hours_per_week) AS avg_hours FROM Dept d JOIN Employee e ON d.Deptno = e.deptno JOIN emp_workson_project ewp ON e.Empno = ewp.eno GROUP BY d.Deptno;
++--------+-----------+
+| Deptno | avg_hours |
++--------+-----------+
+|      5 |        48 |
+|     10 |        33 |
+|     20 |      41.5 |
+|     30 |        40 |
++--------+-----------+
+4 rows in set (0.002 sec)
+
+MariaDB [expt5]> -- HAVING --
+MariaDB [expt5]> -- 1. Find managers with more than 3 employee
+MariaDB [expt5]> SELECT managerno, COUNT(*) AS num_employees FROM Employee GROUP BY managerno HAVING COUNT(*) > 3;
++-----------+---------------+
+| managerno | num_employees |
++-----------+---------------+
+|        11 |             5 |
++-----------+---------------+
+1 row in set (0.001 sec)
+
+MariaDB [expt5]> -- 2. Get departments with total salaries above 100000
+MariaDB [expt5]> SELECT deptno, SUM(salary) AS total_salary FROM Employee GROUP BY deptno HAVING SUM(salary) > 100000;
++--------+--------------+
+| deptno | total_salary |
++--------+--------------+
+|      5 |    163000.00 |
+|     20 |    111000.00 |
++--------+--------------+
+2 rows in set (0.001 sec)
+
+MariaDB [expt5]> -- 3. Find projects with an average number of hours worked above 40:
+MariaDB [expt5]> SELECT p.Pname, AVG(ewp.hours_per_week) AS avg_hours FROM Project p JOIN emp_workson_project ewp ON p.Proj_num = ewp.pno GROUP BY p.Pname HAVING AVG(ewp.hours_per_week) > 40;
++-----------------+-----------+
+| Pname           | avg_hours |
++-----------------+-----------+
+| Cloud Computing |        48 |
++-----------------+-----------+
+1 row in set (0.001 sec)
+
+MariaDB [expt5]> -- 4. List departments with total commission above 60000
+MariaDB [expt5]> SELECT deptno, SUM(commision) AS total_commission FROM Employee GROUP BY deptno HAVING SUM(commision) > 60000;
++--------+------------------+
+| deptno | total_commission |
++--------+------------------+
+|      5 |         80000.00 |
++--------+------------------+
+1 row in set (0.001 sec)
+
+MariaDB [expt5]> -- 5. Get job roles with an average salary below 30000
+MariaDB [expt5]> SELECT job, AVG(salary) AS avg_salary
+    -> FROM Employee
+    -> GROUP BY job
+    -> HAVING AVG(salary) < 30000;
++-----------+--------------+
+| job       | avg_salary   |
++-----------+--------------+
+| President | 24000.000000 |
++-----------+--------------+
+1 row in set (0.000 sec)
+
+MariaDB [expt5]> -- 5. Get job roles with an average salary below 30000
+MariaDB [expt5]> SELECT job, AVG(salary) AS avg_salary FROM Employee GROUP BY job HAVING AVG(salary) < 30000;
++-----------+--------------+
+| job       | avg_salary   |
++-----------+--------------+
+| President | 24000.000000 |
++-----------+--------------+
+1 row in set (0.001 sec)
+
+MariaDB [expt5]> -- 6. Find employees with total hours worked less than 30:
+MariaDB [expt5]> SELECT eno, SUM(hours_per_week) AS total_hours FROM emp_workson_project GROUP BY eno HAVING SUM(hours_per_week) < 30;
++-----+-------------+
+| eno | total_hours |
++-----+-------------+
+|  13 |          18 |
++-----+-------------+
+1 row in set (0.001 sec)
+
+MariaDB [expt5]> 
+
+
