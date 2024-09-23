@@ -1,0 +1,170 @@
+Script started on 2024-09-04 11:23:30+05:30 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="79" LINES="23"]
+fundlab16@fundlab16-OptiPlex-3070:~/Desktop/006$ cat typescript.txt[3Psudo apt update[10Pexit;sudo apt updatecat typescript.txt[Ksudp [K[Ko /opt/lm[Kampp/lampp [K/bin [K[K[K[K[K start
+[sudo] password for fundlab16: 
+Starting XAMPP for Linux 7.4.29-1...
+XAMPP: Starting Apache...already running.
+XAMPP: Starting MySQL...already running.
+fundlab16@fundlab16-OptiPlex-3070:~/Desktop/006$ sudo /opt/lampp/lampp start[K[K[K[K[K[K[K[K[K[K[Kbin.[K/mysql -u r oot
+(B[0;1mWelcome to the MariaDB monitor.  Commands end with ; or \g.
+(B[m(B[0;1mYour MariaDB connection id is 13
+Server version: 10.4.24-MariaDB Source distribution
+
+(B[m(B[0;1mCopyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+(B[m(B[0;1mType 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+(B[m[?1034hMariaDB [(none)]> use ex[K[Kalex_expt5;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+(B[0;1mDatabase changed
+(B[mMariaDB [alex_expt5]> [KMariaDB [alex_expt5]> [KMariaDB [alex_expt5]> [KMariaDB [alex_expt5]> [KMariaDB [alex_expt5]> [KMariaDB [alex_expt5]> [KMariaDB [alex_expt5]> -- COMMON QYE[K[K[KQUERIES --
+MariaDB [alex_expt5]> -- 1. List all the employees who have a [K[K[Kt[K th sa[K[K[Ke same job as "Smith"
+MariaDB [alex_expt5]> SELECT Empname FROM Employee E WHERE[K[K[K[K[KWHERE E.job = (SELC[KECT J[Kjob FROM EMPL[K[K[Kmployee S wjhe[K[K[K[KWEE[K[KHERE S.Empname = "Smith");
++---------+
+| Empname |
++---------+
+| Annie   |
+| Lya     |
+| Smith   |
++---------+
+(B[0;1m3 rows in set (0.016 sec)
+(B[m(B[0;1m
+(B[mMariaDB [alex_expt5]> ==[K[K-- 2. Display the names of the employeeswho are working in sales of=r re[K[K[K[K[K[Kr research department
+MariaDB [alex_expt5]> SELECT E.Empname FROM Employee E JOIN DE[Kept D ON E.deptno = D.Deptno WHERE dnam[K[K[K[KD.dname = "Sales" or [K[K[KOR D.dname = "Research";
++----------+
+| Empname  |
++----------+
+| Max      |
+| Theodore |
+| Smith    |
+| Angelo   |
+| Bunni    |
+| Stella   |
+| Valery   |
++----------+
+(B[0;1m7 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [alex_expt5]> -- 3. Display the name and salary of he[K[Kthe employee who is working in "Bangalore"
+MariaDB [alex_expt5]> E[KSELECT E.Empname [K, E.salary FRPM[K[KOM Employee E JOIN Dept D w[KON E.deptno = D.Deptno WHERE D.location = "Bana[Kgalore";
+(B[0;1mEmpty set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [alex_expt5]> SELECT E.Empname, E.salary FROM Employee E JOIN Dept D ON E.deptno = D.Deptno WHERE D.location = "Bangalore";[C[1P";[1P";[1P";[1P";[1P";[1P";[1P";[1P";e";n";g";a";l";u";u";[1P";r";u";[C[C
++---------+----------+
+| Empname | salary   |
++---------+----------+
+| Angelo  | 40000.00 |
+| Bunni   | 35000.00 |
+| Stella  | 38000.00 |
+| Valery  | 50000.00 |
++---------+----------+
+(B[0;1m4 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [alex_expt5]> -- 4. List the emplpo[K[Koyee names whose salary is greater than the lowest salry of the employees of "res[K[K[K"rese[K[K[K[K[KResearch" dept
+MariaDB [alex_expt5]> SELECT E.Empname FROM Employee E WHERE E.salary > (Se[KELECT E[KMIN(R[KS.[K[KEm.Emp[K[K[Ksalay[K[Kary) FROM Employee Em join Dept D ON E.[Km.deptno = D.Deptm[Kno WHERE D.dname = "Res earch");
++---------+
+| Empname |
++---------+
+| Angelo  |
+| Bunni   |
+| Stella  |
+| Maria   |
+| Max     |
+| Lya     |
+| Valery  |
+| Nikki   |
+| Alice   |
+| Elliot  |
+| Smith   |
++---------+
+(B[0;1m11 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [alex_expt5]> -- 5. List the employee names whose salry[K[Kary is great [Ker than the highesr [K[Kt salry[K[Kary of the employees of :[K"Admin" dept
+MariaDB [alex_expt5]> -- 5. List the employee names whose salary is greater than the highest salary of the employees of "Admin" dept[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CSELECT E.Empname FROM Employee E WHERE E.salary > (SELECT MIN(Em.salary) FROM Employee Em join Dept D ON Em.deptno = D.Deptno WHERE D.dname = "Reseearch");[1P");[1P");[1P");[1P");[C[1P");[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C")[1P;[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C");[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C"); [K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CA");;[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cd");[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cm");i");[Cn");[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C(Em.salary) FROM Employee Em join Dept D ON Em.deptno = D.Deptno WHERE D.dname = "Admin[1P");[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C(Em.salary) FROM Employee Em join Dept D ON Em.deptno = D.Deptno WHERE D.dname = "Admin"[1P);[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CA(Em.salary) FROM Employee Em join Dept D ON Em.deptno = D.Deptno WHERE D.dname = "Admin");[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CX(Em.salary) FROM Employee Em join Dept D ON Em.deptno = D.Deptno WHERE D.dname = "Admin");[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+[C[C[C[C[C
++---------+
+| Empname |
++---------+
+| Angelo  |
+| Stella  |
+| Maria   |
+| Max     |
+| Lya     |
+| Valery  |
+| Alice   |
+| Elliot  |
+| Smith   |
++---------+
+(B[0;1m9 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [alex_expt5]> 00[K[K-- 5[K6. List th na[K[K[Ke name of the mployee [K[K[K[K[K[K[K[Kemployee eas[Krini[K[K[Kning the highest salary
+MariaDB [alex_expt5]> SELECT E[KEname[K[K[K[Kmpname AS His[Kghest[K[K[K[K[K[K[K[K[K[KFROM EM[Kp[Kmplpyee[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kem[K[KEm[Kmpname FROM Employee E [K[KWHERE E[1@E[1@v[1P[1@ [C[1@E[1@.[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C.Empnmo[K[Ko = (SELECT Empno, MAX(S[Ksalary) FROM Employee);
+ERROR 4078 (HY000): Illegal parameter data types int and row for operation '='
+(B[0;7m(B[mMariaDB [alex_expt5]> SELECT E.Empname FROM Employee E WHERE E.Empno = (SELECT Empno, MAX(salary) FROM Employee);[1P[1P[1P[1P[1P[1@H[1@A[1@V[1@I[1@N[1@G[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+ERROR 1054 (42S22): Unknown column 'E.Empno' in 'having clause'
+(B[0;7m(B[mMariaDB [alex_expt5]> SELECT E.Empname FROM Employee E HAVING E.Empno = (SELECT Empno, MAX(salary) FROM Employee);[1@M[1@A[1@X[1@([1@e[1@.[1@S[1@a[1@l[1P[1P[1P[1P[1P[1@E[1@.[1@S[1@a[1@l[1@r[1P[1@a[1@r[1@y[1@)[1@ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P[1P[1P[1P[1P[1P[1P[1@M[1@A[1@X[1@([1@E[1@.[1@S[1P[1@s[1@a[1@l[1@a[1@r[1@y[1@)[C[C[C[C[C[C[C[1P[1@s[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'MAX(E.salary) FROM Employee E HAVING MAX(E.salary) = (SELECT Empno, MAX(salar...' at line 1
+(B[0;7m(B[mMariaDB [alex_expt5]> SELECT E.Empname MAX(E.salary) FROM Employee E HAVING MAX(E.salary) = (SELECT Empno, MAX(salary) FROM Employee);[C[C[C[C[C[1P[1@a[1@m[1@e[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'MAX(E.salary) FROM Employee E HAVING MAX(E.salary) = (SELECT Empname, MAX(sal...' at line 1
+(B[0;7m(B[mMariaDB [alex_expt5]> SELECT E.Empname MAX(E.salary) FROM Employee E HAVING MAX(E.salary) = (SELECT Empname, MAX(salary) FROM Employee); );A);S); );T);[C[C
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'MAX(E.salary) FROM Employee E HAVING MAX(E.salary) = (SELECT Empname, MAX(sal...' at line 1
+(B[0;7m(B[mMariaDB [alex_expt5]> SELECT E.Empname MAX(E.salary) FROM Employee E HAVING MAX(E.salary) = (SELECT Empname, MAX(salary) FROM Employee AS T););[K[2Po[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[20PFROM Employee E HAVING E.Empno[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[20@MAX(E.salary) FROM Employee E HAVING MAX(E.salary)[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1@,[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+ERROR 4078 (HY000): Illegal parameter data types float and row for operation '='
+(B[0;7m(B[mMariaDB [alex_expt5]> SELECT E.Empname, MAX(E.salary) FROM Employee E HAVING MAX(E.salary) = (SELECT Empno, MAX(salary) FROM Employee);[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C MAX(E.salary) FROM Employee E HAVING MAX(E.salary) = (SELECT Empname, MAX(salary) FROM Employee AS T);[C[C[C[C[C[C[C[1@,[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+ERROR 4078 (HY000): Illegal parameter data types float and row for operation '='
+(B[0;7m(B[mMariaDB [alex_expt5]> SELECT E.Empname, MAX(E.salary) FROM Employee E HAVING MAX(E.salary) = (SELECT Empname, MAX(salary) FROM Employee AS T);[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P[1P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P[1P[C[C[1P[1P[1P[1P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+ERROR 4078 (HY000): Illegal parameter data types float and row for operation '='
+(B[0;7m(B[mMariaDB [alex_expt5]> SELECT Empname, MAX(salary) FROM Employee HAVING MAX(salary) = (SELECT Empname, MAX(salary) FROM Employee AS T);[1P);[1P);[1P);[1P);[1P);[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM Employee)' at line 1
+(B[0;7m(B[mMariaDB [alex_expt5]> SELECT Empname, MAX(salary) FROM Employee HAVING MAX(salary) = (MAX(salary) FROM Employee);[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P[1P[1P[1P[1P[1P[1@W[1@H[1@E[1@R[1@E[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM Employee)' at line 1
+(B[0;7m(B[mMariaDB [alex_expt5]> SELECT Empname, MAX(salary) FROM Employee WHERE MAX(salary) = (MAX(salary) FROM Employee);[C[1@E[1@.[C[C[C[C[C[C[C[C[C[C[1@E[1@.[C[1@E[1@.[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1@E[1@.[C[C[C[C[C[C[C[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1@E[1@.[1@s[1@a[1@l[1@a[1@r[1@y[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+[1]+  Stopped                 sudo /opt/lampp/bin/mysql -u root
+fundlab16@fundlab16-OptiPlex-3070:~/Desktop/006$ sudo /opt/lampp/bin/mysql -u root
+[sudo] password for fundlab16: 
+(B[0;1mWelcome to the MariaDB monitor.  Commands end with ; or \g.
+(B[m(B[0;1mYour MariaDB connection id is 15
+Server version: 10.4.24-MariaDB Source distribution
+
+(B[m(B[0;1mCopyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+(B[m(B[0;1mType 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+(B[m[?1034hMariaDB [(none)]> exit;show tables;desc[C[C[C[C[C[C[C[Cuse alex_expt5;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+(B[0;1mDatabase changed
+(B[mMariaDB [alex_expt5]> use alex_expt5;[10Pexit;show tables;desc[C[C[C[C[C[C[C[Cuse alex_expt5;show databases;[10Pexit;show databases;[10Pexit;show databases;use alex_expt5;[3Pdesc tables;show[C[C[C[C[C[C[C[C[7Pexit;use alex_expt5;[K-- 6. List the name of the employee earning the highest salary
+MariaDB [alex_expt5]> SELECT E.Empname, MAX(E.salary) FROM E.Employee WHERE E.salary = (MAX(salary) FROM Employee);[1@S[1@E[1@L[1@E[1@C[1@T[1@ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+ERROR 1146 (42S02): Table 'E.Employee' doesn't exist
+(B[0;7m(B[mMariaDB [alex_expt5]> SELECT E.Empname, MAX(E.salary) FROM E.Employee WHERE E.salary = (SELECT MAX(salary) FROM Employee);[1@E[1@ [C[C[C[C[C[C[C[C[C[C[1P[1P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
++---------+---------------+
+| Empname | MAX(E.salary) |
++---------+---------------+
+| Smith   |      75000.00 |
++---------+---------------+
+(B[0;1m1 row in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [alex_expt5]> -- 7. List the names of the emplooy[K[Kyees wh[K[Kearinig highest saa[Klary in every department
+MariaDB [alex_expt5]> SELECT E.Empname, MAX(E.salary) FROM E.Employee WHERE E.salary = (MAX(salary) FROM Employee);[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[13P-- 7. List the names of the employees earinig highest salary in every department[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CSELECT E.Empname, MAX(E.salary) FROM Employee E WHERE E.salary = (SELECT MAX(salary) FROM Employee);[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C.Employee[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cmployee E[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[20P-- 7. List the names of the employees earinig highest salary in every department[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CSELECT E.Empname, MAX(E.salary) FROM E.Employee WHERE E.salary = (MAX(salary) FROM Employee);[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[KSELECT E.Empno, D.Deptno, MAX(E.Salary) FROM Employee E JOIN Dept D ON E.deptno = D.Deptno GROUP BY E.deptno;[C[C[C[C[C[1P[1@a[1@m[1@e[C[C[C[C[C[C[C[C[C[C[1P[1P[1P[1P[1P[1P[1@d[1@n[1@a[1@m[1@e[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
++---------+------------+---------------+
+| Empname | dname      | MAX(E.Salary) |
++---------+------------+---------------+
+| Alice   | Accounting |      53000.00 |
+| Angelo  | Sales      |      50000.00 |
+| Max     | Research   |      75000.00 |
+| Annie   | HR         |      48000.00 |
+| Brandon | Marketing  |      40000.00 |
+| Nikki   | Admin      |      37000.00 |
++---------+------------+---------------+
+(B[0;1m6 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [alex_expt5]> 
+MariaDB [alex_expt5]> 
+[2]+  Stopped                 sudo /opt/lampp/bin/mysql -u root
+fundlab16@fundlab16-OptiPlex-3070:~/Desktop/006$ exit
+There are stopped jobs.
+fundlab16@fundlab16-OptiPlex-3070:~/Desktop/006$ exit
+
+Script done on 2024-09-04 13:11:40+05:30 [COMMAND_EXIT_CODE="148"]
