@@ -1,0 +1,483 @@
+fundlab16@fundlab16-OptiPlex-3070:~/Desktop/006$ sudo /opt/lampp/lampp start
+[sudo] password for fundlab16: 
+Starting XAMPP for Linux 7.4.29-1...
+XAMPP: Starting Apache...already running.
+XAMPP: Starting MySQL...already running.
+fundlab16@fundlab16-OptiPlex-3070:~/Desktop/006$ sudo /opt/lampp/bin/mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 10
+Server version: 10.4.24-MariaDB Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| alex_expt5         |
+| car_rental         |
+| company            |
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+8 rows in set (0.001 sec)
+
+MariaDB [(none)]> exit;
+Bye
+fundlab16@fundlab16-OptiPlex-3070:~/Desktop/006$ sudo /opt/lampp/bin/mysql alex_expt5 < expt5.sql
+fundlab16@fundlab16-OptiPlex-3070:~/Desktop/006$ sudo /opt/lampp/bin/mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 12
+Server version: 10.4.24-MariaDB Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| alex_expt5         |
+| car_rental         |
+| company            |
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+8 rows in set (0.001 sec)
+
+MariaDB [(none)]> use alex_expt5;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MariaDB [alex_expt5]> desc tables;
+ERROR 1146 (42S02): Table 'alex_expt5.tables' doesn't exist
+MariaDB [alex_expt5]> show tables;
++----------------------+
+| Tables_in_alex_expt5 |
++----------------------+
+| Dept                 |
+| Employee             |
+| Project              |
+| emp_workson_project  |
++----------------------+
+4 rows in set (0.001 sec)
+
+MariaDB [alex_expt5]> exit;
+Bye
+fundlab16@fundlab16-OptiPlex-3070:~/Desktop/006$ script expt6_raw_1.txt
+Script started, file is expt6_raw_1.txt
+fundlab16@fundlab16-OptiPlex-3070:~/Desktop/006$ sudo /opt/lampp/lampp start
+[sudo] password for fundlab16: 
+Starting XAMPP for Linux 7.4.29-1...
+XAMPP: Starting Apache...already running.
+XAMPP: Starting MySQL...already running.
+fundlab16@fundlab16-OptiPlex-3070:~/Desktop/006$ sudo /opt/lampp/bin/mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 13
+Server version: 10.4.24-MariaDB Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use alex_expt5;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MariaDB [alex_expt5]> -- COMMON QUERIES --
+MariaDB [alex_expt5]> -- 1. List all the employees who have the same job as "Smith"
+MariaDB [alex_expt5]> SELECT Empname FROM Employee E WHERE E.job = (SELECT job FROM Employee S WHERE S.Empname = "Smith");
++---------+
+| Empname |
++---------+
+| Annie   |
+| Lya     |
+| Smith   |
++---------+
+3 rows in set (0.016 sec)
+
+MariaDB [alex_expt5]> -- 2. Display the names of the employeeswho are working in sales or research department
+MariaDB [alex_expt5]> SELECT E.Empname FROM Employee E JOIN Dept D ON E.deptno = D.Deptno WHERE D.dname = "Sales" OR D.dname = "Research";
++----------+
+| Empname  |
++----------+
+| Max      |
+| Theodore |
+| Smith    |
+| Angelo   |
+| Bunni    |
+| Stella   |
+| Valery   |
++----------+
+7 rows in set (0.001 sec)
+
+MariaDB [alex_expt5]> -- 3. Display the name and salary of the employee who is working in "Bangalore"
+MariaDB [alex_expt5]> SELECT E.Empname, E.salary FROM Employee E JOIN Dept D ON E.deptno = D.Deptno WHERE D.location = "Bangalore";
+Empty set (0.001 sec)
+
+MariaDB [alex_expt5]> SELECT E.Empname, E.salary FROM Employee E JOIN Dept D ON E.deptno = D.Deptno WHERE D.location = "Bengaluru";
++---------+----------+
+| Empname | salary   |
++---------+----------+
+| Angelo  | 40000.00 |
+| Bunni   | 35000.00 |
+| Stella  | 38000.00 |
+| Valery  | 50000.00 |
++---------+----------+
+4 rows in set (0.001 sec)
+
+MariaDB [alex_expt5]> -- 4. List the employee names whose salary is greater than the lowest salry of the employees of "Research" dept
+MariaDB [alex_expt5]> SELECT E.Empname FROM Employee E WHERE E.salary > (SELECT MIN(Em.salary) FROM Employee Em join Dept D ON Em.deptno = D.Deptno WHERE D.dname = "Research");
++---------+
+| Empname |
++---------+
+| Angelo  |
+| Bunni   |
+| Stella  |
+| Maria   |
+| Max     |
+| Lya     |
+| Valery  |
+| Nikki   |
+| Alice   |
+| Elliot  |
+| Smith   |
++---------+
+11 rows in set (0.001 sec)
+
+MariaDB [alex_expt5]> -- 5. List the employee names whose salary is greater than the highest salary of the employees of "Admin" dept
+MariaDB [alex_expt5]> SELECT E.Empname FROM Employee E WHERE E.salary > (SELECT MAX(Em.salary) FROM Employee Em join Dept D ON Em.deptno = D.Deptno WHERE D.dname = "Admin");
++---------+
+| Empname |
++---------+
+| Angelo  |
+| Stella  |
+| Maria   |
+| Max     |
+| Lya     |
+| Valery  |
+
+fundlab16@fundlab16-OptiPlex-3070:~/Desktop/006$ sudo /opt/lampp/lampp start
+[sudo] password for fundlab16: 
+Starting XAMPP for Linux 7.4.29-1...
+XAMPP: Starting Apache...already running.
+XAMPP: Starting MySQL...already running.
+fundlab16@fundlab16-OptiPlex-3070:~/Desktop/006$ sudo /opt/lampp/bin/mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 10
+Server version: 10.4.24-MariaDB Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| alex_expt5         |
+| car_rental         |
+| company            |
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+8 rows in set (0.001 sec)
+
+MariaDB [(none)]> exit;
+Bye
+fundlab16@fundlab16-OptiPlex-3070:~/Desktop/006$ sudo /opt/lampp/bin/mysql alex_expt5 < expt5.sql
+fundlab16@fundlab16-OptiPlex-3070:~/Desktop/006$ sudo /opt/lampp/bin/mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 12
+Server version: 10.4.24-MariaDB Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| alex_expt5         |
+| car_rental         |
+| company            |
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+8 rows in set (0.001 sec)
+
+MariaDB [(none)]> use alex_expt5;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MariaDB [alex_expt5]> desc tables;
+ERROR 1146 (42S02): Table 'alex_expt5.tables' doesn't exist
+MariaDB [alex_expt5]> show tables;
++----------------------+
+| Tables_in_alex_expt5 |
++----------------------+
+| Dept                 |
+| Employee             |
+| Project              |
+| emp_workson_project  |
++----------------------+
+4 rows in set (0.001 sec)
+
+MariaDB [alex_expt5]> exit;
+Bye
+fundlab16@fundlab16-OptiPlex-3070:~/Desktop/006$ script expt6_raw_1.txt
+Script started, file is expt6_raw_1.txt
+fundlab16@fundlab16-OptiPlex-3070:~/Desktop/006$ sudo /opt/lampp/lampp start
+[sudo] password for fundlab16: 
+Starting XAMPP for Linux 7.4.29-1...
+XAMPP: Starting Apache...already running.
+XAMPP: Starting MySQL...already running.
+fundlab16@fundlab16-OptiPlex-3070:~/Desktop/006$ sudo /opt/lampp/bin/mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 13
+Server version: 10.4.24-MariaDB Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use alex_expt5;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MariaDB [alex_expt5]> -- COMMON QUERIES --
+MariaDB [alex_expt5]> -- 1. List all the employees who have the same job as "Smith"
+MariaDB [alex_expt5]> SELECT Empname FROM Employee E WHERE E.job = (SELECT job FROM Employee S WHERE S.Empname = "Smith");
++---------+
+| Empname |
++---------+
+| Annie   |
+| Lya     |
+| Smith   |
++---------+
+3 rows in set (0.016 sec)
+
+MariaDB [alex_expt5]> -- 2. Display the names of the employeeswho are working in sales or research department
+MariaDB [alex_expt5]> SELECT E.Empname FROM Employee E JOIN Dept D ON E.deptno = D.Deptno WHERE D.dname = "Sales" OR D.dname = "Research";
++----------+
+| Empname  |
++----------+
+| Max      |
+| Theodore |
+| Smith    |
+| Angelo   |
+| Bunni    |
+| Stella   |
+| Valery   |
++----------+
+7 rows in set (0.001 sec)
+
+MariaDB [alex_expt5]> -- 3. Display the name and salary of the employee who is working in "Bangalore"
+MariaDB [alex_expt5]> SELECT E.Empname, E.salary FROM Employee E JOIN Dept D ON E.deptno = D.Deptno WHERE D.location = "Bangalore";
+Empty set (0.001 sec)
+
+MariaDB [alex_expt5]> SELECT E.Empname, E.salary FROM Employee E JOIN Dept D ON E.deptno = D.Deptno WHERE D.location = "Bengaluru";
++---------+----------+
+| Empname | salary   |
++---------+----------+
+| Angelo  | 40000.00 |
+| Bunni   | 35000.00 |
+| Stella  | 38000.00 |
+| Valery  | 50000.00 |
++---------+----------+
+4 rows in set (0.001 sec)
+
+MariaDB [alex_expt5]> -- 4. List the employee names whose salary is greater than the lowest salry of the employees of "Research" dept
+MariaDB [alex_expt5]> SELECT E.Empname FROM Employee E WHERE E.salary > (SELECT MIN(Em.salary) FROM Employee Em join Dept D ON Em.deptno = D.Deptno WHERE D.dname = "Research");
++---------+
+| Empname |
++---------+
+| Angelo  |
+| Bunni   |
+| Stella  |
+| Maria   |
+| Max     |
+| Lya     |
+| Valery  |
+| Nikki   |
+| Alice   |
+| Elliot  |
+| Smith   |
++---------+
+11 rows in set (0.001 sec)
+
+MariaDB [alex_expt5]> -- 5. List the employee names whose salary is greater than the highest salary of the employees of "Admin" dept
+MariaDB [alex_expt5]> SELECT E.Empname FROM Employee E WHERE E.salary > (SELECT MAX(Em.salary) FROM Employee Em join Dept D ON Em.deptno = D.Deptno WHERE D.dname = "Admin");
++---------+
+| Empname |
++---------+
+| Angelo  |
+| Stella  |
+| Maria   |
+| Max     |
+| Lya     |
+| Valery  |
+| Alice   |
+| Elliot  |
+| Smith   |
++---------+
+9 rows in set (0.001 sec)
+
+MariaDB [alex_expt5]> -- 6. List the name of the employee earning the highest salary
+MariaDB [alex_expt5]> SELECT E.Empname FROM Employee E WHERE E.Empno = (SELECT Empno, MAX(salary) FROM Employee);
+ERROR 4078 (HY000): Illegal parameter data types int and row for operation '='
+MariaDB [alex_expt5]> SELECT E.Empname FROM Employee E HAVING E.Empno = (SELECT Empno, MAX(salary) FROM Employee);
+ERROR 1054 (42S22): Unknown column 'E.Empno' in 'having clause'
+MariaDB [alex_expt5]> SELECT E.Empname MAX(E.salary) FROM Employee E HAVING MAX(E.salary) = (SELECT Empno, MAX(salary) FROM Employee);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'MAX(E.salary) FROM Employee E HAVING MAX(E.salary) = (SELECT Empno, MAX(salar...' at line 1
+MariaDB [alex_expt5]> SELECT E.Empname MAX(E.salary) FROM Employee E HAVING MAX(E.salary) = (SELECT Empname, MAX(salary) FROM Employee);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'MAX(E.salary) FROM Employee E HAVING MAX(E.salary) = (SELECT Empname, MAX(sal...' at line 1
+MariaDB [alex_expt5]> SELECT E.Empname MAX(E.salary) FROM Employee E HAVING MAX(E.salary) = (SELECT Empname, MAX(salary) FROM Employee AS T);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'MAX(E.salary) FROM Employee E HAVING MAX(E.salary) = (SELECT Empname, MAX(sal...' at line 1
+MariaDB [alex_expt5]> SELECT E.Empname, MAX(E.salary) FROM Employee E HAVING MAX(E.salary) = (SELECT Empno, MAX(salary) FROM Employee);
+ERROR 4078 (HY000): Illegal parameter data types float and row for operation '='
+MariaDB [alex_expt5]> SELECT E.Empname, MAX(E.salary) FROM Employee E HAVING MAX(E.salary) = (SELECT Empname, MAX(salary) FROM Employee AS T);
+ERROR 4078 (HY000): Illegal parameter data types float and row for operation '='
+MariaDB [alex_expt5]> SELECT Empname, MAX(salary) FROM Employee HAVING MAX(salary) = (SELECT Empname, MAX(salary) FROM Employee AS T);
+ERROR 4078 (HY000): Illegal parameter data types float and row for operation '='
+MariaDB [alex_expt5]> SELECT Empname, MAX(salary) FROM Employee HAVING MAX(salary) = (MAX(salary) FROM Employee);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM Employee)' at line 1
+MariaDB [alex_expt5]> SELECT Empname, MAX(salary) FROM Employee WHERE MAX(salary) = (MAX(salary) FROM Employee);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM Employee)' at line 1
+MariaDB [alex_expt5]> SELECT E.Empname, MAX(E.salary) FROM E.Employee WHERE E.salary = (MAX(salary) FROM Employee);
+[1]+  Stopped                 sudo /opt/lampp/bin/mysql -u root
+fundlab16@fundlab16-OptiPlex-3070:~/Desktop/006$ sudo /opt/lampp/bin/mysql -u root
+[sudo] password for fundlab16: 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 15
+Server version: 10.4.24-MariaDB Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use alex_expt5;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MariaDB [alex_expt5]> -- 6. List the name of the employee earning the highest salary
+MariaDB [alex_expt5]> SELECT E.Empname, MAX(E.salary) FROM E.Employee WHERE E.salary = (SELECT MAX(salary) FROM Employee);
+ERROR 1146 (42S02): Table 'E.Employee' doesn't exist
+MariaDB [alex_expt5]> SELECT E.Empname, MAX(E.salary) FROM Employee E WHERE E.salary = (SELECT MAX(salary) FROM Employee);
++---------+---------------+
+| Empname | MAX(E.salary) |
++---------+---------------+
+| Smith   |      75000.00 |
++---------+---------------+
+1 row in set (0.001 sec)
+
+MariaDB [alex_expt5]> -- 7. List the names of the employees earinig highest salary in every department
+MariaDB [alex_expt5]> SELECT E.Empname, D.dname, MAX(E.Salary) FROM Employee E JOIN Dept D ON E.deptno = D.Deptno GROUP BY E.deptno;
++---------+------------+---------------+
+| Empname | dname      | MAX(E.Salary) |
++---------+------------+---------------+
+| Alice   | Accounting |      53000.00 |
+| Angelo  | Sales      |      50000.00 |
+| Max     | Research   |      75000.00 |
+| Annie   | HR         |      48000.00 |
+| Brandon | Marketing  |      40000.00 |
+| Nikki   | Admin      |      37000.00 |
++---------+------------+---------------+
+6 rows in set (0.001 sec)
+
+MariaDB [alex_expt5]> 
+MariaDB [alex_expt5]> 
+
+| Alice   |
+| Elliot  |
+| Smith   |
++---------+
+9 rows in set (0.001 sec)
+
+MariaDB [alex_expt5]> -- 6. List the name of the employee earning the highest salary
+MariaDB [alex_expt5]> SELECT E.Empname FROM Employee E WHERE E.Empno = (SELECT Empno, MAX(salary) FROM Employee);
+ERROR 4078 (HY000): Illegal parameter data types int and row for operation '='
+MariaDB [alex_expt5]> SELECT E.Empname FROM Employee E HAVING E.Empno = (SELECT Empno, MAX(salary) FROM Employee);
+ERROR 1054 (42S22): Unknown column 'E.Empno' in 'having clause'
+MariaDB [alex_expt5]> SELECT E.Empname MAX(E.salary) FROM Employee E HAVING MAX(E.salary) = (SELECT Empno, MAX(salary) FROM Employee);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'MAX(E.salary) FROM Employee E HAVING MAX(E.salary) = (SELECT Empno, MAX(salar...' at line 1
+MariaDB [alex_expt5]> SELECT E.Empname MAX(E.salary) FROM Employee E HAVING MAX(E.salary) = (SELECT Empname, MAX(salary) FROM Employee);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'MAX(E.salary) FROM Employee E HAVING MAX(E.salary) = (SELECT Empname, MAX(sal...' at line 1
+MariaDB [alex_expt5]> SELECT E.Empname MAX(E.salary) FROM Employee E HAVING MAX(E.salary) = (SELECT Empname, MAX(salary) FROM Employee AS T);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'MAX(E.salary) FROM Employee E HAVING MAX(E.salary) = (SELECT Empname, MAX(sal...' at line 1
+MariaDB [alex_expt5]> SELECT E.Empname, MAX(E.salary) FROM Employee E HAVING MAX(E.salary) = (SELECT Empno, MAX(salary) FROM Employee);
+ERROR 4078 (HY000): Illegal parameter data types float and row for operation '='
+MariaDB [alex_expt5]> SELECT E.Empname, MAX(E.salary) FROM Employee E HAVING MAX(E.salary) = (SELECT Empname, MAX(salary) FROM Employee AS T);
+ERROR 4078 (HY000): Illegal parameter data types float and row for operation '='
+MariaDB [alex_expt5]> SELECT Empname, MAX(salary) FROM Employee HAVING MAX(salary) = (SELECT Empname, MAX(salary) FROM Employee AS T);
+ERROR 4078 (HY000): Illegal parameter data types float and row for operation '='
+MariaDB [alex_expt5]> SELECT Empname, MAX(salary) FROM Employee HAVING MAX(salary) = (MAX(salary) FROM Employee);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM Employee)' at line 1
+MariaDB [alex_expt5]> SELECT Empname, MAX(salary) FROM Employee WHERE MAX(salary) = (MAX(salary) FROM Employee);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM Employee)' at line 1
+MariaDB [alex_expt5]> SELECT E.Empname, MAX(E.salary) FROM E.Employee WHERE E.salary = (MAX(salary) FROM Employee);
+[1]+  Stopped                 sudo /opt/lampp/bin/mysql -u root
+fundlab16@fundlab16-OptiPlex-3070:~/Desktop/006$ sudo /opt/lampp/bin/mysql -u root
+[sudo] password for fundlab16: 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 15
+Server version: 10.4.24-MariaDB Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use alex_expt5;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MariaDB [alex_expt5]> -- 6. List the name of the employee earning the highest salary
+MariaDB [alex_expt5]> SELECT E.Empname, MAX(E.salary) FROM E.Employee WHERE E.salary = (SELECT MAX(salary) FROM Employee);
+ERROR 1146 (42S02): Table 'E.Employee' doesn't exist
+MariaDB [alex_expt5]> SELECT E.Empname, MAX(E.salary) FROM Employee E WHERE E.salary = (SELECT MAX(salary) FROM Employee);
++---------+---------------+
+| Empname | MAX(E.salary) |
++---------+---------------+
+| Smith   |      75000.00 |
++---------+---------------+
+1 row in set (0.001 sec)
+
+MariaDB [alex_expt5]> -- 7. List the names of the employees earinig highest salary in every department
+MariaDB [alex_expt5]> SELECT E.Empname, D.dname, MAX(E.Salary) FROM Employee E JOIN Dept D ON E.deptno = D.Deptno GROUP BY E.deptno;
++---------+------------+---------------+
+| Empname | dname      | MAX(E.Salary) |
++---------+------------+---------------+
+| Alice   | Accounting |      53000.00 |
+| Angelo  | Sales      |      50000.00 |
+| Max     | Research   |      75000.00 |
+| Annie   | HR         |      48000.00 |
+| Brandon | Marketing  |      40000.00 |
+| Nikki   | Admin      |      37000.00 |
++---------+------------+---------------+
+6 rows in set (0.001 sec)
+
+MariaDB [alex_expt5]> 
+MariaDB [alex_expt5]> 
+
