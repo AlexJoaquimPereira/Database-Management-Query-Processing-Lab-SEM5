@@ -1,0 +1,280 @@
+alex@LAPTOP-GKLS7J5E:~/Desktop/Lab-Programs/Database-Management-Query-Processing-Lab-SEM5/Experiment 6$ sudo /opt/lampp/bin/mysql -u root
+[sudo] password for alex:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 12
+Server version: 10.4.32-MariaDB Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use database expt6;
+ERROR 1049 (42000): Unknown database 'database'
+MariaDB [(none)]> use expt6;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MariaDB [expt6]> -- 1. List all the employees who have the same job as 'Smith'
+MariaDB [expt6]> SELECT Empname FROM Employee WHERE job = (SELECT job FROM Employee WHERE Empname = 'Smith');
++---------+
+| Empname |
++---------+
+| Annie   |
+| Lya     |
+| Smith   |
++---------+
+3 rows in set (0.001 sec)
+
+MariaDB [expt6]> -- 2. Display the names of the employees who are working in Sales or Research departments.
+MariaDB [expt6]> SELECT Empname FROM Employee WHERE deptno IN (SELECT Deptno FROM Dept WHERE dname IN ('Sales', 'Research'));
++----------+
+| Empname  |
++----------+
+| Max      |
+| Theodore |
+| Smith    |
+| Angelo   |
+| Bunni    |
+| Stella   |
+| Valery   |
++----------+
+7 rows in set (0.001 sec)
+
+MariaDB [expt6]> -- 3. Display the name and salary of the employee who is working in 'Bangalore'.
+MariaDB [expt6]> SELECT Empname, salary FROM Employee WHERE deptno = (SELECT Deptno FROM Dept WHERE location = 'Bangalore');
+Empty set (0.001 sec)
+
+MariaDB [expt6]> SELECT Empname, salary FROM Employee WHERE deptno = (SELECT Deptno FROM Dept WHERE location = 'Bengaluru');
++---------+----------+
+| Empname | salary   |
++---------+----------+
+| Angelo  | 40000.00 |
+| Bunni   | 35000.00 |
+| Stella  | 38000.00 |
+| Valery  | 50000.00 |
++---------+----------+
+4 rows in set (0.001 sec)
+
+MariaDB [expt6]> -- 4. List the employee names whose salary is greater than the lowest salary of the employees of the 'Research' department.
+MariaDB [expt6]> SELECT Empname FROM Employee WHERE salary > (SELECT MIN(salary) FROM Employee WHERE deptno = (SELECT Deptno FROM Dept WHERE dname = 'Research'));
++---------+
+| Empname |
++---------+
+| Angelo  |
+| Bunni   |
+| Stella  |
+| Maria   |
+| Max     |
+| Lya     |
+| Valery  |
+| Nikki   |
+| Alice   |
+| Elliot  |
+| Smith   |
++---------+
+11 rows in set (0.001 sec)
+
+MariaDB [expt6]> -- 5. List the employee names whose salary is greater than the highest salary of the employees of the 'Admin' department.
+MariaDB [expt6]> SELECT Empname FROM Employee WHERE salary > (SELECT MAX(salary) FROM Employee WHERE deptno = (SELECT Deptno FROM Dept WHERE dname = 'Admin'));
++---------+
+| Empname |
++---------+
+| Angelo  |
+| Stella  |
+| Maria   |
+| Max     |
+| Lya     |
+| Valery  |
+| Alice   |
+| Elliot  |
+| Smith   |
++---------+
+9 rows in set (0.001 sec)
+
+MariaDB [expt6]> -- 6. List the name of the employee earning the highest salary.
+MariaDB [expt6]> SELECT Empname FROM Employee WHERE salary = (SELECT MAX(salary) FROM Employee);
++---------+
+| Empname |
++---------+
+| Smith   |
++---------+
+1 row in set (0.001 sec)
+
+MariaDB [expt6]> -- 7. List the names of the employees earning the highest salary in every department.
+MariaDB [expt6]> SELECT Empname, dname FROM Employee E JOIN Dept D ON E.deptno = D.Deptno WHERE salary = (SELECT MAX(salary) FROM Employee AS E2 WHERE E2.deptno = Employee.deptno);
+ERROR 1054 (42S22): Unknown column 'Employee.deptno' in 'where clause'
+MariaDB [expt6]> SELECT D.dname AS Department, E.Empname AS Employee, E.salary AS Salary FROM Employee E JOIN Dept D ON E.deptno = D.Deptno WHERE E.salary = (SELECT MAX(E2.salary) FROM Employee E2 WHERE E2.deptno = E.deptno);
++------------+----------+----------+
+| Department | Employee | Salary   |
++------------+----------+----------+
+| Accounting | Alice    | 53000.00 |
+| Admin      | Nikki    | 37000.00 |
+| HR         | Elliot   | 48000.00 |
+| Marketing  | Maria    | 40000.00 |
+| Research   | Smith    | 75000.00 |
+| Sales      | Valery   | 50000.00 |
++------------+----------+----------+
+6 rows in set (0.001 sec)
+
+MariaDB [expt6]> -- 8. List the details about employees whose salary is second highest in the company.
+MariaDB [expt6]> SELECT * FROM Employee WHERE salary = (SELECT MAX(salary) FROM Employee WHERE salary < (SELECT MAX(salary) FROM Employee));
++-------+---------+--------+------------+-----------+------------+----------+-----------+--------+
+| Empno | Empname | Gender | job        | managerno | hiredate   | salary   | commision | deptno |
++-------+---------+--------+------------+-----------+------------+----------+-----------+--------+
+|    14 | Alice   | F      | Consultant |         9 | 2022-01-19 | 53000.00 |      NULL |      1 |
++-------+---------+--------+------------+-----------+------------+----------+-----------+--------+
+1 row in set (0.002 sec)
+
+MariaDB [expt6]> -- 9. List the details about employees who have the maximum number of people reporting to them.
+MariaDB [expt6]> SELECT * FROM Employee WHERE Empno = (SELECT managerno FROM Employee GROUP BY managerno ORDER BY COUNT(*) DESC LIMIT 1);
++-------+---------+--------+---------+-----------+------------+----------+-----------+--------+
+| Empno | Empname | Gender | job     | managerno | hiredate   | salary   | commision | deptno |
++-------+---------+--------+---------+-----------+------------+----------+-----------+--------+
+|    11 | Valery  | M      | Manager |        11 | 2023-04-22 | 50000.00 |      NULL |      5 |
++-------+---------+--------+---------+-----------+------------+----------+-----------+--------+
+1 row in set (0.001 sec)
+
+MariaDB [expt6]> -- 10. List the employees who earn more than the average salary in their own department.
+MariaDB [expt6]> SELECT Empname FROM Employee WHERE salary > (SELECT AVG(salary) FROM Employee AS E2 WHERE E2.deptno = Employee.deptno);
++---------+
+| Empname |
++---------+
+| Maria   |
+| Lya     |
+| Valery  |
+| Elliot  |
+| Smith   |
++---------+
+5 rows in set (0.001 sec)
+
+MariaDB [expt6]> SELECT D.dname AS Department, E.Empname AS Employee, E.salary AS Salary FROM Employee E JOIN Dept D ON E.deptno = D.Deptno WHERE E.salary > (SELECT AVG(E2.salary) FROM Employee E2 WHERE E2.deptno = E.deptno);
++------------+----------+----------+
+| Department | Employee | Salary   |
++------------+----------+----------+
+| HR         | Lya      | 42000.00 |
+| HR         | Elliot   | 48000.00 |
+| Marketing  | Maria    | 40000.00 |
+| Research   | Smith    | 75000.00 |
+| Sales      | Valery   | 50000.00 |
++------------+----------+----------+
+5 rows in set (0.001 sec)
+
+MariaDB [expt6]> -- 11. List the employee and his manager's details where the employee's salary is greater than the manager's salary.
+MariaDB [expt6]> SELECT E.Empname AS Employee, M.Empname AS Manager FROM Employee E JOIN Employee M ON E.managerno = M.Empno WHERE E.salary > M.salary;
++----------+---------+
+| Employee | Manager |
++----------+---------+
+| Maria    | Brandon |
+| Alice    | Max     |
+| Smith    | Max     |
++----------+---------+
+3 rows in set (0.001 sec)
+
+MariaDB [expt6]> -- 12. Retrieve the name of the department which is offering an average salary less than the average salary offered by the company.
+MariaDB [expt6]> SELECT dname FROM Dept WHERE Deptno IN (SELECT deptno FROM Employee GROUP BY deptno HAVING AVG(salary) < (SELECT AVG(salary) FROM Employee));
++-----------+
+| dname     |
++-----------+
+| Admin     |
+| HR        |
+| Marketing |
+| Sales     |
++-----------+
+4 rows in set (0.002 sec)
+
+MariaDB [expt6]> -- 13. For each department that has more than or equal to 2 employees, retrieve the department number and the number of its employees earning salary above 40k. Also, retrieve the name of the department.
+MariaDB [expt6]> SELECT D.deptno, D.dname, COUNT(E.Empno) AS Employees_Above_40k FROM Dept D JOIN Employee E ON D.Deptno = E.deptno WHERE E.salary > 40000 GROUP BY D.deptno, D.dname HAVING COUNT(E.Empno) >= 2;
++--------+----------+---------------------+
+| deptno | dname    | Employees_Above_40k |
++--------+----------+---------------------+
+|     10 | Research |                   2 |
+|     20 | HR       |                   2 |
++--------+----------+---------------------+
+2 rows in set (0.001 sec)
+
+MariaDB [expt6]> -- 14. Find the employee who spends maximum hours on the projects.
+MariaDB [expt6]> SELECT Empname FROM Employee WHERE Empno = (SELECT eno FROM emp_workson_project ORDER BY hours_per_week DESC LIMIT 1);
++---------+
+| Empname |
++---------+
+| Annie   |
++---------+
+1 row in set (0.001 sec)
+
+MariaDB [expt6]> SELECT E.Empname AS Name, ewp.hours_per_week FROM Employee E JOIN emp_workson_project ewp ON E.Empno = ewp.eno WHERE E.Empno = (SELECT eno FROM emp_workson_project ORDER BY hours_per_week DESC LIMIT 1);
++-------+----------------+
+| Name  | hours_per_week |
++-------+----------------+
+| Annie |             48 |
++-------+----------------+
+1 row in set (0.001 sec)
+
+MariaDB [expt6]> -- 15. Find an employee who works on all the projects controlled by department number = 2.
+MariaDB [expt6]> SELECT Empname FROM Employee WHERE Empno IN (SELECT eno FROM emp_workson_project WHERE pno IN (SELECT Proj_num FROM Project WHERE dnum = 2) GROUP BY eno HAVING COUNT(*) = (SELECT COUNT(*) FROM Project WHERE dnum = 2));
+Empty set (0.001 sec)
+
+MariaDB [expt6]> SELECT Empname FROM Employee WHERE Empno IN (SELECT eno FROM emp_workson_project WHERE pno IN (SELECT Proj_num FROM Project WHERE dnum = 2) GROUP BY eno HAVING COUNT(*) = (SELECT COUNT(*) FROM Project WHERE dnum = 20));
+Empty set (0.001 sec)
+
+MariaDB [expt6]> SELECT * FROM Dept;
++--------+------------+---------------+
+| Deptno | dname      | location      |
++--------+------------+---------------+
+|      1 | Accounting | Vancouver     |
+|      5 | Sales      | Bengaluru     |
+|     10 | Research   | Dublin        |
+|     20 | HR         | London        |
+|     30 | Marketing  | Hyderabad     |
+|     40 | Admin      | San Francisco |
++--------+------------+---------------+
+6 rows in set (0.001 sec)
+
+MariaDB [expt6]> SELECT Empname FROM Employee WHERE Empno IN (SELECT eno FROM emp_workson_project WHERE pno IN (SELECT Proj_num FROM Project WHERE dnum = 2) GROUP BY eno HAVING COUNT(*) = (SELECT COUNT(*) FROM Project WHERE dnum = 1));
+Empty set (0.001 sec)
+
+MariaDB [expt6]> SELECT Empname FROM Employee WHERE Empno IN (SELECT eno FROM emp_workson_project WHERE pno IN (SELECT Proj_num FROM Project WHERE dnum = 2) GROUP BY eno HAVING COUNT(*) = (SELECT COUNT(*) FROM Project WHERE dnum = 5));
+Empty set (0.002 sec)
+
+MariaDB [expt6]> SELECT Empname FROM Employee WHERE Empno IN (SELECT eno FROM emp_workson_project WHERE pno IN (SELECT Proj_num FROM Project WHERE dnum = 2) GROUP BY eno HAVING COUNT(*) = (SELECT COUNT(*) FROM Project WHERE dnum = 10));
+Empty set (0.002 sec)
+
+MariaDB [expt6]> SELECT Empname FROM Employee WHERE Empno IN (SELECT eno FROM emp_workson_project WHERE pno IN (SELECT Proj_num FROM Project WHERE dnum = 2) GROUP BY eno HAVING COUNT(*) = (SELECT COUNT(*) FROM Project WHERE dnum = 30));
+Empty set (0.001 sec)
+
+MariaDB [expt6]> SELECT Empname FROM Employee WHERE Empno IN (SELECT eno FROM emp_workson_project WHERE pno IN (SELECT Proj_num FROM Project WHERE dnum = 2) GROUP BY eno HAVING COUNT(*) = (SELECT COUNT(*) FROM Project WHERE dnum = 40));
+Empty set (0.001 sec)
+
+MariaDB [expt6]> -- 16. Find the employee who works for maximum hours on a single project.
+MariaDB [expt6]> SELECT Empname FROM Employee WHERE Empno = (SELECT eno FROM emp_workson_project ORDER BY hours_per_week DESC LIMIT 1);
++---------+
+| Empname |
++---------+
+| Annie   |
++---------+
+1 row in set (0.001 sec)
+
+MariaDB [expt6]> SELECT E.Empname AS Name, ewp.pno AS Project_Number FROM Employee E JOIN emp_workson_project ewp ON E.Empno = ewp.eno WHERE E.Empno = (SELECT eno FROM emp_workson_project ORDER BY hours_per_week DESC LIMIT 1);
++-------+----------------+
+| Name  | Project_Number |
++-------+----------------+
+| Annie |              1 |
++-------+----------------+
+1 row in set (0.001 sec)
+
+MariaDB [expt6]> -- 17. Find the employee who earns the maximum salary in every department.
+MariaDB [expt6]> SELECT Empname, deptno FROM Employee WHERE salary = (SELECT MAX(salary) FROM Employee AS E2 WHERE E2.deptno = Employee.deptno);
++---------+--------+
+| Empname | deptno |
++---------+--------+
+| Maria   |     30 |
+| Valery  |      5 |
+| Nikki   |     40 |
+| Alice   |      1 |
+| Elliot  |     20 |
+| Smith   |     10 |
++---------+--------+
+6 rows in set (0.001 sec)
+
+MariaDB [expt6]> exit;
+Bye
