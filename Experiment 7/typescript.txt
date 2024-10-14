@@ -1,0 +1,200 @@
+MariaDB [expt6]> -- 1. Create a view containing the information about all employees belonging to admin department if view is updatable
+MariaDB [expt6]> CREATE VIEW admin_employees AS SELECT E.Empno, E.Empname, E.Gender, E.job, E.managerno, E.hiredate, E.salary, E.commision FROM Employee E JOIN Dept D ON E.deptno = D.Deptno WHERE D.Dname = 'Admin'
+    -> ;
+Query OK, 0 rows affected (0.005 sec)
+
+MariaDB [expt6]> SELECT * FROM admin_employees;
++-------+---------+--------+-------+-----------+------------+----------+-----------+
+| Empno | Empname | Gender | job   | managerno | hiredate   | salary   | commision |
++-------+---------+--------+-------+-----------+------------+----------+-----------+
+|    12 | Nikki   | F      | Clerk |        11 | 2024-02-11 | 37000.00 |  10000.00 |
++-------+---------+--------+-------+-----------+------------+----------+-----------+
+
+MariaDB [expt6]> SELECT TABLE_SCHEMA, TABLE_NAME, IS_UPDATABLE FROM information_schema.views;
++--------------+-----------------+--------------+
+| TABLE_SCHEMA | TABLE_NAME      | IS_UPDATABLE |
++--------------+-----------------+--------------+
+| expt6        | admin_employees | YES          |
++--------------+-----------------+--------------+
+1 row in set (0.006 sec)
+
+MariaDB [expt6]> -- 2. Create a view for every project containing project number, pname, pbudget, status, plocation, duration and the name, department name, salary of employees working on that project and the no of hours employee words on the project and check if the view is updatable
+MariaDB [expt6]> CREATE VIEW proj_details AS SELECT P.Proj_num, P.Pname, status, P.location, duration, E.Empname, D.dname, E.salary, ewp.hours_per_week FROM Employee E JOIN emp_workson_project ewp ON E.Empno = ewp.eno JOIN Project P ON P.Proj_num = ewp.pno JOIN Dept D ON D.Deptno = E.deptno;
+Query OK, 0 rows affected (0.004 sec)
+
+MariaDB [expt6]> SELECT * FROM proj_details;
++----------+-----------------+--------+---------------+----------+----------+-----------+----------+----------------+
+| Proj_num | Pname           | status | location      | duration | Empname  | dname     | salary   | hours_per_week |
++----------+-----------------+--------+---------------+----------+----------+-----------+----------+----------------+
+|        1 | Cloud Computing | NULL   | Dublin        |     NULL | Annie    | HR        | 21000.00 |             48 |
+|        1 | Cloud Computing | NULL   | Dublin        |     NULL | Max      | Research  | 45000.00 |             48 |
+|        1 | Cloud Computing | NULL   | Dublin        |     NULL | Valery   | Sales     | 50000.00 |             48 |
+|        3 | DBMS            | NULL   | San Francisco |     NULL | Brandon  | Marketing | 24000.00 |             40 |
+|        3 | DBMS            | NULL   | San Francisco |     NULL | Theodore | Research  | 33000.00 |             18 |
+|        3 | DBMS            | NULL   | San Francisco |     NULL | Elliot   | HR        | 48000.00 |             35 |
++----------+-----------------+--------+---------------+----------+----------+-----------+----------+----------------+
+6 rows in set (0.002 sec)
+
+MariaDB [expt6]> SELECT TABLE_SCHEMA, TABLE_NAME, IS_UPDATABLE FROM information_schema.views WHERE TABLE_NAME = 'proj_details';
++--------------+--------------+--------------+
+| TABLE_SCHEMA | TABLE_NAME   | IS_UPDATABLE |
++--------------+--------------+--------------+
+| expt6        | proj_details | YES          |
++--------------+--------------+--------------+
+1 row in set (0.001 sec)
+
+MariaDB [expt6]> -- 3. Create a view to store the number of employees belonging to every department, their average salary, and name of their department and check if the view is updatable
+MariaDB [expt6]> CREATE VIEW dept_emp_summary AS SELECT D.Dname, COUNT(E.Empno) AS num_employees, AVG(E.salary) AS avg_salary FROM Employee E JOIN Dept D ON E.deptno = D.Deptno GROUP BY D.Dname;
+Query OK, 0 rows affected (0.004 sec)
+
+MariaDB [expt6]> SELECT * FROM dept_emp_summary;
++------------+---------------+--------------+
+| Dname      | num_employees | avg_salary   |
++------------+---------------+--------------+
+| Accounting |             1 | 53000.000000 |
+| Admin      |             1 | 37000.000000 |
+| HR         |             3 | 37000.000000 |
+| Marketing  |             2 | 32000.000000 |
+| Research   |             3 | 51000.000000 |
+| Sales      |             4 | 40750.000000 |
++------------+---------------+--------------+
+6 rows in set (0.001 sec)
+
+MariaDB [expt6]> SELECT TABLE_SCHEMA, TABLE_NAME, IS_UPDATABLE FROM information_schema.views WHERE TABLE_NAME = 'dept_emp_summary';
++--------------+------------------+--------------+
+| TABLE_SCHEMA | TABLE_NAME       | IS_UPDATABLE |
++--------------+------------------+--------------+
+| expt6        | dept_emp_summary | NO           |
++--------------+------------------+--------------+
+1 row in set (0.002 sec)
+
+MariaDB [expt6]> -- 4. Create a view to store name, empid, salary and also the details of project he works on like pno, pname, hours and status
+MariaDB [expt6]> CREATE OR REPLACE VIEW employee_project_details AS SELECT E.Empname, E.Empno, E.salary, P.Proj_num, P.Pname, ewp.hours_per_week, P.status FROM Employee E JOIN emp_workson_project ewp ON E.Empno = ewp.eno JOIN Project P ON P.Proj_num = ewp.pno;
+Query OK, 0 rows affected (0.005 sec)
+
+MariaDB [expt6]> SELECT * FROM employee_project_details;
++----------+-------+----------+----------+-----------------+----------------+--------+
+| Empname  | Empno | salary   | Proj_num | Pname           | hours_per_week | status |
++----------+-------+----------+----------+-----------------+----------------+--------+
+| Annie    |     4 | 21000.00 |        1 | Cloud Computing |             48 | NULL   |
+| Max      |     9 | 45000.00 |        1 | Cloud Computing |             48 | NULL   |
+| Valery   |    11 | 50000.00 |        1 | Cloud Computing |             48 | NULL   |
+| Brandon  |     5 | 24000.00 |        3 | DBMS            |             40 | NULL   |
+| Theodore |    13 | 33000.00 |        3 | DBMS            |             18 | NULL   |
+| Elliot   |    15 | 48000.00 |        3 | DBMS            |             35 | NULL   |
++----------+-------+----------+----------+-----------------+----------------+--------+
+6 rows in set (0.001 sec)
+
+MariaDB [expt6]> SELECT TABLE_SCHEMA, TABLE_NAME, IS_UPDATABLE FROM information_schema.views WHERE TABLE_NAME = 'employee_project_details';
++--------------+--------------------------+--------------+
+| TABLE_SCHEMA | TABLE_NAME               | IS_UPDATABLE |
++--------------+--------------------------+--------------+
+| expt6        | employee_project_details | YES          |
++--------------+--------------------------+--------------+
+1 row in set (0.002 sec)
+
+MariaDB [expt6]> -- 5. Using the view created above create another view to store the no. of employees working on every project and total hours spent on that project
+MariaDB [expt6]> CREATE OR REPLACE VIEW project_employee_summary AS SELECT P.Proj_num, P.Pname, COUNT(E.Empno) AS num_employees, SUM(ewp.hours_per_week) AS total_hours FROM employee_project_details epd JOIN Project P ON epd.Proj_num = P.Proj_num JOIN emp_workson_project ewp ON epd.Empno = ewp.eno GROUP BY P.Proj_num, P.Pname;
+ERROR 1054 (42S22): Unknown column 'E.Empno' in 'field list'
+MariaDB [expt6]> CREATE OR REPLACE VIEW project_employee_summary AS SELECT P.Proj_num, P.Pname, COUNT(Empno) AS num_employees, SUM(ewp.hours_per_week) AS total_hours FROM employee_project_details epd JOIN Project P ON epd.Proj_num = P.Proj_num JOIN emp_workson_project ewp ON epd.Empno = ewp.eno GROUP BY P.Proj_num, P.Pname;
+Query OK, 0 rows affected (0.005 sec)
+
+MariaDB [expt6]> SELECT * FROM project_employee_summary;
++----------+-----------------+---------------+-------------+
+| Proj_num | Pname           | num_employees | total_hours |
++----------+-----------------+---------------+-------------+
+|        1 | Cloud Computing |             3 |         144 |
+|        3 | DBMS            |             3 |          93 |
++----------+-----------------+---------------+-------------+
+2 rows in set (0.004 sec)
+
+MariaDB [expt6]> SELECT TABLE_SCHEMA, TABLE_NAME, IS_UPDATABLE FROM information_schema.views WHERE TABLE_NAME = 'project_employee_summary';+--------------+--------------------------+--------------+
+| TABLE_SCHEMA | TABLE_NAME               | IS_UPDATABLE |
++--------------+--------------------------+--------------+
+| expt6        | project_employee_summary | NO           |
++--------------+--------------------------+--------------+
+1 row in set (0.002 sec)
+
+MariaDB [expt6]> -- 6. Using the view created in question 4 create another view to store the no. of projects each employee works on and the total hours
+MariaDB [expt6]> CREATE OR REPLACE VIEW employee_project_summary AS SELECT E.Empno, E.Empname, COUNT(ewp.pno) AS num_projects, SUM(ewp.hours_per_week) AS total_hours FROM employee_project_details epd JOIN emp_workson_project ewp ON epd.Empno = ewp.eno GROUP BY E.Empno, E.Empname;
+ERROR 1054 (42S22): Unknown column 'E.Empno' in 'field list'
+MariaDB [expt6]> CREATE OR REPLACE VIEW employee_project_summary AS SELECT Empno, E.Empname, COUNT(ewp.pno) AS num_projects, SUM(ewp.hours_per_week) AS total_hours FROM employee_project_details epd JOIN emp_workson_project ewp ON epd.Empno = ewp.eno GROUP BY E.Empno, E.Empname;
+ERROR 1054 (42S22): Unknown column 'E.Empname' in 'field list'
+MariaDB [expt6]> CREATE OR REPLACE VIEW employee_project_summary AS SELECT Empno, Empname, COUNT(pno) AS num_projects, SUM(ewp.hours_per_week) AS total_hours FROM employee_project_details epd JOIN emp_workson_project ewp ON epd.Empno = ewp.eno GROUP BY E.Empno, E.Empname;
+ERROR 1054 (42S22): Unknown column 'E.Empno' in 'group statement'
+MariaDB [expt6]> CREATE OR REPLACE VIEW employee_project_summary AS SELECT Empno, Empname, COUNT(pno) AS num_projects, SUM(ewp.hours_per_week) AS total_hours FROM employee_project_details epd JOIN emp_workson_project ewp ON epd.Empno = ewp.eno GROUP BY Empno, Empname;
+Query OK, 0 rows affected (0.004 sec)
+
+MariaDB [expt6]> SELECT * FROM employee_project_summary;
++-------+----------+--------------+-------------+
+| Empno | Empname  | num_projects | total_hours |
++-------+----------+--------------+-------------+
+|     4 | Annie    |            1 |          48 |
+|     5 | Brandon  |            1 |          40 |
+|     9 | Max      |            1 |          48 |
+|    11 | Valery   |            1 |          48 |
+|    13 | Theodore |            1 |          18 |
+|    15 | Elliot   |            1 |          35 |
++-------+----------+--------------+-------------+
+6 rows in set (0.002 sec)
+
+MariaDB [expt6]> SELECT TABLE_SCHEMA, TABLE_NAME, IS_UPDATABLE FROM information_schema.views WHERE TABLE_NAME = 'employee_project_summary';+--------------+--------------------------+--------------+
+| TABLE_SCHEMA | TABLE_NAME               | IS_UPDATABLE |
++--------------+--------------------------+--------------+
+| expt6        | employee_project_summary | NO           |
++--------------+--------------------------+--------------+
+1 row in set (0.002 sec)
+
+MariaDB [expt6]> -- 7. Create a temporary table to store the details of project located at Bangalore along with employees details working on it.
+MariaDB [expt6]> CREATE TEMPORARY TABLE bangalore_projects_employees AS SELECT P.Proj_num, P.Pname, E.Empno, E.Empname, E.salary, ewp.hours_per_week FROM Project P JOIN emp_workson_project ewp ON P.Proj_num = ewp.pno JOIN Employee E ON E.Empno = ewp.eno WHERE P.location = 'Bengaluru';
+Query OK, 0 rows affected (0.005 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [expt6]> SELECT * FROM bangalore_projects_employees;
+Empty set (0.001 sec)
+
+MariaDB [expt6]> -- 8. Using the temporary table above find the employees working all projects located at Bangalore.
+MariaDB [expt6]> SELECT E.Empno, E.Empname FROM bangalore_projects_employees GROUP BY E.Empno, E.Empname HAVING COUNT(DISTINCT P.Proj_num) = (SELECT COUNT(DISTINCT Proj_num) FROM Project WHERE location = 'Bengaluru');
+ERROR 1054 (42S22): Unknown column 'E.Empno' in 'field list'
+MariaDB [expt6]> SELECT Empno, Empname FROM bangalore_projects_employees GROUP BY Empno, Empname HAVING COUNT(DISTINCT P.Proj_num) = (SELECT COUNT(DISTINCT Proj_num) FROM Project WHERE location = 'Bengaluru');
+ERROR 1054 (42S22): Unknown column 'P.Proj_num' in 'having clause'
+MariaDB [expt6]> SELECT Empno, Empname FROM bangalore_projects_employees GROUP BY Empno, Empname HAVING COUNT(DISTINCT Proj_num) = (SELECT COUNT(DISTINCT Proj_num) FROM Project WHERE location = 'Bengaluru');
+Empty set (0.001 sec)
+
+MariaDB [expt6]> -- 9. Using the views created above answer the following questions
+MariaDB [expt6]> -- i. Find the project with a minimum no. of employees working on it.
+MariaDB [expt6]> SELECT Proj_num, Pname, num_employees FROM project_employee_summary WHERE num_employees = ( SELECT MIN(num_employees) FROM project_employee_summary );
++----------+-----------------+---------------+
+| Proj_num | Pname           | num_employees |
++----------+-----------------+---------------+
+|        1 | Cloud Computing |             3 |
+|        3 | DBMS            |             3 |
++----------+-----------------+---------------+
+2 rows in set (0.002 sec)
+
+MariaDB [expt6]> -- ii. Find the employees who works on the maximum projects
+MariaDB [expt6]> SELECT Empno, Empname, num_projects FROM employee_project_summary WHERE num_projects = ( SELECT MAX(num_projects) FROM employee_project_summary );
++-------+----------+--------------+
+| Empno | Empname  | num_projects |
++-------+----------+--------------+
+|     4 | Annie    |            1 |
+|     5 | Brandon  |            1 |
+|     9 | Max      |            1 |
+|    11 | Valery   |            1 |
+|    13 | Theodore |            1 |
+|    15 | Elliot   |            1 |
++-------+----------+--------------+
+6 rows in set (0.002 sec)
+
+MariaDB [expt6]> -- iii. Find the department with average salary greater than average offered by company
+MariaDB [expt6]> SELECT department_name, avg_salary FROM dept_emp_summary WHERE avg_salary > ( SELECT AVG(avg_salary) FROM dept_emp_summary );
+ERROR 1054 (42S22): Unknown column 'department_name' in 'field list'
+MariaDB [expt6]> SELECT Dname, avg_salary FROM dept_emp_summary WHERE avg_salary > ( SELECT AVG(avg_salary) FROM dept_emp_summary );
++------------+--------------+
+| Dname      | avg_salary   |
++------------+--------------+
+| Accounting | 53000.000000 |
+| Research   | 51000.000000 |
++------------+--------------+
+2 rows in set (0.001 sec)
+
