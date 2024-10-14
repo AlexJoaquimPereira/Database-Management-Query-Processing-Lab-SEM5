@@ -1,0 +1,323 @@
+Script started on 2024-10-14 11:50:47+05:30 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="188" LINES="42"]
+[?2004h]0;alex@LAPTOP-GKLS7J5E: ~/Desktop/Lab-Programs/Database-Management-Query-Processing-Lab-SEM5/Experiment 8[01;32malex@LAPTOP-GKLS7J5E[00m:[01;34m~/Desktop/Lab-Programs/Database-Management-Query-Processing-Lab-SEM5/Experiment 8[00m$ sudo /opt/lampp/lampp start
+[?2004l[sudo] password for alex: 
+egrep: warning: egrep is obsolescent; using grep -E
+egrep: warning: egrep is obsolescent; using grep -E
+egrep: warning: egrep is obsolescent; using grep -E
+egrep: warning: egrep is obsolescent; using grep -E
+egrep: warning: egrep is obsolescent; using grep -E
+Starting XAMPP for Linux 8.2.12-0...
+XAMPP: Starting Apache...egrep: warning: egrep is obsolescent; using grep -E
+already running.
+XAMPP: Starting MySQL...egrep: warning: egrep is obsolescent; using grep -E
+already running.
+XAMPP: Starting ProFTPD...egrep: warning: egrep is obsolescent; using grep -E
+already running.
+[?2004h]0;alex@LAPTOP-GKLS7J5E: ~/Desktop/Lab-Programs/Database-Management-Query-Processing-Lab-SEM5/Experiment 8[01;32malex@LAPTOP-GKLS7J5E[00m:[01;34m~/Desktop/Lab-Programs/Database-Management-Query-Processing-Lab-SEM5/Experiment 8[00m$ sudo /opt/lampp/la[K[Kla[K[Kbin/mysql -u root
+[?2004l(B[0;1mWelcome to the MariaDB monitor.  Commands end with ; or \g.
+(B[m(B[0;1mYour MariaDB connection id is 13
+Server version: 10.4.32-MariaDB Source distribution
+
+(B[m(B[0;1mCopyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+(B[m(B[0;1mType 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+(B[m[?1034hMariaDB [(none)]> --1 [K. [K[K[K 1. Create[K[K[K[K[K[K[K[K[KCREATE USER ‘username’@’localhost’ identified by ‘password’;[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K1. Create 2 users emp1, emp2 and emp3.
+MariaDB [(none)]> -- 1. Create 2 users emp1, emp2 and emp3.[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cexit;[K-- 1. Create 2 users emp1, emp2 and emp3.[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[KCREATE USER emp1@loal[K[Kcalhost'emp1@localhost[C[C[C[C[C[C[C[C[C[C[C[C[C[C' identified by 'password';
+(B[0;1mQuery OK, 0 rows affected (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [(none)]> CREATE USER 'emp1@localhost' identified by 'password';[C[C[C[C[1P[1@2
+(B[0;1mQuery OK, 0 rows affected (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [(none)]> CREATE USER 'emp2@localhost' identified by 'password';[C[C[C[C[1P[1@3
+(B[0;1mQuery OK, 0 rows affected (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [(none)]> -- 2. Create 2 users emp1, emp2 and emp3.[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CCREATE USER 'emp3@localhost' identified by 'password';[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[13P-- 2. Create 2 users emp1, emp2 and emp3.[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[KGive all privileges on the view created in question 1(expt7)to emp1.
+MariaDB [(none)]> use expt6;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+(B[0;1mDatabase changed
+(B[mMariaDB [expt6]> GRANT * ON database[K[K[K[K[K[K[K[Kexpt6.e[Kadmine[K_employees TO emp1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '* ON expt6.admin_employees TO emp1' at line 1
+(B[0;7m(B[mMariaDB [expt6]> GRANT * ON expt6.admin_employees TO emp1;[1P[1P[C[1@ [1@A[1@L[1@L
+ERROR 1133 (28000): Can't find any matching row in the user table
+(B[0;7m(B[mMariaDB [expt6]> GRANT ALL ON expt6.admin_employees TO emp1;[1@P[1@R[1@I[1@V[1@I[1@L[1@E[1@D[1@G[1@E[1@S[1@ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P
+ERROR 1133 (28000): Can't find any matching row in the user table
+(B[0;7m(B[mMariaDB [expt6]> GRANT ALL PRIVILEGES ON expt6.admin_employees TO emp1;[C[C[C[C@;l;o;c;a;l;h;o;s;t;';'emp1@localhost';
+(B[0;1mQuery OK, 0 rows affected (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt6]> -- 3.     1. Create 2 users emp1, emp2 and emp3.
+MariaDB [expt6]>     2. Give all privileges on the view created in question 1(expt7)to emp1.
+    ->     3. Give select and update privilege on name and dno attribute of employee table to emp2 with grant option.
+    ->     4. Let emp2 grant these privileges to emp1.
+    ->     5. Grant all privileges on all the databases on the MySQL server to emp3.
+    ->     6. Login and check the privileges.
+    ->     7. Revoke the view privileges from emp1. 
+    ->     8. Provide a list of various privileges available to the user.
+    ->     9. Create an index on empid attribute of employee table.[C[C[C[C[C[C[C[C[C[C[C8. Provide a list of various privileges available to the user.[C[C[C[C[C[C[C[C[C[C[C[21P7. Revoke the view privileges from emp1. [C[C[C[C[C[C[C[C[C[C[C8. Provide a list of various privileges available to the user.[C[C[C[C[C[C[C[C[C[C[C[6P9. Create an index on empid attribute of employee table.[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K
+    -> 
+    -> Ctrl-C -- exit!
+(B[0;1mAborted
+(B[m[?2004h]0;alex@LAPTOP-GKLS7J5E: ~/Desktop/Lab-Programs/Database-Management-Query-Processing-Lab-SEM5/Experiment 8[01;32malex@LAPTOP-GKLS7J5E[00m:[01;34m~/Desktop/Lab-Programs/Database-Management-Query-Processing-Lab-SEM5/Experiment 8[00m$ sudo /opt/lampp/bin/mysql -u root
+[?2004l[sudo] password for alex: 
+(B[0;1mWelcome to the MariaDB monitor.  Commands end with ; or \g.
+(B[m(B[0;1mYour MariaDB connection id is 14
+Server version: 10.4.32-MariaDB Source distribution
+
+(B[m(B[0;1mCopyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+(B[m(B[0;1mType 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+(B[m[?1034hMariaDB [(none)]> -- 3. Give select and update privilege on name and dno attribute of employee table to emp2 with grant option.
+MariaDB [(none)]> GRANT SELECT, UPDATE (Empname, deptno) ON expt7.Employee TO 'emp2'@'localhost' WITH GRANT OPTION;
+ERROR 1146 (42S02): Table 'expt7.Employee' doesn't exist
+(B[0;7m(B[mMariaDB [(none)]> GRANT SELECT, UPDATE (Empname, deptno) ON expt7.Employee TO 'emp2'@'localhost' WITH GRANT OPTION;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Ke[Kuse expt6;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+(B[0;1mDatabase changed
+(B[mMariaDB [expt6]> use expt6;GRANT SELECT, UPDATE (Empname, deptno) ON expt7.Employee TO 'emp2'@'localhost' WITH GRANT OPTION;[1P[C[1P[1P[1@6
+(B[0;1mQuery OK, 0 rows affected (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt6]> Select user from mysql.user;[C[1P[1@s[C[C[C[C[C[1P[1P[1P[1P[1P[1P[1@S[1@E[1@L[1@E[1@C[1@T[C[C[C[C[C[C[C[C[C[C[1P mysql.user;[1P mysql.user;[1P mysql.user;[1P mysql.user;D mysql.user;[1P mysql.user;F mysql.user;R mysql.user;O mysql.user;M mysql.user;
++----------------+
+| user           |
++----------------+
+| emp1@localhost |
+| emp2@localhost |
+| emp3@localhost |
+| root           |
+| root           |
+|                |
+| pma            |
+| root           |
++----------------+
+(B[0;1m8 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt6]> Ctrl-C -- exit!
+(B[0;1mAborted
+(B[m[?2004h]0;alex@LAPTOP-GKLS7J5E: ~/Desktop/Lab-Programs/Database-Management-Query-Processing-Lab-SEM5/Experiment 8[01;32malex@LAPTOP-GKLS7J5E[00m:[01;34m~/Desktop/Lab-Programs/Database-Management-Query-Processing-Lab-SEM5/Experiment 8[00m$ sudo /opt/lampp/bin/mysql -u root
+[?2004l(B[0;1mWelcome to the MariaDB monitor.  Commands end with ; or \g.
+(B[m(B[0;1mYour MariaDB connection id is 15
+Server version: 10.4.32-MariaDB Source distribution
+
+(B[m(B[0;1mCopyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+(B[m(B[0;1mType 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+(B[m[?1034hMariaDB [(none)]> SHOW GRANTS FOR emp1;
+ERROR 1141 (42000): There is no such grant defined for user 'emp1' on host '%'
+(B[0;7m(B[mMariaDB [(none)]> SHOW GRANTS FOR emp1;@;l;o;c;a;l;h;o;s;t;';'emp1@localhost';
++---------------------------------------------------------------------------------------------------------------+
+| Grants for emp1@localhost@%                                                                                   |
++---------------------------------------------------------------------------------------------------------------+
+| GRANT USAGE ON *.* TO `emp1@localhost`@`%` IDENTIFIED BY PASSWORD '*2470C0C06DEE42FD1618BB99005ADCA2EC9D1E19' |
+| GRANT ALL PRIVILEGES ON `expt6`.`admin_employees` TO `emp1@localhost`@`%`                                     |
++---------------------------------------------------------------------------------------------------------------+
+(B[0;1m2 rows in set (0.000 sec)
+(B[m(B[0;1m
+(B[mMariaDB [(none)]> SHOW GRANTS FOR 'emp1@localhost';[1P@localhost';2@localhost';
++---------------------------------------------------------------------------------------------------------------+
+| Grants for emp2@localhost@%                                                                                   |
++---------------------------------------------------------------------------------------------------------------+
+| GRANT USAGE ON *.* TO `emp2@localhost`@`%` IDENTIFIED BY PASSWORD '*2470C0C06DEE42FD1618BB99005ADCA2EC9D1E19' |
+| GRANT SELECT, UPDATE (`deptno`, `Empname`) ON `expt6`.`Employee` TO `emp2@localhost`@`%` WITH GRANT OPTION    |
++---------------------------------------------------------------------------------------------------------------+
+(B[0;1m2 rows in set (0.000 sec)
+(B[m(B[0;1m
+(B[mMariaDB [(none)]> -- 4. Let emp2 grant these privileges to emp1.
+MariaDB [(none)]> GRANT SELECT, UPDATE (Empname, deptno) ON expt7.Employee TO 'emp1'@'localhost';
+ERROR 1146 (42S02): Table 'expt7.Employee' doesn't exist
+(B[0;7m(B[mMariaDB [(none)]> ex[K[Kuse expt6;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+(B[0;1mDatabase changed
+(B[mMariaDB [expt6]> use expt6;GRANT SELECT, UPDATE (Empname, deptno) ON expt7.Employee TO 'emp1'@'localhost';[1Plocalhost';[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cuse expt6;[KGRANT SELECT, UPDATE (Empname, deptno) ON expt7.Employee TO 'emp1'@localhost';[1P@localhost';[1P[1@6
+(B[0;1mQuery OK, 0 rows affected (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt6]> GRANT SELECT, UPDATE (Empname, deptno) ON expt6.Employee TO 'emp1@localhost';[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cuse expt6;[KGRANT SELECT, UPDATE (Empname, deptno) ON expt7.Employee TO 'emp1'@'localhost';[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[33P-- 4. Let emp2 grant these privileges to emp1.[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[13PSHOW GRANTS FOR 'emp2@localhost';1@localhost';
++---------------------------------------------------------------------------------------------------------------+
+| Grants for emp1@localhost@%                                                                                   |
++---------------------------------------------------------------------------------------------------------------+
+| GRANT USAGE ON *.* TO `emp1@localhost`@`%` IDENTIFIED BY PASSWORD '*2470C0C06DEE42FD1618BB99005ADCA2EC9D1E19' |
+| GRANT SELECT, UPDATE (`deptno`, `Empname`) ON `expt6`.`Employee` TO `emp1@localhost`@`%`                      |
+| GRANT ALL PRIVILEGES ON `expt6`.`admin_employees` TO `emp1@localhost`@`%`                                     |
++---------------------------------------------------------------------------------------------------------------+
+(B[0;1m3 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt6]> -- 5. Grant all privileges on all the databases on the MySQL server to emp3.
+MariaDB [expt6]> -- 5. Grant all privileges on all the databases on the MySQL server to emp3.[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[43PSHOW GRANTS FOR 'emp1@localhost';[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[44@GRANT SELECT, UPDATE (Empname, deptno) ON expt6.Employee TO[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cuse expt6;[KGRANT SELECT, UPDATE (Empname, deptno) ON expt7.Employee TO 'emp1'@'localhost';[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[33P-- 4. Let emp2 grant these privileges to emp1.[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[13PSHOW GRANTS FOR 'emp2@localhost';1@localhost';emp1;[K[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CELECT user FROM mysql.user;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CGRANT SELECT, UPDATE (Empname, deptno) ON expt6.Employee TO 'emp2@localhost' WITH GRANT OPTION;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cuse expt6;[KGRANT SELECT, UPDATE (Empname, deptno) ON expt7.Employee TO 'emp2'@'localhost' WITH GRANT OPTION;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C-- 3. Give select and update privilege on name and dno attribute of employee table to emp2 with grant option.[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[43P    8. Provide a list of various privileges available to the user.[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[21P7. Revoke the view privileges from emp1. [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C8. Provide a list of various privileges available to the user.[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C-- 3. Give select and update privilege on name and dno attribute of employee table to emp2 with grant option.[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[12PGRANT SELECT, UPDATE (Empname, deptno) ON expt7.Employee TO 'emp2'@'localhost' WITH GRANT OPTION;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cuse expt6;[KGRANT SELECT, UPDATE (Empname, deptno) ON expt6.Employee TO 'emp2@localhost' WITH GRANT OPTION;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CSELECT user FROM mysql.user;[K[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[7PHOW GRANTS FOR emp1;'emp1@localhost';2@localhost';[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C-- 4. Let emp2 grant these privileges to emp1.[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CGRANT SELECT, UPDATE (Empname, deptno) ON expt7.Employee TO 'emp1'@'localhost';[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cuse expt6;[KGRANT SELECT, UPDATE (Empname, deptno) ON expt6.Employee TO 'emp1@localhost';[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[44PSHOW GRANTS FOR[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C-- 5. Grant all privileges on all the databases on the MySQL server to emp3.[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[KGRAN [KT ALL PROCEDURES ON * TO 'emp3@localhost';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'PROCEDURES ON * TO 'emp3@localhost'' at line 1
+(B[0;7m(B[mMariaDB [expt6]> GRANT ALL PRIVILEGES ON *.* TO 'emp3'@'localhost' WITH GRANT OPTION;
+ERROR 1133 (28000): Can't find any matching row in the user table
+(B[0;7m(B[mMariaDB [expt6]> GRANT ALL PRIVILEGES ON *.* TO 'emp3'@'localhost' WITH GRANT OPTION;[1P[C[C[C[C[C[1P
+(B[0;1mQuery OK, 0 rows affected (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt6]> GRANT ALL PRIVILEGES ON *.* TO 'emp3@localhost' WITH GRANT OPTION;[2@'@'[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[22POCEDURES ON * TO 'emp3@localhost';[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C-- 5. Grant all privileges on all the databases on the MySQL server to emp3.[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[43PSHOW GRANTS FOR 'emp1@localhost';[1P@localhost';3@localhost';
++------------------------------------------------------------------------------------------------------------------------------------------+
+| Grants for emp3@localhost@%                                                                                                              |
++------------------------------------------------------------------------------------------------------------------------------------------+
+| GRANT ALL PRIVILEGES ON *.* TO `emp3@localhost`@`%` IDENTIFIED BY PASSWORD '*2470C0C06DEE42FD1618BB99005ADCA2EC9D1E19' WITH GRANT OPTION |
++------------------------------------------------------------------------------------------------------------------------------------------+
+(B[0;1m1 row in set (0.000 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt6]> -- 6. Login and check the privileges.
+MariaDB [expt6]> exit;
+(B[0;1mBye
+(B[m[?2004h]0;alex@LAPTOP-GKLS7J5E: ~/Desktop/Lab-Programs/Database-Management-Query-Processing-Lab-SEM5/Experiment 8[01;32malex@LAPTOP-GKLS7J5E[00m:[01;34m~/Desktop/Lab-Programs/Database-Management-Query-Processing-Lab-SEM5/Experiment 8[00m$ sudo /opt/lampp/bin/mysql -u root[6Plampp startbin/mysql -u root[K[K[K[Kex[Kmp1
+[?2004l[sudo] password for alex: 
+(B[0;1mWelcome to the MariaDB monitor.  Commands end with ; or \g.
+(B[m(B[0;1mYour MariaDB connection id is 16
+Server version: 10.4.32-MariaDB Source distribution
+
+(B[m(B[0;1mCopyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+(B[m(B[0;1mType 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+(B[m[?1034hMariaDB [(none)]> exit;-- 6. Login and check the privileges.[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[4PSHOW GRANTS FOR 'emp3@localhost';[1P@localhost';1@localhost';
+ERROR 1044 (42000): Access denied for user ''@'localhost' to database 'mysql'
+(B[0;7m(B[mMariaDB [(none)]> exit;
+(B[0;1mBye
+(B[m[?2004h]0;alex@LAPTOP-GKLS7J5E: ~/Desktop/Lab-Programs/Database-Management-Query-Processing-Lab-SEM5/Experiment 8[01;32malex@LAPTOP-GKLS7J5E[00m:[01;34m~/Desktop/Lab-Programs/Database-Management-Query-Processing-Lab-SEM5/Experiment 8[00m$ sudo /opt/lampp/bin/mysql -u emp1rootemp1 password
+[?2004lERROR 1044 (42000): Access denied for user ''@'localhost' to database 'password'
+(B[0;7m(B[m[?2004h]0;alex@LAPTOP-GKLS7J5E: ~/Desktop/Lab-Programs/Database-Management-Query-Processing-Lab-SEM5/Experiment 8[01;32malex@LAPTOP-GKLS7J5E[00m:[01;34m~/Desktop/Lab-Programs/Database-Management-Query-Processing-Lab-SEM5/Experiment 8[00m$ sudo /opt/lampp/bin/mysql -u emp1 password[C[K[K[K[K[K[K[K[K[K[K2
+[?2004l(B[0;1mWelcome to the MariaDB monitor.  Commands end with ; or \g.
+(B[m(B[0;1mYour MariaDB connection id is 18
+Server version: 10.4.32-MariaDB Source distribution
+
+(B[m(B[0;1mCopyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+(B[m(B[0;1mType 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+(B[m[?1034hMariaDB [(none)]> exit;SHOW GRANTS FOR 'emp1@localhost';[1P@localhost';2@localhost';
+ERROR 1044 (42000): Access denied for user ''@'localhost' to database 'mysql'
+(B[0;7m(B[mMariaDB [(none)]> exit;
+(B[0;1mBye
+(B[m[?2004h]0;alex@LAPTOP-GKLS7J5E: ~/Desktop/Lab-Programs/Database-Management-Query-Processing-Lab-SEM5/Experiment 8[01;32malex@LAPTOP-GKLS7J5E[00m:[01;34m~/Desktop/Lab-Programs/Database-Management-Query-Processing-Lab-SEM5/Experiment 8[00m$ sudo /opt/lampp/bin/mysql -u emp21 password2[K[K3
+[?2004l(B[0;1mWelcome to the MariaDB monitor.  Commands end with ; or \g.
+(B[m(B[0;1mYour MariaDB connection id is 19
+Server version: 10.4.32-MariaDB Source distribution
+
+(B[m(B[0;1mCopyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+(B[m(B[0;1mType 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+(B[m[?1034hMariaDB [(none)]> exit;SHOW GRANTS FOR 'emp2@localhost';[1P@localhost';3@localhost';
+ERROR 1044 (42000): Access denied for user ''@'localhost' to database 'mysql'
+(B[0;7m(B[mMariaDB [(none)]> exit;
+(B[0;1mBye
+(B[m[?2004h]0;alex@LAPTOP-GKLS7J5E: ~/Desktop/Lab-Programs/Database-Management-Query-Processing-Lab-SEM5/Experiment 8[01;32malex@LAPTOP-GKLS7J5E[00m:[01;34m~/Desktop/Lab-Programs/Database-Management-Query-Processing-Lab-SEM5/Experiment 8[00m$ sudo /opt/lampp/bin/mysql -u emp3[K[K[K[Kroot
+[?2004l(B[0;1mWelcome to the MariaDB monitor.  Commands end with ; or \g.
+(B[m(B[0;1mYour MariaDB connection id is 20
+Server version: 10.4.32-MariaDB Source distribution
+
+(B[m(B[0;1mCopyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+(B[m(B[0;1mType 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+(B[m[?1034hMariaDB [(none)]> -- 7. Revoke the view privileges from emp1. 
+MariaDB [(none)]> REVOKE ALL PRIVILEGES ON expt7.admin_employees FROM 'emp1'@'localhost';
+ERROR 1141 (42000): There is no such grant defined for user 'emp1' on host 'localhost'
+(B[0;7m(B[mMariaDB [(none)]> REVOKE ALL PRIVILEGES ON expt7.admin_employees FROM 'emp1'@'localhost';[C[C[C[C[C[1P@'localhost';[C[C[C[1Plocalhost';
+ERROR 1147 (42000): There is no such grant defined for user 'emp1@localhost' on host '%' on table 'admin_employees'
+(B[0;7m(B[mMariaDB [(none)]> REVOKE ALL PRIVILEGES ON expt7.admin_employees FROM 'emp1@localhost';[1P[1@6
+(B[0;1mQuery OK, 0 rows affected (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [(none)]> REVOKE ALL PRIVILEGES ON expt6.admin_employees FROM 'emp1@localhost';7[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C'@'localhost';[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[27P-- 7. Revoke the view privileges from emp1. [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cexit;[KSHOW GRANTS FOR 'emp3@localhost';[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cexit;[KSHOW GRANTS FOR 'emp2@localhost';[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cexit;[KSHOW GRANTS FOR 'emp1@localhost';
++---------------------------------------------------------------------------------------------------------------+
+| Grants for emp1@localhost@%                                                                                   |
++---------------------------------------------------------------------------------------------------------------+
+| GRANT USAGE ON *.* TO `emp1@localhost`@`%` IDENTIFIED BY PASSWORD '*2470C0C06DEE42FD1618BB99005ADCA2EC9D1E19' |
+| GRANT SELECT, UPDATE (`deptno`, `Empname`) ON `expt6`.`Employee` TO `emp1@localhost`@`%`                      |
++---------------------------------------------------------------------------------------------------------------+
+(B[0;1m2 rows in set (0.000 sec)
+(B[m(B[0;1m
+(B[mMariaDB [(none)]> -- 8. Provide a list of various privileges available to the user.
+MariaDB [(none)]> -- 8. Provide a list of various privileges available to the user.[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[32PSHOW GRANTS FOR 'emp1@localhost';
++---------------------------------------------------------------------------------------------------------------+
+| Grants for emp1@localhost@%                                                                                   |
++---------------------------------------------------------------------------------------------------------------+
+| GRANT USAGE ON *.* TO `emp1@localhost`@`%` IDENTIFIED BY PASSWORD '*2470C0C06DEE42FD1618BB99005ADCA2EC9D1E19' |
+| GRANT SELECT, UPDATE (`deptno`, `Empname`) ON `expt6`.`Employee` TO `emp1@localhost`@`%`                      |
++---------------------------------------------------------------------------------------------------------------+
+(B[0;1m2 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [(none)]> SHOW GRANTS FOR 'emp1@localhost';[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C-- 8. Provide a list of various privileges available to the user.[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[32PSHOW GRANTS FOR 'emp1@localhost';[1P@localhost';2@localhost';
++---------------------------------------------------------------------------------------------------------------+
+| Grants for emp2@localhost@%                                                                                   |
++---------------------------------------------------------------------------------------------------------------+
+| GRANT USAGE ON *.* TO `emp2@localhost`@`%` IDENTIFIED BY PASSWORD '*2470C0C06DEE42FD1618BB99005ADCA2EC9D1E19' |
+| GRANT SELECT, UPDATE (`deptno`, `Empname`) ON `expt6`.`Employee` TO `emp2@localhost`@`%` WITH GRANT OPTION    |
++---------------------------------------------------------------------------------------------------------------+
+(B[0;1m2 rows in set (0.000 sec)
+(B[m(B[0;1m
+(B[mMariaDB [(none)]> SHOW GRANTS FOR 'emp2@localhost';1@localhost';2@localhost';[1P@localhost';3@localhost';
++------------------------------------------------------------------------------------------------------------------------------------------+
+| Grants for emp3@localhost@%                                                                                                              |
++------------------------------------------------------------------------------------------------------------------------------------------+
+| GRANT ALL PRIVILEGES ON *.* TO `emp3@localhost`@`%` IDENTIFIED BY PASSWORD '*2470C0C06DEE42FD1618BB99005ADCA2EC9D1E19' WITH GRANT OPTION |
++------------------------------------------------------------------------------------------------------------------------------------------+
+(B[0;1m1 row in set (0.000 sec)
+(B[m(B[0;1m
+(B[mMariaDB [(none)]> -- 9. Create an index on empid attribute of employee table.
+MariaDB [(none)]> use expt6;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+(B[0;1mDatabase changed
+(B[mMariaDB [expt6]> CREATE INDEX empid_index ON Employee (Empid);
+ERROR 1072 (42000): Key column 'Empid' doesn't exist in table
+(B[0;7m(B[mMariaDB [expt6]> CREATE INDEX empid_index ON Employee (Empid);[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kdesc Employee;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| Empno     | int(11)     | NO   | PRI | NULL    |       |
+| Empname   | varchar(25) | NO   |     | NULL    |       |
+| Gender    | varchar(1)  | YES  |     | NULL    |       |
+| job       | varchar(25) | YES  |     | NULL    |       |
+| managerno | int(11)     | YES  |     | NULL    |       |
+| hiredate  | date        | YES  |     | NULL    |       |
+| salary    | float(12,2) | YES  |     | NULL    |       |
+| commision | float(10,2) | YES  |     | NULL    |       |
+| deptno    | int(11)     | YES  | MUL | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+(B[0;1m9 rows in set (0.002 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt6]> desc Employee;CREATE INDEX empid_index ON Employee (Empid);[C[C[C[C[C[1P);[1P);n);o);
+(B[0;1mQuery OK, 0 rows affected (0.022 sec)
+(B[m(B[0;1mRecords: 0  Duplicates: 0  Warnings: 0
+(B[m(B[0;1m
+(B[mMariaDB [expt6]> CREATE INDEX empid_index ON Employee (Empno);[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cdesc Employee;[K
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| Empno     | int(11)     | NO   | PRI | NULL    |       |
+| Empname   | varchar(25) | NO   |     | NULL    |       |
+| Gender    | varchar(1)  | YES  |     | NULL    |       |
+| job       | varchar(25) | YES  |     | NULL    |       |
+| managerno | int(11)     | YES  |     | NULL    |       |
+| hiredate  | date        | YES  |     | NULL    |       |
+| salary    | float(12,2) | YES  |     | NULL    |       |
+| commision | float(10,2) | YES  |     | NULL    |       |
+| deptno    | int(11)     | YES  | MUL | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+(B[0;1m9 rows in set (0.002 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt6]> desc Employee;CREATE INDEX empid_index ON Employee (Empno);[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cdesc Employee;[K[KSGH[KG[K[KHOW INDEX FROM Employee;
++----------+------------+-------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| Table    | Non_unique | Key_name    | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment |
++----------+------------+-------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| Employee |          0 | PRIMARY     |            1 | Empno       | A         |          14 |     NULL | NULL   |      | BTREE      |         |               |
+| Employee |          1 | deptno      |            1 | deptno      | A         |          14 |     NULL | NULL   | YES  | BTREE      |         |               |
+| Employee |          1 | empid_index |            1 | Empno       | A         |          14 |     NULL | NULL   |      | BTREE      |         |               |
++----------+------------+-------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+(B[0;1m3 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt6]> exit;
+(B[0;1mBye
+(B[m[?2004h]0;alex@LAPTOP-GKLS7J5E: ~/Desktop/Lab-Programs/Database-Management-Query-Processing-Lab-SEM5/Experiment 8[01;32malex@LAPTOP-GKLS7J5E[00m:[01;34m~/Desktop/Lab-Programs/Database-Management-Query-Processing-Lab-SEM5/Experiment 8[00m$ [?2004l
+exit
+
+Script done on 2024-10-14 12:22:36+05:30 [COMMAND_EXIT_CODE="0"]
