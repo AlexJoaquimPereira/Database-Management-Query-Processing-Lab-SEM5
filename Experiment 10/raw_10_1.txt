@@ -1,0 +1,120 @@
+alex@LAPTOP-GKLS7J5E:~/Desktop/Lab-Programs/Database-Management-Query-Processing-Lab-SEM5/Experiment 10$ sudo /opt/lampp/lampp start
+egrep: warning: egrep is obsolescent; using grep -E
+egrep: warning: egrep is obsolescent; using grep -E
+egrep: warning: egrep is obsolescent; using grep -E
+egrep: warning: egrep is obsolescent; using grep -E
+egrep: warning: egrep is obsolescent; using grep -E
+Starting XAMPP for Linux 8.2.12-0...
+XAMPP: Starting Apache...egrep: warning: egrep is obsolescent; using grep -E
+already running.
+XAMPP: Starting MySQL...egrep: warning: egrep is obsolescent; using grep -E
+already running.
+XAMPP: Starting ProFTPD...egrep: warning: egrep is obsolescent; using grep -E
+already running.
+alex@LAPTOP-GKLS7J5E:~/Desktop/Lab-Programs/Database-Management-Query-Processing-Lab-SEM5/Experiment 10$ sudo /opt/lampp/bin/mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 24
+Server version: 10.4.32-MariaDB Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> CREATE DATABASE table_trigger;
+Query OK, 1 row affected (0.001 sec)
+
+MariaDB [(none)]> USE table_trigger;
+Database changed
+MariaDB [table_trigger]> CREATE TABLE table1 (a1 INT PRIMARY KEY);
+Query OK, 0 rows affected (0.018 sec)
+
+MariaDB [table_trigger]>
+MariaDB [table_trigger]> CREATE TABLE table2 (a2 INT PRIMARY KEY);
+Query OK, 0 rows affected (0.018 sec)
+
+MariaDB [table_trigger]>
+MariaDB [table_trigger]> CREATE TABLE table3 (a3 INT PRIMARY KEY);
+Query OK, 0 rows affected (0.017 sec)
+
+MariaDB [table_trigger]>
+MariaDB [table_trigger]> CREATE TABLE table4 (a4 INT PRIMARY KEY, b4 INT DEFAULT 0);
+Query OK, 0 rows affected (0.019 sec)
+
+MariaDB [table_trigger]> -- Create a trigger on table1 to insert,delete,update tables table2,table3,table4 respectively.
+MariaDB [table_trigger]> Whenever we insert a value in table1(a1) the same value should be inserted in table2; the the number is present in table3, it should be deleted from table3 and if the number is present in table4(a4) then b4 should be updated(incremented by 1).
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'Whenever we insert a value in table1(a1) the same value should be inserted in...' at line 1
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'the the number is present in table3, it should be deleted from table3 and if ...' at line 1
+MariaDB [table_trigger]> -- Create a trigger on table1 to insert,delete,update tables table2,table3,table4 respectively. Whenever we insert a value in table1(a1) the same value should be inserted in table2; the the number is present in table3, it should be deleted from table3 and if the number is present in table4(a4) then b4 should be updated(incremented by 1).
+MariaDB [table_trigger]> DELIMITER //
+MariaDB [table_trigger]> CREATE TRIGGER table1_trigger
+    -> AFTER INSERT ON table1
+    -> FOR EACH ROW
+    -> BEGIN
+    ->     INSERT INTO table2 (a2) VALUES (NEW.a1);
+    ->     DELETE FROM table3 WHERE a3 = NEW.a1;
+    ->     IF EXISTS (SELECT 1 FROM table4 WHERE a4 = NEW.a1) THEN
+    ->         UPDATE table4 SET b4 = b4 + 1 WHERE a4 = NEW.a1;
+    ->     END IF;
+    -> END //
+Query OK, 0 rows affected (0.004 sec)
+
+MariaDB [table_trigger]>
+MariaDB [table_trigger]> DELIMITER ;
+MariaDB [table_trigger]> INSERT INTO table3 (a3) VALUES (101), (102), (103);
+Query OK, 3 rows affected (0.004 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+MariaDB [table_trigger]> INSERT INTO table4 (a4, b4) VALUES (101, 5), (104, 3);
+Query OK, 2 rows affected (0.004 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+MariaDB [table_trigger]> SELECT * FROM table1;
+Empty set (0.001 sec)
+
+MariaDB [table_trigger]> SELECT * FROM table2, table3;
+Empty set (0.001 sec)
+
+MariaDB [table_trigger]> SELECT * FROM table3, table4;
++-----+-----+------+
+| a3  | a4  | b4   |
++-----+-----+------+
+| 101 | 101 |    5 |
+| 101 | 104 |    3 |
+| 102 | 101 |    5 |
+| 102 | 104 |    3 |
+| 103 | 101 |    5 |
+| 103 | 104 |    3 |
++-----+-----+------+
+6 rows in set (0.001 sec)
+
+MariaDB [table_trigger]> INSERT INTO table4 (a4, b4) VALUES (101, 5), (104, 3);
+ERROR 1062 (23000): Duplicate entry '101' for key 'PRIMARY'
+MariaDB [table_trigger]> SELECT * FROM table3;
++-----+
+| a3  |
++-----+
+| 101 |
+| 102 |
+| 103 |
++-----+
+3 rows in set (0.001 sec)
+
+MariaDB [table_trigger]> SELECT * FROM table4;
++-----+------+
+| a4  | b4   |
++-----+------+
+| 101 |    5 |
+| 104 |    3 |
++-----+------+
+2 rows in set (0.001 sec)
+
+MariaDB [table_trigger]> INSERT INTO table4 (a4, b4) VALUES (106, 5), (104, 3);
+ERROR 1062 (23000): Duplicate entry '104' for key 'PRIMARY'
+MariaDB [table_trigger]> SELECT * FROM table1;
+Empty set (0.001 sec)
+
+MariaDB [table_trigger]> INSERT INTO table1 (a4, b4) VALUES (101, 5), (104, 3);
+ERROR 1054 (42S22): Unknown column 'a4' in 'field list'
+MariaDB [table_trigger]> exit;
+Bye
