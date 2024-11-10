@@ -1,0 +1,223 @@
+computer@computer-HP-280-G3-MT:/media/computer/AGNELO/LAB PROGRAMS/DBMS$ sudo /opt/lampp/bin/mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 21
+Server version: 10.4.27-MariaDB Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| Book               |
+| CAR_RENTAL         |
+| COMPANY            |
+| EXP1               |
+| EXPT               |
+| EXPT1              |
+| EXPT1_20           |
+| EXPT2_20           |
+| NEW                |
+| Uwais              |
+| ahmedd             |
+| exp1               |
+| expt4              |
+| information_schema |
+| mysql              |
+| newdb              |
+| nstudent           |
+| performance_schema |
+| phpmyadmin         |
+| rstudent           |
+| tanmay             |
+| test               |
+| yashm              |
++--------------------+
+23 rows in set (0.001 sec)
+
+MariaDB [(none)]> create database alex_expt9;
+Query OK, 1 row affected (0.000 sec)
+
+MariaDB [(none)]> exit;
+Bye
+computer@computer-HP-280-G3-MT:/media/computer/AGNELO/LAB PROGRAMS/DBMS$ sudo /opt/lampp/bin/mysql alex_expt9 < expt6_updated.sql
+computer@computer-HP-280-G3-MT:/media/computer/AGNELO/LAB PROGRAMS/DBMS$ sudo /opt/lampp/bin/mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 23
+Server version: 10.4.27-MariaDB Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use alex_expt9;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MariaDB [alex_expt9]> show tables;
++--------------------------+
+| Tables_in_alex_expt9     |
++--------------------------+
+| Dept                     |
+| Employee                 |
+| Project                  |
+| admin_employees          |
+| dept_emp_summary         |
+| emp_workson_project      |
+| employee_project_details |
+| employee_project_summary |
+| proj_details             |
+| project_employee_summary |
++--------------------------+
+10 rows in set (0.001 sec)
+
+1) Write a procedure to get details of all projects.
+MariaDB [alex_expt9]> DELIMITER //
+MariaDB [alex_expt9]> CREATE PROCEDURE show_proj_details()
+    -> BEGIN
+    -> SELECT * FROM Project;
+    -> END //
+Query OK, 0 rows affected (0.035 sec)
+
+MariaDB [alex_expt9]> CALL show_proj_details()
+    -> ;
+    -> DELIMITER ;
+    -> Ctrl-C -- exit!
+Aborted
+computer@computer-HP-280-G3-MT:/media/computer/AGNELO/LAB PROGRAMS/DBMS$ sudo /opt/lampp/bin/mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 24
+Server version: 10.4.27-MariaDB Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use alex_expt9;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MariaDB [alex_expt9]> show tables;
++--------------------------+
+| Tables_in_alex_expt9     |
++--------------------------+
+| Dept                     |
+| Employee                 |
+| Project                  |
+| admin_employees          |
+| dept_emp_summary         |
+| emp_workson_project      |
+| employee_project_details |
+| employee_project_summary |
+| proj_details             |
+| project_employee_summary |
++--------------------------+
+10 rows in set (0.001 sec)
+
+MariaDB [alex_expt9]> DELIMITER //
+MariaDB [alex_expt9]> CREATE PROCEDURE show_proj_details()
+    -> BEGIN
+    -> SELECT * FROM Project;
+    -> END //
+ERROR 1304 (42000): PROCEDURE show_proj_details already exists
+MariaDB [alex_expt9]> DELIMITER ;
+MariaDB [alex_expt9]> CALL show_proj_details();
++----------+-----------------+---------------+------+---------+--------+----------+
+| Proj_num | Pname           | location      | dnum | pbudget | status | duration |
++----------+-----------------+---------------+------+---------+--------+----------+
+|        1 | Cloud Computing | Dublin        |   10 |    NULL | NULL   |     NULL |
+|        2 | Firewall        | San Francisco |   40 |    NULL | NULL   |     NULL |
+|        3 | DBMS            | San Francisco |   40 |    NULL | NULL   |     NULL |
++----------+-----------------+---------------+------+---------+--------+----------+
+3 rows in set (0.001 sec)
+
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [alex_expt9]> DELIMITER //
+MariaDB [alex_expt9]> CREATE PROCEDURE show_proj_details()
+    -> BEGIN
+    -> SELECT * FROM Project;
+    -> END //
+ERROR 1304 (42000): PROCEDURE show_proj_details already exists
+MariaDB [alex_expt9]> DELIMITER ;
+MariaDB [alex_expt9]> CALL show_proj_details();
++----------+-----------------+---------------+------+---------+--------+----------+
+| Proj_num | Pname           | location      | dnum | pbudget | status | duration |
++----------+-----------------+---------------+------+---------+--------+----------+
+|        1 | Cloud Computing | Dublin        |   10 |    NULL | NULL   |     NULL |
+|        2 | Firewall        | San Francisco |   40 |    NULL | NULL   |     NULL |
+|        3 | DBMS            | San Francisco |   40 |    NULL | NULL   |     NULL |
++----------+-----------------+---------------+------+---------+--------+----------+
+3 rows in set (0.001 sec)
+
+Query OK, 0 rows affected (0.001 sec)
+
+2) Write a procedure which accepts 'empid' as parameter and display his details.
+MariaDB [alex_expt9]> DELIMITER //
+MariaDB [alex_expt9]> CREATE PROCEDURE emp_details(IN empid INT)
+    -> BEGIN
+    -> SELECT * FROM Employee WHERE Empno = empid;
+    -> END //
+Query OK, 0 rows affected (0.062 sec)
+
+MariaDB [alex_expt9]> DELIMITER ;
+MariaDB [alex_expt9]> CALL emp_details(6);
++-------+---------+--------+------+-----------+------------+----------+-----------+--------+
+| Empno | Empname | Gender | job  | managerno | hiredate   | salary   | commision | deptno |
++-------+---------+--------+------+-----------+------------+----------+-----------+--------+
+|     6 | Bunni   | F      | HR   |        11 | 2020-05-05 | 35000.00 |      NULL |      5 |
++-------+---------+--------+------+-----------+------------+----------+-----------+--------+
+1 row in set (0.001 sec)
+
+Query OK, 0 rows affected (0.001 sec)
+
+3) Write a procedure which accepts 'project_no' as parameter and display the controlling dept_no and no. of employees working on that project.
+MariaDB [alex_expt9]> DELIMITER //
+MariaDB [alex_expt9]> CREATE PROCEDURE project_details(IN project_no INT)
+    -> BEGIN
+    -> SELECT P.dnum as dept_no, COUNT(ewp.eno) FROM Project P JOIN emp_workson_project ewp ON P.Proj_num = ewp.pno WHERE P.Proj_num = Project_no;
+    -> END //
+Query OK, 0 rows affected (0.066 sec)
+
+MariaDB [alex_expt9]> DELIMITER ;
+MariaDB [alex_expt9]> CALL project_details(1
+    -> );
++---------+----------------+
+| dept_no | COUNT(ewp.eno) |
++---------+----------------+
+|      10 |              3 |
++---------+----------------+
+1 row in set (0.001 sec)
+
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [alex_expt9]> CALL project_details(3);
++---------+----------------+
+| dept_no | COUNT(ewp.eno) |
++---------+----------------+
+|      40 |              3 |
++---------+----------------+
+1 row in set (0.001 sec)
+
+Query OK, 0 rows affected (0.001 sec)
+Query OK, 0 rows affected (0.001 sec)
+
+4) Write procedure which accepts empid as an input and finds the salary and no. of projects he is working on if sal>50000 and no of projects his working on is >2 increase the salary by 5%  if salary is between 50000>=60000 and no. of projects >2 increase salary by 2%,if sal>100000 and no of projects >=1  increase salary by 1%. Display  empid,sal,no. of projects,increased salary.
+
+MariaDB [alex_expt9]> DELIMITER //
+MariaDB [alex_expt9]> CREATE PROCEDURE emp_salary(IN empid INT)
+    -> BEGIN
+    -> DECLARE sal INT;
+    -> SELECT salary INTO sal FROM Employee WHERE Empno = empid;
+    -> DECLARE no_of_proj;
+    -> SELECT COUNT(pno) INTO no_of_proj FROM emp_workson_project WHERE eno = empid;
+    -> IF (sal > 50000 AND no_of_proj > 2) THEN
+    -> UPDATE Employee SET salary = (sal + (sal * 0.05)) WHERE Empno = empid;
+    -> ELSEIF (sal > 50000 AND no_of_proj > 2) THEN
+    -> UPDATE Employee SET salary = (sal + (sal * 0.05)) WHERE Empno = empid;
+    ->
+
