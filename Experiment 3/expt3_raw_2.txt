@@ -1,0 +1,417 @@
+Script started on 2024-08-05 11:23:05+05:30 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="190" LINES="48"]
+[?2004h]0;alex@mint: ~/Desktop/Lab-Programs/Database-Management-Query-Processing-Lab-SEM5/Experiment 3[01;32malex@mint[00m:[01;34m~/Desktop/Lab-Programs/Database-Management-Query-Processing-Lab-SEM5/Experiment 3[00m$ sudo /opt/lampp/lampp start
+[?2004l[sudo] password for alex: **************              
+Starting XAMPP for Linux 8.2.12-0...
+XAMPP: Starting Apache...already running.
+XAMPP: Starting MySQL...already running.
+XAMPP: Starting ProFTPD...already running.
+[?2004h]0;alex@mint: ~/Desktop/Lab-Programs/Database-Management-Query-Processing-Lab-SEM5/Experiment 3[01;32malex@mint[00m:[01;34m~/Desktop/Lab-Programs/Database-Management-Query-Processing-Lab-SEM5/Experiment 3[00m$ sudo .[K/opt/lampp/bin/mysql -u root
+[?2004l(B[0;1mWelcome to the MariaDB monitor.  Commands end with ; or \g.
+(B[m(B[0;1mYour MariaDB connection id is 9
+Server version: 10.4.32-MariaDB Source distribution
+
+(B[m(B[0;1mCopyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+(B[m(B[0;1mType 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+(B[m[?1034hMariaDB [(none)]> use expt3;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+(B[0;1mDatabase changed
+(B[mMariaDB [expt3]> show tables;
++---------------------+
+| Tables_in_expt3     |
++---------------------+
+| Dept                |
+| Employee            |
+| Project             |
+| emp_workson_project |
++---------------------+
+(B[0;1m4 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt3]> show em[K[KEmpl[K[K[K[K[K[K[K[K[KSLE[K[KELECT * FROM Emplo[Koyee;
++-------+----------+--------+--------------+-----------+------------+----------+-----------+--------+
+| Empno | Empname  | Gender | job          | managerno | hiredate   | salary   | commision | deptno |
++-------+----------+--------+--------------+-----------+------------+----------+-----------+--------+
+|     2 | Angelo   | M      | Clerk        |        11 | 2023-01-09 | 40000.00 |  30000.00 |      5 |
+|     4 | Annie    | F      | Analyst      |        15 | 2022-03-08 | 21000.00 |      NULL |     20 |
+|     5 | Brandon  | M      | President    |         5 | 2023-10-05 | 24000.00 |      NULL |     30 |
+|     6 | Bunni    | F      | HR           |        11 | 2020-05-05 | 35000.00 |      NULL |      5 |
+|     7 | Stella   | F      | receptionist |        11 | 2022-06-18 | 38000.00 |  50000.00 |      5 |
+|     8 | Maria    | F      | Clerk        |         5 | 2022-07-22 | 40000.00 |   3000.00 |     30 |
+|     9 | Max      | M      | Engineer     |         9 | 2022-11-05 | 45000.00 |      NULL |     10 |
+|    10 | Lya      | F      | Analyst      |        15 | 2023-06-04 | 42000.00 |      NULL |     20 |
+|    11 | Valery   | M      | Manager      |        11 | 2023-04-22 | 50000.00 |      NULL |      5 |
+|    12 | Nikki    | F      | Clerk        |        11 | 2024-02-11 | 37000.00 |  10000.00 |      5 |
+|    13 | Theodore | M      | Technician   |         9 | 2021-03-01 | 33000.00 |   5000.00 |     10 |
+|    14 | Alice    | F      | Consultant   |         9 | 2022-01-19 | 53000.00 |      NULL |      1 |
+|    15 | Elliot   | M      | Developer    |        15 | 2024-02-24 | 48000.00 |      NULL |     20 |
++-------+----------+--------+--------------+-----------+------------+----------+-----------+--------+
+(B[0;1m13 rows in set (0.003 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt3]> SELECT [K[K[K[K[K[K[K@[KQ[K# Q4 list [K[K[K[K[K[K
+MariaDB [expt3]> SELECT e.[K[KEmplyee[K[K[Koyee.Emoname[K[K[K[K[Kpname, Employee.job, [1P[1P[1P[1P[1P[1P[1P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P[1P[1P[1P[1P[1P[1P[C[C[C[C[C[CM.Empname as Manager_a[Kname, A[KM.job FROM Employee E INNER JOIN M[KEmployee M on E,m[K[K.managerno = M.Empno;
++----------+--------------+--------------+-----------+
+| Empname  | job          | Manager_name | job       |
++----------+--------------+--------------+-----------+
+| Angelo   | Clerk        | Valery       | Manager   |
+| Annie    | Analyst      | Elliot       | Developer |
+| Brandon  | President    | Brandon      | President |
+| Bunni    | HR           | Valery       | Manager   |
+| Stella   | receptionist | Valery       | Manager   |
+| Maria    | Clerk        | Brandon      | President |
+| Max      | Engineer     | Max          | Engineer  |
+| Lya      | Analyst      | Elliot       | Developer |
+| Valery   | Manager      | Valery       | Manager   |
+| Nikki    | Clerk        | Valery       | Manager   |
+| Theodore | Technician   | Max          | Engineer  |
+| Alice    | Consultant   | Max          | Engineer  |
+| Elliot   | Developer    | Elliot       | Developer |
++----------+--------------+--------------+-----------+
+(B[0;1m13 rows in set (0.023 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt3]> #5[K Q5 [K
+MariaDB [expt3]> SELECT E.e[KEMpn[K[K[Kmpname FROM Employee E INNER JOIN Department D On[KN D[KE.Deptno[K[K[K[K[K[Kdeptno = [K[K[K[K[K[K[K[Knam [Ke = "Sales" OR [1P[1@D[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P [1P [K[1P [1P [1P [1P [1P [1P [1P [K[1P [K[1P [1P [1P [1P [1P [1P [1P E . d e p t n o [C = [C D . d n [1P [1P D e p t n o [C W H E R E [C D . [C [Kd n a m e [C = [C " S a l e s " [C O R [C D . d n a m e [C = [C " R e s e r [1P a r c h " ; 
+ERROR 1146 (42S02): Table 'expt3.Department' doesn't exist
+(B[0;7m(B[mMariaDB [expt3]> SELECT E.Empname FROM Employee E INNER JOIN Department D ON E.deptno = D.Deptno WHERE D.dname = "Sales" OR D.dname = "Research"; [C[C[C[C[C[C[C[C[C[C[C[1P[1P[1P[1P[1P[1P[1P[1@t[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K
++----------+
+| Empname  |
++----------+
+| Max      |
+| Theodore |
+| Angelo   |
+| Bunni    |
+| Stella   |
+| Valery   |
+| Nikki    |
++----------+
+(B[0;1m7 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt3]> # Q6
+MariaDB [expt3]> SELECT Empname [K, salary FROM EM[Kmployee INNER JOIN Dept On [K[K[KON E[C[C[C[C[C[C[C[C[C[1@ [1@E[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1@ [1@D[C[C[C[C[C.deptno = D.Deptno WHERE D.location = "Bana[Kgalore"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"e"n"g"a"l"u"r"u"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"a"n"g"a"l"o"r"e"[C;
+(B[0;1mEmpty set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt3]> SELECT Empname, salary FROM Employee E INNER JOIN Dept D ON E.deptno = D.Deptno WHERE D.location = "Bangalore";[1P";[1P";[1P";[1P";[1P";[1P";[1P";[1P";e";n";g";a";l";u";r";u";[C[C
++---------+----------+
+| Empname | salary   |
++---------+----------+
+| Angelo  | 40000.00 |
+| Bunni   | 35000.00 |
+| Stella  | 38000.00 |
+| Valery  | 50000.00 |
+| Nikki   | 37000.00 |
++---------+----------+
+(B[0;1m5 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt3]> # Q7
+MariaDB [expt3]> # Q7SELECT Empname, salary FROM Employee E INNER JOIN Dept D ON E.deptno = D.Deptno WHERE D.location = "Bengaluru";[1P[1P[1P[1P[1P[1P[1@c[1@o[1@m[1@m[1@i[1@s[1@i[1@o[1@n[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C# Q7[K[KA[KCREATE[K[K[K[K[K[KINSERT INTO Det[Kpt (Deptno, D[Kdname, location) VALUES (40[K[K'40', 'Admin', 'De[K[KCa[K[KSAn[K[Kan Francisco');
+(B[0;1mQuery OK, 1 row affected (0.024 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt3]> Al[KLTER TABLE Employee MODIFY [K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[KUPDATE Employee SET deptno = 40 WHERE Empno = [K[K= 12;
+(B[0;1mQuery OK, 1 row affected (0.003 sec)
+(B[m(B[0;1mRows matched: 1  Changed: 1  Warnings: 0
+(B[m(B[0;1m
+(B[mMariaDB [expt3]> SW[K[KUPDATE Employee SET deptno = 40 WHERE Empno = 12;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CINSERT INTO Dept (Deptno, dname, location) VALUES ('40', 'Admin', 'San Francisco');[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C# Q7[KSELECT Empname, commision FROM Employee E INNER JOIN Dept D ON E.deptno = D.Deptno WHERE D.location = "Bengaluru";[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P[1P[1P[1P[1P[1P[1P[1P[1@n[1@a[1P[1P[1@d[1@n[1@a[1@m[1@e[C[1@ [1P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;A;d;m;i;n;";[C
++---------+-----------+
+| Empname | commision |
++---------+-----------+
+| Nikki   |  10000.00 |
++---------+-----------+
+(B[0;1m1 row in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt3]> INSE+[K[K[K[K[K# Q8
+MariaDB [expt3]> SELECT * FROM PRO[K[Kroject;
+(B[0;1mEmpty set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt3]> INSET +[K[K[KRT INTO Project ([K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kdesc Project;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| Proj_num | int(11)     | NO   | PRI | NULL    |       |
+| Pname    | varchar(25) | NO   | UNI | NULL    |       |
+| location | varchar(25) | YES  |     | NULL    |       |
+| dnum     | int(11)     | YES  | MUL | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+(B[0;1m4 rows in set (0.024 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt3]> INSET [K[KRT INTO PR[Kroject (Proj_num, Pname, location, dnum) VALEUS[K[K[KYES[K[K[KUES ('1', 'Cloud Computing', Dubl[K[K[K[K[K 'Dublin', 'Reserch[K[K[Kear[K[K[Ka[K[K[K[K[K[K[K[K[K[K[K[K[K[K[KDublin' [K, 10[K[K'10');
+(B[0;1mQuery OK, 1 row affected (0.025 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt3]> desc emp_world[K[Kkson_project;
++----------------+---------+------+-----+---------+-------+
+| Field          | Type    | Null | Key | Default | Extra |
++----------------+---------+------+-----+---------+-------+
+| eno            | int(11) | NO   | PRI | NULL    |       |
+| pno            | int(11) | NO   | PRI | NULL    |       |
+| hours_per_week | float   | YES  |     | 20      |       |
++----------------+---------+------+-----+---------+-------+
+(B[0;1m3 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt3]> INSERT INTO emp_p[Kworl[Kkson_project (eno, pno, hours_per_week) VALUES ('4', '1', '48');
+(B[0;1mQuery OK, 1 row affected (0.003 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt3]> INSERT INTO emp_workson_project (eno, pno, hours_per_week) VALUES ('4', '1', '48');[C[1P[1@9[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+(B[0;1mQuery OK, 1 row affected (0.003 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt3]> INSERT INTO emp_workson_project (eno, pno, hours_per_week) VALUES ('9', '1', '48');[C[1P[1@1[1@1[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+(B[0;1mQuery OK, 1 row affected (0.004 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt3]> SELC[KECT Empname FROM Employee JOIN P[K(Project JOIN emp_workson_project [K ON pro[K[K[KProj_num = pno) WHERE Pname = [1P[1P[1P[1P[1P[1@O[1@N[C[C[C[C[C[C[C[C[C'Cloud COmpu[K[K[K[Komputing';
++----------+
+| Empname  |
++----------+
+| Angelo   |
+| Angelo   |
+| Angelo   |
+| Annie    |
+| Annie    |
+| Annie    |
+| Brandon  |
+| Brandon  |
+| Brandon  |
+| Bunni    |
+| Bunni    |
+| Bunni    |
+| Stella   |
+| Stella   |
+| Stella   |
+| Maria    |
+| Maria    |
+| Maria    |
+| Max      |
+| Max      |
+| Max      |
+| Lya      |
+| Lya      |
+| Lya      |
+| Valery   |
+| Valery   |
+| Valery   |
+| Nikki    |
+| Nikki    |
+| Nikki    |
+| Theodore |
+| Theodore |
+| Theodore |
+| Alice    |
+| Alice    |
+| Alice    |
+| Elliot   |
+| Elliot   |
+| Elliot   |
++----------+
+(B[0;1m39 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt3]> SELECT Empname FROM Employee JOIN (Project JOIN emp_workson_project ON Proj_num = pno) ON Pname = 'Cloud Computing';[C[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;E;m;p;n;o; ;=; ;e;m;p;[1P;[1P;o;o;[1P;[1P;n;[1P;n;o; ;W;E;[1P;H;E;R;E; ;P;n;a;m;e; ;=; ;';C;l;o;u;d; ;C;o;m;p;u;r;i;n;[1P;[1P;[1P;t;i;n;g;';[C
++---------+
+| Empname |
++---------+
+| Annie   |
+| Max     |
+| Valery  |
++---------+
+(B[0;1m3 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt3]> # Q9
+MariaDB [expt3]> SELECT Pri[K[Krohj[K[K[K[Kname[K[K[Ko[K[K[KPname[K[K[K[Kr[Kroj_num, Pname FROM Project JOIN Dept WHERE[K[K[K[K[KON Proj_num = [K[K[K[K[K[K[K[K[K[K[K[K deptno[K[K[K[K[K[KPname[K[K[K[K[KDeptno[K[K[K[K[K[Kdnum = Deptno WHERE Deptname[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K# Q9SELECT Empname FROM Employee JOIN (Project JOIN emp_workson_project ON Proj_num = pno) ON Empno = eno WHERE Pname = 'Cloud Computing';[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C# Q9[K[Kde[Kesc Project && De[K[Kdesc Dept;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '&& desc Dept' at line 1
+(B[0;7m(B[mMariaDB [expt3]> desc Project && desc Dept;[C[C[C[C[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;[1P;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| Proj_num | int(11)     | NO   | PRI | NULL    |       |
+| Pname    | varchar(25) | NO   | UNI | NULL    |       |
+| location | varchar(25) | YES  |     | NULL    |       |
+| dnum     | int(11)     | YES  | MUL | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+(B[0;1m4 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt3]> desc Project;[1P;[1P;[1P;[1P;[1P;[1P;[1P;D;e;o;t;[1P;[1P;p;t;[C
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| Deptno   | int(11)     | NO   | PRI | NULL    |       |
+| dname    | varchar(25) | NO   | UNI | NULL    |       |
+| location | varchar(20) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+(B[0;1m3 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt3]> SELCT [K[K[K[KE[KLECT Proj_num FROM PROECT[K[K[KJECT JOIN DET[KP[K[Kept ON dnum = Deptno WHERE dname = "admi[K[K[K[K[K'Admin';
+ERROR 1146 (42S02): Table 'expt3.PROJECT' doesn't exist
+(B[0;7m(B[mMariaDB [expt3]> SELECT Proj_num FROM PROJECT JOIN Dept ON dnum = Deptno WHERE dname = 'Admin';[1P[1P[1P[1P[1P[1P[1@r[1@o[1@j[1@e[1@c[1@t[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+(B[0;1mEmpty set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt3]> SELD[KECT * FROM Project;
++----------+-----------------+----------+------+
+| Proj_num | Pname           | location | dnum |
++----------+-----------------+----------+------+
+|        1 | Cloud Computing | Dublin   |   10 |
++----------+-----------------+----------+------+
+(B[0;1m1 row in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt3]> SELECT * FROM Project;Proj_num FROM Project JOIN Dept ON dnum = Deptno WHERE dname = 'Admin';[C[C[C[C[C[C[C[C[C[C[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[KSELECT * FROM Det[K[Kpt[K[Kept;
++--------+------------+---------------+
+| Deptno | dname      | location      |
++--------+------------+---------------+
+|      1 | Accounting | Vancouver     |
+|      5 | Sales      | Bengaluru     |
+|     10 | Research   | Dublin        |
+|     20 | HR         | London        |
+|     30 | Marketing  | Hyderabad     |
+|     40 | Admin      | San Francisco |
++--------+------------+---------------+
+(B[0;1m6 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt3]> SELECT * FROM Dept;Project;Proj_num FROM Project JOIN Dept ON dnum = Deptno WHERE dname = 'Admin';[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CROJECT[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cdesc Dept;[KProject; && desc Dept;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C# Q9[KSELECT Empname FROM Employee JOIN (Project JOIN emp_workson_project ON Proj_num = pno) ON Empno = eno WHERE Pname = 'Cloud Computing';[18P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[32PINSERT INTO emp_workson_project (eno, pno, hours_per_week) VALUES ('11', '1', '48');[1P9[C[C[C[C[C[C[C[C[C[C[C[C[C[C4[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cdesc emp_workson_project;[K[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CINSERT INTO Project (Proj_num, Pname, location, dnum) VALUES ('1', 'Cloud Computing', 'Dublin', '10');[C[1P[1@2[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1@F[1@i[1@r[1@e[1@W[1@a[1P[1P[1@w[1@a[1@l[1@l[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P[1P[1P[1P[1P[1P[1@S[1@a[1@n[1@ [1@F[1@r[1@a[1@n[1@c[1@i[1@s[1@c[1@o[C[C[C[C[C[C[1P');[1P');4');0');[C[C[C
+(B[0;1mQuery OK, 1 row affected (0.003 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt3]> INSERT INTO Project (Proj_num, Pname, location, dnum) VALUES ('2', 'Firewall', 'San Francisco', '40');[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CSELECT * FROM Dept;[KProject;Proj_num FROM Project JOIN Dept ON dnum = Deptno WHERE dname = 'Admin';
++----------+
+| Proj_num |
++----------+
+|        2 |
++----------+
+(B[0;1m1 row in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt3]> # Q10
+MariaDB [expt3]> # Q10SELECT Proj_num FROM Project JOIN Dept ON dnum = Deptno WHERE dname = 'Admin';[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CINSERT INTO Project (Proj_num, Pname, location, dnum) VALUES ('2', 'Firewall', 'San Francisco', '40');[C[1P[1@3[C[C[C[C[C[C[C[C[C[C[C[C[1P[1P[1P[1P[1P[1P[1P[1P[1@D[1@B[1@M[1@S[1@ [1P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+(B[0;1mQuery OK, 1 row affected (0.003 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt3]> INSERT INTO Project (Proj_num, Pname, location, dnum) VALUES ('3', 'DBMS', 'San Francisco', '40');[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C# Q10[KSELECT Proj_num FROM Project JOIN Dept ON dnum = Deptno WHERE dname = 'Admin';[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CINSERT INTO Project (Proj_num, Pname, location, dnum) VALUES ('2', 'Firewall', 'San Francisco', '40');[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CSELECT * FROM Dept;[KProject;Proj_num FROM Project JOIN Dept ON dnum = Deptno WHERE dname = 'Admin';[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CROJECT[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cdesc Dept;[KProject; && desc Dept;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C# Q9[KSELECT Empname FROM Employee JOIN (Project JOIN emp_workson_project ON Proj_num = pno) ON Empno = eno WHERE Pname = 'Cloud Computing';[18P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[32PINSERT INTO emp_workson_project (eno, pno, hours_per_week) VALUES ('11', '1', '48');[1P9[C[C[C[C[C[C[C[C[C[C[C[C[C[C4[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cdesc emp_workson_project;[K[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CINSERT INTO Project (Proj_num, Pname, location, dnum) VALUES ('1', 'Cloud Computing', 'Dublin', '10');[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cdesc emp_workson_project;[K[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CINSERT INTO emp_workson_project (eno, pno, hours_per_week) VALUES ('4', '1', '48');[1P[1@3[1P[1@5[C[C[C[C[C[C[C[C[C[C[C[1P');0');[C[C[C
+(B[0;1mQuery OK, 1 row affected (0.003 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt3]> INSERT INTO emp_workson_project (eno, pno, hours_per_week) VALUES ('5', '3', '40');[C[1P[1@1[1@3[C[C[C[C[C[C[C[C[C[C[C[1P');[1P');1');8');[C[C[C
+(B[0;1mQuery OK, 1 row affected (0.024 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt3]> INSERT INTO emp_workson_project (eno, pno, hours_per_week) VALUES ('13', '3', '18');[1P[1@5[C[C[C[C[C[C[C[C[C[C[C[1P');[1P');3');5');[C[C[C
+(B[0;1mQuery OK, 1 row affected (0.025 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt3]> SELD[KECT * FROM E[K[K[K[K[K[K[K[KEmpname FROM EMplo[K[K[K[Kmployee JOIN D[Kemp_workson_project ON Empnum[K[K[Kno = eno H[KWHERE [K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CINSERT INTO emp_workson_project (eno, pno, hours_per_week) VALUES ('15', '3', '35');[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[50PSELECT Empname FROM Employee JOIN 
+[1]+  Stopped                 sudo /opt/lampp/bin/mysql -u root
+[?2004h]0;alex@mint: ~/Desktop/Lab-Programs/Database-Management-Query-Processing-Lab-SEM5/Experiment 3[01;32malex@mint[00m:[01;34m~/Desktop/Lab-Programs/Database-Management-Query-Processing-Lab-SEM5/Experiment 3[00m$ sudo /opt/lampp/bin/mysql -u root
+[?2004l[sudo] password for alex: **************              
+Sorry, try again.
+[sudo] password for alex: 
+Sorry, try again.
+[sudo] password for alex: **************              
+(B[0;1mWelcome to the MariaDB monitor.  Commands end with ; or \g.
+(B[m(B[0;1mYour MariaDB connection id is 10
+Server version: 10.4.32-MariaDB Source distribution
+
+(B[m(B[0;1mCopyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+(B[m(B[0;1mType 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+(B[m[?1034hMariaDB [(none)]> exit;SELECT * FROM Employee;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C;[Kshow tables[1Puse expt3;show tables;[KSELECT * FROM Employee;[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cexit;[K[KSELECT Empno[K[Kname FROM Employee JOIN (Project JOIN W[Kemp_workson_project ON Proj_num = pno) WHERE[K[K[K[K[KON Emo[Kpno = eno WHERE Pname = "DBMS) [K[K" AND hours_per_week > 20;
+ERROR 1046 (3D000): No database selected
+(B[0;7m(B[mMariaDB [(none)]> s[Kuse expt [K3;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+(B[0;1mDatabase changed
+(B[mMariaDB [expt3]> use expt3;SELECT Empname FROM Employee JOIN (Project JOIN emp_workson_project ON Proj_num = pno) ON Empno = eno WHERE Pname = "DBMS" AND hours_per_week > 20;
++---------+
+| Empname |
++---------+
+| Brandon |
+| Elliot  |
++---------+
+(B[0;1m2 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt3]> # 11[K[KQ 1[K[K11
+MariaDB [expt3]> # na[K[Ke[KEMpn[K[K[Kmpname working on atleadt o[K[K[K[Kst one project b[Kcontrolled by same dept they belong to
+MariaDB [expt3]> SELECT * FROM Employee;
++-------+----------+--------+--------------+-----------+------------+----------+-----------+--------+
+| Empno | Empname  | Gender | job          | managerno | hiredate   | salary   | commision | deptno |
++-------+----------+--------+--------------+-----------+------------+----------+-----------+--------+
+|     2 | Angelo   | M      | Clerk        |        11 | 2023-01-09 | 40000.00 |  30000.00 |      5 |
+|     4 | Annie    | F      | Analyst      |        15 | 2022-03-08 | 21000.00 |      NULL |     20 |
+|     5 | Brandon  | M      | President    |         5 | 2023-10-05 | 24000.00 |      NULL |     30 |
+|     6 | Bunni    | F      | HR           |        11 | 2020-05-05 | 35000.00 |      NULL |      5 |
+|     7 | Stella   | F      | receptionist |        11 | 2022-06-18 | 38000.00 |  50000.00 |      5 |
+|     8 | Maria    | F      | Clerk        |         5 | 2022-07-22 | 40000.00 |   3000.00 |     30 |
+|     9 | Max      | M      | Engineer     |         9 | 2022-11-05 | 45000.00 |      NULL |     10 |
+|    10 | Lya      | F      | Analyst      |        15 | 2023-06-04 | 42000.00 |      NULL |     20 |
+|    11 | Valery   | M      | Manager      |        11 | 2023-04-22 | 50000.00 |      NULL |      5 |
+|    12 | Nikki    | F      | Clerk        |        11 | 2024-02-11 | 37000.00 |  10000.00 |     40 |
+|    13 | Theodore | M      | Technician   |         9 | 2021-03-01 | 33000.00 |   5000.00 |     10 |
+|    14 | Alice    | F      | Consultant   |         9 | 2022-01-19 | 53000.00 |      NULL |      1 |
+|    15 | Elliot   | M      | Developer    |        15 | 2024-02-24 | 48000.00 |      NULL |     20 |
++-------+----------+--------+--------------+-----------+------------+----------+-----------+--------+
+(B[0;1m13 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt3]> SELECT * FROM P[KDept;
++--------+------------+---------------+
+| Deptno | dname      | location      |
++--------+------------+---------------+
+|      1 | Accounting | Vancouver     |
+|      5 | Sales      | Bengaluru     |
+|     10 | Research   | Dublin        |
+|     20 | HR         | London        |
+|     30 | Marketing  | Hyderabad     |
+|     40 | Admin      | San Francisco |
++--------+------------+---------------+
+(B[0;1m6 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt3]> SELECT Empname FROM Employee JOIN ([1@E[1@ [C[C[C[C[C[Ce[KProject JOIN emp_workson_project on pr[Kno[K[K[KPnumber[K[K[K[K[K[Krjo[K[K[Kroj_num = pno) [K[K JOIN Employee e on [K[K[K[K[Kon [K[K[K[C[C[C[C[C[C[C[C[C[C[C[C[C[1P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CON [1@e[1@q[1@p[1P[1P[1@w[1@p[1@ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1@e[C[C[1@ [C[C[C[C[1@E[1@.[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P[1@E[C[C[C[C [Kewp,[K.pno [K[K[K[Keno = E.Emn[Kpno WHERE P.[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K[K[1P[1P[1P[1P[C[C[C[C[C[C[C[C[C[C[C[C[C[1P[1P[C[C[C[C[C[C[C[C[C[1P[1P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P[1P[1P[1P[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CDeptno -[K= dno[K[Keptno;Edeptno;.deptno;[1@P[1@ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1@P[1@.[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1@P[1@.[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+ERROR 1054 (42S22): Unknown column 'P.Deptno' in 'where clause'
+(B[0;7m(B[mMariaDB [expt3]> SELECT Empname FROM Project P JOIN emp_workson_project on P.Proj_num = pno JOIN Employee E ON eno = Empno WHERE P.Deptno = E.deptno;[C[C[C[C[C[C[1@\[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[C[1@ [1@P[1@.[1@d[1@n[1@u[1@m[C[C[C[C[C[C[C[C[C[C[C[C
++---------+
+| Empname |
++---------+
+| Max     |
++---------+
+(B[0;1m1 row in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt3]> # Q12
+MariaDB [expt3]> SELECT Pname FROM PROJECT JOIN DEP[K[Kept ON Deptno = [1P[1@d[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C# Q12[KSELECT Pname FROM PROJECT JOIN Dept ON deptno = Deptno WHERE [1@P[1@ [1P[1P[1P[1P[1P[1P[1@r[1@o[1@j[1@e[1@c[1@t[C[C[C[C[C[C[C[C[C[C[C[C[C[1@ [1@D[C[C[C[C[C[C[C[C[C[C[1@P[1@.[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1@D[1@.[C[C[C[C[C[C[C[C[C[C[C[C[CP.location = D.locaton[K[Ko[Kion;
+ERROR 1054 (42S22): Unknown column 'P.deptno' in 'on clause'
+(B[0;7m(B[mMariaDB [expt3]> SELECT Pname FROM Project P JOIN Dept D ON P.deptno = D.Deptno WHERE P.location = D.location;[C[C[C[C[C[C[1P[1P[1P[1P[1P[1P[1@d[1@n[1@u[1@m[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+ERROR 1054 (42S22): Unknown column 'P.deptno' in 'on clause'
+(B[0;7m(B[mMariaDB [expt3]> SELECT Pname FROM Project P JOIN Dept D ON P.deptno = D.dnum WHERE P.location = D.location;[C[C[C[C[1P[1P[1P[1P[1@D[1@e[1@p[1@t[1@n[1@o[C[C[C[C[C[C[1P[1P[1P[1P[1P[1@n[1@u[1@m[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
++-----------------+
+| Pname           |
++-----------------+
+| Cloud Computing |
+| Firewall        |
+| DBMS            |
++-----------------+
+(B[0;1m3 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt3]> E[KSELECT Ename [K[K[K[K[Kmpname, Proj[K[K[Kname FROM Employee E JOIN [K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[KEmployee JOIN E[Kemp_workson_po[Kroject ON Emono[K[K[K[K[Kpn[K[KEMpn[K[K[Kmpno = eno JOIN Project on [1@e[1@q[1P[1@w[1@p[1@ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ce[Keq[Kwp,P[K[K.pno [C[C[1P[1P[1@O[1@N[C[C[C[C[C[C[C[C[C= Proj_num WHERE job = "Manager";
++---------+-----------------+
+| Empname | Pname           |
++---------+-----------------+
+| Valery  | Cloud Computing |
++---------+-----------------+
+(B[0;1m1 row in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt3]> # last one was qtn 13
+MariaDB [expt3]> # Q!@[K[K12
+MariaDB [expt3]> SL[KELECT EM[KMpname[K[K[K[K[K[Kmpname, Pname FROM Employee JOO[K[KOIN emp_aorl[K[K[K[Kworls[K[Kks_on Em[K[KON Emn[Ko[Kpno = Em[K[Keno W[KJOIN PRO[K[Kroject ON [1@e[1@w[1@p[1@ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1@e[1@q[1@p[1P[1P[1@w[1@p[1@.[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ceq[Kwp.Pn[K[Kpno = Pro[K[Kroj_num[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[KPname FROM Project JOIN Dept ON Deptno [K[K[K[K[K[K[Kdeptno[K[K[K[K[Knum = Deptno WHERE Project.;[Klocation = Dept.location;
++-----------------+
+| Pname           |
++-----------------+
+| Cloud Computing |
+| Firewall        |
+| DBMS            |
++-----------------+
+(B[0;1m3 rows in set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt3]> Q 14[K[K[K[K$ Q14[K[K[K[K[K# Q14
+MariaDB [expt3]> SEE[KLECT Empname [K, salary FROM Employee JOIN emp_workson_project ON Emono[K[K[K[Kmpno = eno JOIN PROJECT on[K[K[K[K[K[K[K[K[Kroject [C[C[C[C[C[C[C[C[1@ [1@e[1@w[1@p[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1@e[1@w[1@p[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CON eqp [K[K[Keq[K[Kq[Kwp .pno [K[K[K[K[K[K.pno = Proj_num WHER[KE[KRE job = "Manah[Kger" AND Pname = "Computerization" AN D ewp [K.hours_per_week > 15;
+ERROR 1054 (42S22): Unknown column 'ewpeno' in 'on clause'
+(B[0;7m(B[mMariaDB [expt3]> SELECT Empname, salary FROM Employee JOIN emp_workson_project ewp ON Empno = ewpeno JOIN Project ON ewp.pno = Proj_num WHERE job = "Manager" AND Pname = "Computerization" ANDD ewp.hours_per_week > 15;[C[C[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C.eno JOIN Project ON ewp.pno = Proj_num WHERE job = "Manager" AND Pname = "Computerization" AN[1@D[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+(B[0;1mEmpty set (0.001 sec)
+(B[m(B[0;1m
+(B[mMariaDB [expt3]> INSERT INTO [K[K[K[K[K[K[K[K[K[K[K[Kexit;
+(B[0;1mBye
+(B[m[?2004h]0;alex@mint: ~/Desktop/Lab-Programs/Database-Management-Query-Processing-Lab-SEM5/Experiment 3[01;32malex@mint[00m:[01;34m~/Desktop/Lab-Programs/Database-Management-Query-Processing-Lab-SEM5/Experiment 3[00m$ [?2004l
+exit
+There are stopped jobs.
+[?2004h]0;alex@mint: ~/Desktop/Lab-Programs/Database-Management-Query-Processing-Lab-SEM5/Experiment 3[01;32malex@mint[00m:[01;34m~/Desktop/Lab-Programs/Database-Management-Query-Processing-Lab-SEM5/Experiment 3[00m$ [?2004l
+exit
+
+Script done on 2024-08-05 13:39:07+05:30 [COMMAND_EXIT_CODE="0"]
