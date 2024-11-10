@@ -1,0 +1,328 @@
+alex@LAPTOP-GKLS7J5E:~/Desktop/Lab-Programs/Database-Management-Query-Processing-Lab-SEM5/Experiment 9$ sudo /opt/lampp/bin/mysql_upgrade
+Phase 1/7: Checking and upgrading mysql database
+Processing databases
+mysql
+mysql.column_stats                                 OK
+mysql.columns_priv                                 OK
+mysql.db                                           OK
+mysql.event                                        OK
+mysql.func                                         OK
+mysql.gtid_slave_pos                               OK
+mysql.help_category                                OK
+mysql.help_keyword                                 OK
+mysql.help_relation                                OK
+mysql.help_topic                                   OK
+mysql.host                                         OK
+mysql.index_stats                                  OK
+mysql.innodb_index_stats                           OK
+mysql.innodb_table_stats                           OK
+mysql.plugin                                       OK
+mysql.proc                                         OK
+mysql.procs_priv                                   OK
+mysql.proxies_priv                                 OK
+mysql.roles_mapping                                OK
+mysql.servers                                      OK
+mysql.table_stats                                  OK
+mysql.tables_priv                                  OK
+mysql.time_zone                                    OK
+mysql.time_zone_leap_second                        OK
+mysql.time_zone_name                               OK
+mysql.time_zone_transition                         OK
+mysql.time_zone_transition_type                    OK
+mysql.user                                         OK
+Phase 2/7: Installing used storage engines... Skipped
+Phase 3/7: Fixing views
+expt6.admin_employees                              OK
+expt6.dept_emp_summary                             OK
+expt6.employee_project_details                     OK
+expt6.employee_project_summary                     OK
+expt6.proj_details                                 OK
+expt6.project_employee_summary                     OK
+Phase 4/7: Running 'mysql_fix_privilege_tables'
+Phase 5/7: Fixing table and database names
+Phase 6/7: Checking and upgrading tables
+Processing databases
+expt
+expt.Dept                                          OK
+expt.Employee                                      OK
+expt.Project                                       OK
+expt.emp_workson_project                           OK
+expt6
+expt6.Dept                                         OK
+expt6.Employee                                     OK
+expt6.Project                                      OK
+expt6.emp_workson_project                          OK
+information_schema
+performance_schema
+phpmyadmin
+phpmyadmin.pma__bookmark                           OK
+phpmyadmin.pma__central_columns                    OK
+phpmyadmin.pma__column_info                        OK
+phpmyadmin.pma__designer_settings                  OK
+phpmyadmin.pma__export_templates                   OK
+phpmyadmin.pma__favorite                           OK
+phpmyadmin.pma__history                            OK
+phpmyadmin.pma__navigationhiding                   OK
+phpmyadmin.pma__pdf_pages                          OK
+phpmyadmin.pma__recent                             OK
+phpmyadmin.pma__relation                           OK
+phpmyadmin.pma__savedsearches                      OK
+phpmyadmin.pma__table_coords                       OK
+phpmyadmin.pma__table_info                         OK
+phpmyadmin.pma__table_uiprefs                      OK
+phpmyadmin.pma__tracking                           OK
+phpmyadmin.pma__userconfig                         OK
+phpmyadmin.pma__usergroups                         OK
+phpmyadmin.pma__users                              OK
+test
+Phase 7/7: Running 'FLUSH PRIVILEGES'
+OK
+alex@LAPTOP-GKLS7J5E:~/Desktop/Lab-Programs/Database-Management-Query-Processing-Lab-SEM5/Experiment 9$ sudo /opt/lampp/bin/mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 23
+Server version: 10.4.32-MariaDB Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use expt6;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MariaDB [expt6]> -- 1. Write a procedure to get details of all projects.
+MariaDB [expt6]> DELIMITER //
+MariaDB [expt6]> CREATE PROCEDURE show_proj_details()
+    -> BEGIN
+    ->     SELECT * FROM Project;
+    -> END //
+Query OK, 0 rows affected (0.006 sec)
+
+MariaDB [expt6]> DELIMITER ;
+MariaDB [expt6]> show_proj_details();
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'show_proj_details()' at line 1
+MariaDB [expt6]> CALL show_proj_details();
++----------+-----------------+---------------+------+---------+--------+----------+
+| Proj_num | Pname           | location      | dnum | pbudget | status | duration |
++----------+-----------------+---------------+------+---------+--------+----------+
+|        1 | Cloud Computing | Dublin        |   10 |    NULL | NULL   |     NULL |
+|        2 | Firewall        | San Francisco |   40 |    NULL | NULL   |     NULL |
+|        3 | DBMS            | San Francisco |   40 |    NULL | NULL   |     NULL |
++----------+-----------------+---------------+------+---------+--------+----------+
+3 rows in set (0.001 sec)
+
+Query OK, 0 rows affected (0.001 sec)
+
+ariaDB [expt6]> -- 2) Write a procedure which accepts 'empid' as parameter and display his details.
+MariaDB [expt6]> DELIMITER //
+MariaDB [expt6]> CREATE PROCEDURE emp_details(IN empid INT)
+    -> BEGIN
+    ->     SELECT * FROM Employee WHERE Empno = empid;
+    -> END //
+Query OK, 0 rows affected (0.010 sec)
+
+MariaDB [expt6]> DELIMITER ;
+MariaDB [expt6]> CALL emp_details(10);
++-------+---------+--------+---------+-----------+------------+----------+-----------+--------+
+| Empno | Empname | Gender | job     | managerno | hiredate   | salary   | commision | deptno |
++-------+---------+--------+---------+-----------+------------+----------+-----------+--------+
+|    10 | Lya     | F      | Analyst |        15 | 2023-06-04 | 42000.00 |      NULL |     20 |
++-------+---------+--------+---------+-----------+------------+----------+-----------+--------+
+1 row in set (0.002 sec)
+
+Query OK, 0 rows affected (0.002 sec)
+
+MariaDB [expt6]> CALL emp_details(7);
++-------+---------+--------+--------------+-----------+------------+----------+-----------+--------+
+| Empno | Empname | Gender | job          | managerno | hiredate   | salary   | commision | deptno |
++-------+---------+--------+--------------+-----------+------------+----------+-----------+--------+
+|     7 | Stella  | F      | receptionist |        11 | 2022-06-18 | 38000.00 |  50000.00 |      5 |
++-------+---------+--------+--------------+-----------+------------+----------+-----------+--------+
+1 row in set (0.001 sec)
+
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [expt6]> -- 3) Write a procedure which accepts 'project_no' as parameter and display the controlling dept_no and no. of employees working on that project.
+MariaDB [expt6]> DELIMITER //
+MariaDB [expt6]> CREATE PROCEDURE project_details(IN project_no INT)
+    -> BEGIN
+    ->     SELECT P.dnum as dept_no, COUNT(ewp.eno) FROM Project P JOIN emp_workson_project ewp ON P.Proj_num = ewp.pno WHERE P.Proj_num = Project_no;
+    -> END //
+Query OK, 0 rows affected (0.011 sec)
+
+MariaDB [expt6]> DELIMITER ;
+MariaDB [expt6]> CALL project_details(1);
++---------+----------------+
+| dept_no | COUNT(ewp.eno) |
++---------+----------------+
+|      10 |              3 |
++---------+----------------+
+1 row in set (0.001 sec)
+
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [expt6]> -- 4) Write procedure which accepts empid as an input and finds the salary and no. of projects he is working on if sal>50000 and no of projects his working on is >2 increase the salary by 5%  if salary is between 50000>=60000 and no. of projects >2 increase salary by 2%,if sal>100000 and no of projects >=1  increase salary by 1%. Display  empid,sal,no. of projects,increased salary.
+MariaDB [expt6]> DELIMITER //
+MariaDB [expt6]> CREATE PROCEDURE emp_salary(IN empid INT)
+    -> BEGIN
+    ->     DECLARE sal DECIMAL(10,2);
+    ->     DECLARE no_of_proj INT;
+    ->     DECLARE increased_salary DECIMAL(10,2);
+    ->
+    ->     SELECT salary INTO sal FROM Employee WHERE Empno = empid;
+    ->     SELECT COUNT(pno) INTO no_of_proj FROM emp_workson_project WHERE eno = empid;
+    ->     SET increased_salary = sal;
+    ->     IF (sal > 50000 AND no_of_proj > 2) THEN
+    ->         IF (sal <= 60000) THEN
+    ->             SET increased_salary = sal * 1.02;
+    ->         ELSE
+    ->             SET increased_salary = sal * 1.05;
+    ->         END IF;
+    ->     ELSEIF (sal > 100000 AND no_of_proj >= 1) THEN
+    ->         SET increased_salary = sal * 1.01;
+    ->     END IF;
+    ->
+    ->     UPDATE Employee SET salary = increased_salary WHERE Empno = empid;
+    ->
+    ->     SELECT empid AS EmpID, sal AS Original_Salary, no_of_proj AS Project_Count, increased_salary AS New_Salary;
+    -> END //
+Query OK, 0 rows affected (0.009 sec)
+
+MariaDB [expt6]>
+MariaDB [expt6]> DELIMITER ;
+MariaDB [expt6]> CALL emp_salary(10);
++-------+-----------------+---------------+------------+
+| EmpID | Original_Salary | Project_Count | New_Salary |
++-------+-----------------+---------------+------------+
+|    10 |        42000.00 |             0 |   42000.00 |
++-------+-----------------+---------------+------------+
+1 row in set (0.002 sec)
+
+Query OK, 2 rows affected (0.002 sec)
+
+MariaDB [expt6]> CALL emp_salary(11);
++-------+-----------------+---------------+------------+
+| EmpID | Original_Salary | Project_Count | New_Salary |
++-------+-----------------+---------------+------------+
+|    11 |        50000.00 |             1 |   50000.00 |
++-------+-----------------+---------------+------------+
+1 row in set (0.001 sec)
+
+Query OK, 2 rows affected (0.001 sec)
+
+MariaDB [expt6]> -- 5) Write a procedure which executes the same task as in procedure 4 but for all the employees in the database.
+MariaDB [expt6]> DELIMITER //
+MariaDB [expt6]> CREATE PROCEDURE update_salary_for_all()
+    -> BEGIN
+    ->     DECLARE empid INT;
+    ->     FOR emp_record IN (SELECT Empno FROM Employee) DO
+    ->         SET empid = emp_record.Empno;
+    ->         CALL emp_salary(empid);
+    ->     END FOR;
+    -> END //
+Query OK, 0 rows affected (0.012 sec)
+
+MariaDB [expt6]>
+MariaDB [expt6]> DELIMITER ;
+MariaDB [expt6]> CALL update_salary_for_all();
++-------+-----------------+---------------+------------+
+| EmpID | Original_Salary | Project_Count | New_Salary |
++-------+-----------------+---------------+------------+
+|     2 |        40000.00 |             0 |   40000.00 |
++-------+-----------------+---------------+------------+
+1 row in set (0.003 sec)
+
++-------+-----------------+---------------+------------+
+| EmpID | Original_Salary | Project_Count | New_Salary |
++-------+-----------------+---------------+------------+
+|     4 |        21000.00 |             1 |   21000.00 |
++-------+-----------------+---------------+------------+
+1 row in set (0.004 sec)
+
++-------+-----------------+---------------+------------+
+| EmpID | Original_Salary | Project_Count | New_Salary |
++-------+-----------------+---------------+------------+
+|     5 |        24000.00 |             1 |   24000.00 |
++-------+-----------------+---------------+------------+
+1 row in set (0.004 sec)
+
++-------+-----------------+---------------+------------+
+| EmpID | Original_Salary | Project_Count | New_Salary |
++-------+-----------------+---------------+------------+
+|     6 |        35000.00 |             0 |   35000.00 |
++-------+-----------------+---------------+------------+
+1 row in set (0.004 sec)
+
++-------+-----------------+---------------+------------+
+| EmpID | Original_Salary | Project_Count | New_Salary |
++-------+-----------------+---------------+------------+
+|     7 |        38000.00 |             0 |   38000.00 |
++-------+-----------------+---------------+------------+
+1 row in set (0.005 sec)
+
++-------+-----------------+---------------+------------+
+| EmpID | Original_Salary | Project_Count | New_Salary |
++-------+-----------------+---------------+------------+
+|     8 |        40000.00 |             0 |   40000.00 |
++-------+-----------------+---------------+------------+
+1 row in set (0.006 sec)
+
++-------+-----------------+---------------+------------+
+| EmpID | Original_Salary | Project_Count | New_Salary |
++-------+-----------------+---------------+------------+
+|     9 |        45000.00 |             1 |   45000.00 |
++-------+-----------------+---------------+------------+
+1 row in set (0.006 sec)
+
++-------+-----------------+---------------+------------+
+| EmpID | Original_Salary | Project_Count | New_Salary |
++-------+-----------------+---------------+------------+
+|    10 |        42000.00 |             0 |   42000.00 |
++-------+-----------------+---------------+------------+
+1 row in set (0.006 sec)
+
++-------+-----------------+---------------+------------+
+| EmpID | Original_Salary | Project_Count | New_Salary |
++-------+-----------------+---------------+------------+
+|    11 |        50000.00 |             1 |   50000.00 |
++-------+-----------------+---------------+------------+
+1 row in set (0.006 sec)
+
++-------+-----------------+---------------+------------+
+| EmpID | Original_Salary | Project_Count | New_Salary |
++-------+-----------------+---------------+------------+
+|    12 |        37000.00 |             0 |   37000.00 |
++-------+-----------------+---------------+------------+
+1 row in set (0.006 sec)
+
++-------+-----------------+---------------+------------+
+| EmpID | Original_Salary | Project_Count | New_Salary |
++-------+-----------------+---------------+------------+
+|    13 |        33000.00 |             1 |   33000.00 |
++-------+-----------------+---------------+------------+
+1 row in set (0.006 sec)
+
++-------+-----------------+---------------+------------+
+| EmpID | Original_Salary | Project_Count | New_Salary |
++-------+-----------------+---------------+------------+
+|    14 |        53000.00 |             0 |   53000.00 |
++-------+-----------------+---------------+------------+
+1 row in set (0.007 sec)
+
++-------+-----------------+---------------+------------+
+| EmpID | Original_Salary | Project_Count | New_Salary |
++-------+-----------------+---------------+------------+
+|    15 |        48000.00 |             1 |   48000.00 |
++-------+-----------------+---------------+------------+
+1 row in set (0.007 sec)
+
++-------+-----------------+---------------+------------+
+| EmpID | Original_Salary | Project_Count | New_Salary |
++-------+-----------------+---------------+------------+
+|    16 |        75000.00 |             0 |   75000.00 |
++-------+-----------------+---------------+------------+
+1 row in set (0.007 sec)
+
+Query OK, 28 rows affected (0.007 sec)
+
