@@ -1,0 +1,104 @@
+1)  Create 4 tables with attributes mentioned in the brackets: table1(a1), table2(a2), table3(a3), table4(a4,b4)
+
+CREATE DATABASE table_trigger;
+USE table_trigger;
+
+CREATE TABLE table1 (a1 INT PRIMARY KEY);
+
+CREATE TABLE table2 (a2 INT PRIMARY KEY);
+
+CREATE TABLE table3 (a3 INT PRIMARY KEY);
+
+CREATE TABLE table4 (a4 INT PRIMARY KEY, b4 INT DEFAULT 0);
+
+Create a trigger on table1 to insert,delete,update tables table2,table3,table4 respectively. Whenever we insert a value in table1(a1) the same value should be inserted in table2; the the number is present in table3, it should be deleted from table3 and if the number is present in table4(a4) then b4 should be updated(incremented by 1).
+
+DELIMITER //
+
+CREATE TRIGGER table1_trigger
+AFTER INSERT ON table1
+FOR EACH ROW
+BEGIN
+    INSERT INTO table2 (a2) VALUES (NEW.a1);
+    DELETE FROM table3 WHERE a3 = NEW.a1;
+    IF EXISTS (SELECT 1 FROM table4 WHERE a4 = NEW.a1) THEN
+        UPDATE table4 SET b4 = b4 + 1 WHERE a4 = NEW.a1;
+    END IF;
+END //
+
+DELIMITER ;
+
+
+2) Create a table emp_proj with empid,number of projects he is working on, total number of hrs. Create another table proj_info with project number,number of employees working on that project,total number of hrs spent on that project.
+
+USE expt6;
+
+CREATE TABLE emp_proj (
+    empid INT PRIMARY KEY,
+    num_projects INT DEFAULT 0,
+    total_hours INT DEFAULT 0
+);
+
+CREATE TABLE proj_info (
+    project_no INT PRIMARY KEY,
+    num_employees INT DEFAULT 0,
+    total_hours INT DEFAULT 0
+);
+
+CREATE TABLE works_on (
+    empid INT,
+    project_no INT,
+    hours INT,
+    PRIMARY KEY (empid, project_no)
+);
+
+Whenever we delete an entry from the works_on table respective changes must be done to emp_proj and proj_info tables.
+
+DELIMITER //
+
+CREATE TRIGGER works_on_delete_trigger
+AFTER DELETE ON works_on
+FOR EACH ROW
+BEGIN
+    UPDATE emp_proj
+    SET num_projects = num_projects - 1,
+        total_hours = total_hours - OLD.hours
+    WHERE empid = OLD.empid;
+
+    UPDATE proj_info
+    SET num_employees = num_employees - 1,
+        total_hours = total_hours - OLD.hours
+    WHERE project_no = OLD.project_no;
+END //
+
+DELIMITER ;
+
+
+--- SAMPLE DATA ---
+
+-- Insert values into table3
+INSERT INTO table3 (a3) VALUES (101), (102), (103);
+
+-- Insert values into table4
+INSERT INTO table4 (a4, b4) VALUES (101, 5), (104, 3);
+
+-- Insert a record into table1
+-- This will trigger the following actions:
+--   - Insert into table2 if the value does not exist in table2.
+--   - Delete from table3 if the value exists in table3.
+--   - Update b4 in table4 if a4 matches the inserted value.
+INSERT INTO table1 (a1) VALUES (101), (102), (104);
+
+-- Insert data into emp_proj
+INSERT INTO emp_proj (empid, num_projects, total_hours) VALUES (1, 2, 40), (2, 1, 20);
+
+-- Insert data into proj_info
+INSERT INTO proj_info (project_no, num_employees, total_hours) VALUES (201, 1, 20), (202, 1, 20);
+
+-- Insert data into works_on
+INSERT INTO works_on (empid, project_no, hours) VALUES (1, 201, 20), (1, 202, 20), (2, 201, 20);
+
+-- Delete an entry from works_on to trigger updates in emp_proj and proj_info
+DELETE FROM works_on WHERE empid = 1 AND project_no = 201;
+
+
