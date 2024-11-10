@@ -1,0 +1,71 @@
+1) Write a procedure to get details of all projects.
+
+DELIMITER //
+CREATE PROCEDURE show_proj_details()
+BEGIN
+    SELECT * FROM Project;
+END //
+DELIMITER ;
+
+2) Write a procedure which accepts 'empid' as parameter and display his details.
+
+DELIMITER //
+CREATE PROCEDURE emp_details(IN empid INT)
+BEGIN
+    SELECT * FROM Employee WHERE Empno = empid;
+END //
+DELIMITER ;
+
+3) Write a procedure which accepts 'project_no' as parameter and display the controlling dept_no and no. of employees working on that project.
+
+DELIMITER //
+CREATE PROCEDURE project_details(IN project_no INT)
+BEGIN
+    SELECT P.dnum as dept_no, COUNT(ewp.eno) FROM Project P JOIN emp_workson_project ewp ON P.Proj_num = ewp.pno WHERE P.Proj_num = Project_no;
+END //
+DELIMITER ;
+
+4) Write procedure which accepts empid as an input and finds the salary and no. of projects he is working on if sal>50000 and no of projects his working on is >2 increase the salary by 5%  if salary is between 50000>=60000 and no. of projects >2 increase salary by 2%,if sal>100000 and no of projects >=1  increase salary by 1%. Display  empid,sal,no. of projects,increased salary.
+
+DELIMITER //
+CREATE PROCEDURE emp_salary(IN empid INT)
+BEGIN
+    DECLARE sal DECIMAL(10,2);
+    DECLARE no_of_proj INT;
+    DECLARE increased_salary DECIMAL(10,2);
+
+    SELECT salary INTO sal FROM Employee WHERE Empno = empid;
+    SELECT COUNT(pno) INTO no_of_proj FROM emp_workson_project WHERE eno = empid;
+    SET increased_salary = sal;
+    IF (sal > 50000 AND no_of_proj > 2) THEN
+        IF (sal <= 60000) THEN
+            SET increased_salary = sal * 1.02;
+        ELSE
+            SET increased_salary = sal * 1.05;
+        END IF;
+    ELSEIF (sal > 100000 AND no_of_proj >= 1) THEN
+        SET increased_salary = sal * 1.01;
+    END IF;
+
+    UPDATE Employee SET salary = increased_salary WHERE Empno = empid;
+
+    SELECT empid AS EmpID, sal AS Original_Salary, no_of_proj AS Project_Count, increased_salary AS New_Salary;
+END //
+
+DELIMITER ;
+
+5) Write a procedure which executes the same task as in procedure 4 but for all the employees in the database.
+
+DELIMITER //
+CREATE PROCEDURE update_salary_for_all()
+BEGIN
+    DECLARE empid INT;
+    FOR emp_record IN (SELECT Empno FROM Employee) DO
+        SET empid = emp_record.Empno;
+        CALL emp_salary(empid);
+    END FOR;
+END //
+
+DELIMITER ;
+
+
